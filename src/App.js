@@ -1,6 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import DashBoard from "./Menu/DashBoard";
+import Visitor from "./Menu/Visitor";
 import User from "./Menu/User";
 import UserSetting from "./Menu/UserSetting";
 import NewTotal from "./Menu/NewTotal";
@@ -18,7 +19,9 @@ const App = () => {
   return (
     <div>
       <Routes>
+        <Route path="/Main_page" element={<Main_Page />} />
         <Route path="/DashBoard" element={<DashBoard />} />
+        <Route path="/Visitor" element={<Visitor />} />
         <Route path="/User" element={<User />} />
         <Route path="/NewTotal" element={<NewTotal />} />
         <Route path="/UserTotal" element={<UserTotal />} />

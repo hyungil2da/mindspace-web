@@ -63,7 +63,7 @@ const Notice = () => {
     return (
         <div className="dashboard-container">
             <nav className="sidebar">
-                <div className="logo">LOGO</div>
+                <div className="DashLogo">MINDSPACE</div>
                 <ul>
                     <li>
                         <NavLink to="/" className={({ isActive }) => (isActive ? "active" : "")}>
@@ -135,7 +135,7 @@ const Notice = () => {
                                                                 type="text"
                                                                 value={editTitle}
                                                                 onChange={(e) => setEditTitle(e.target.value)}
-                                                                className="w-full border p-2 rounded"                                                            />
+                                                                className="w-full border p-2 rounded" />
                                                         </div>
                                                         <div className="mb-2">
                                                             <label className="block mb-1 text-sm font-medium">내용 </label>

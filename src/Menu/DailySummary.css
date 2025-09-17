@@ -1,13 +1,15 @@
 .daily-summary {
   margin-bottom: 10px;
+  height: 280px;
+  overflow-y: auto; 
 }
 
-.daily-summary h2 {
-  margin-bottom: 16px;
-  font-size: 18px;
-  font-weight: bold;
-}
 
+.logo-btn .logo-img {
+  width: 100%;  /* 버튼 안에 꽉 차게 */
+  height: 100%;
+  object-fit: contain; /* 비율 유지하면서 맞춤 */
+}
 
 .summary-table {
   width: 100%;

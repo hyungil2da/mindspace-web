@@ -1,4 +1,3 @@
-// 사용자 관리
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./DashBoard.css";
@@ -44,9 +43,8 @@ const User = () => {
 
   return (
     <div className="dashboard-container">
-      {/* 사이드바 */}
       <nav className="sidebar">
-        <div className="logo">LOGO</div>
+        <div className="DashLogo">MINDSPACE</div>
         <ul>
           <li>
             <NavLink to="/DashBoard" className={({ isActive }) => (isActive ? "active" : "")}>
@@ -76,11 +74,10 @@ const User = () => {
         </ul>
       </nav>
 
-      {/* 메인 */}
       <main className="main-content">
-        <section className="top-section">
-          <div className="user-top">
-            <div className="card">
+        <section className="Upper">
+          <section className="top">
+            <div className="card userlist-card">
               <div className="search">
                 <div className="card-title">신규 회원 목록</div>
                 <input
@@ -134,21 +131,20 @@ const User = () => {
                 </tbody>
               </table>
             </div>
-            <div className="card profile-card">
-              <div className="profile-image">사진</div>
-              <div className="profile-info">
-                <p>관리자</p>
-                <span>아이디</span>
-              </div>
-              <div className="profile-actions">
-              </div>
+          </section>{/*top*/}
+          <div className="card profile-card">
+            <div className="profile-image">사진</div>
+            <div className="profile-info">
+              <p>관리자</p>
+              <span>아이디</span>
             </div>
+            <div className="empty"></div>
           </div>
-        </section>
+        </section> {/*upper*/}
 
         <section className="top-section">
           <div className="user-top">
-            <div className="card">
+            <div className="card userlist-card">
               <div className="search">
                 <div className="card-title">사용자 목록</div>
                 <input
@@ -203,13 +199,11 @@ const User = () => {
                 </tbody>
               </table>
             </div>
-            <div className="empty">
-
-            </div>
+            <div className="empty"></div>
           </div>
         </section>
       </main>
-    </div>
+    </div >
   );
 };
 

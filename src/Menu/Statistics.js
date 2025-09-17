@@ -1,12 +1,13 @@
 // 통계
 import React from "react";
 import { NavLink } from "react-router-dom";
+import Visitor from "./Visitor";
 
 const Statistics = () => {
   return (
     <div className="dashboard-container">
       <nav className="sidebar">
-        <div className="logo">LOGO</div>
+        <div className="DashLogo">MINDSPACE</div>
         <ul>
           <li>
             <NavLink to="/DashBoard" className={({ isActive }) => (isActive ? "active" : "")}>
@@ -39,11 +40,9 @@ const Statistics = () => {
       <main className="main-content">
         <section className="top-section">
           <div className="user-top">
-            <div className="card">
+            <div className="card stat-card">
               <div className="card-title">방문자 통계</div>
-              <div className="newUser">
-                <div className="graph">그래프</div>
-              </div>
+              <Visitor />
             </div>
 
             <div className="card profile-card">
@@ -57,12 +56,12 @@ const Statistics = () => {
         </section>
 
         <section className="bottom">
-          <div className="card">
-              <div className="card-title">검사 횟수</div>
-              <div className="graph"></div>
+          <div className="card statb-card">
+            <div className="card-title">검사 횟수</div>
+            <div className="graph"></div>
           </div>
 
-          <div className="card">
+          <div className="card statb-card">
             <div className="settingCard2">
               <div className="card-title">변화도</div>
               <div className="graph"></div>

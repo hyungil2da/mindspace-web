@@ -6,7 +6,7 @@ const Post = () => {
   return (
     <div className="dashboard-container">
       <nav className="sidebar">
-        <div className="logo">LOGO</div>
+        <div className="DashLogo">MINDSPACE</div>
         <ul>
           <li>
             <NavLink to="/DashBoard" className={({ isActive }) => (isActive ? "active" : "")}>
@@ -37,71 +37,72 @@ const Post = () => {
       </nav>
 
       <main className="main-content">
-        <section className="top">
-          <div className="card">
-            <div className="card-header">
-              <div className="card-title">FAQ</div>
+        <section className="Upper">
+          <section className="top">
+            <div className="card post-card">
+              <div className="card-header">
+                <div className="card-title">FAQ</div>
+              </div>
+              <table className="list-table">
+                <thead>
+                  <tr className='boldLine'>
+                    <th>자주 묻는 질문</th>
+                    <th>답변</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>자주 묻는 질문 1</td>
+                    <td>
+                      <NavLink to="/faq/1" className="detail-link">
+                        수정
+                      </NavLink>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>자주 묻는 질문 2</td>
+                    <td>
+                      <NavLink to="/faq/2" className="detail-link">
+                        수정
+                      </NavLink>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-            <table className="list-table">
-              <thead>
-                <tr className='boldLine'>
-                  <th>자주 묻는 질문</th>
-                  <th>답변</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>자주 묻는 질문 1</td>
-                  <td>
-                    <NavLink to="/faq/1" className="detail-link">
-                      수정
-                    </NavLink>
-                  </td>
-                </tr>
-                <tr>
-                  <td>자주 묻는 질문 2</td>
-                  <td>
-                    <NavLink to="/faq/2" className="detail-link">
-                      수정
-                    </NavLink>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div className="card">
-            <div className="card-header">
-              <div className="card-title">공지</div>
+            <div className="card post-card">
+              <div className="card-header">
+                <div className="card-title">공지</div>
+              </div>
+              <table className="list-table">
+                <thead>
+                  <tr>
+                    <th>작성일</th>
+                    <th>제목</th>
+                    <th>답변</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>자주 묻는 질문 1</td>
+                    <td>
+                      <NavLink to="/faq/1" className="detail-link">
+                        수정
+                      </NavLink>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>자주 묻는 질문 2</td>
+                    <td>
+                      <NavLink to="/faq/2" className="detail-link">
+                        수정
+                      </NavLink>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-            <table className="list-table">
-              <thead>
-                <tr>
-                  <th>작성일</th>
-                  <th>제목</th>
-                  <th>답변</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>자주 묻는 질문 1</td>
-                  <td>
-                    <NavLink to="/faq/1" className="detail-link">
-                      수정
-                    </NavLink>
-                  </td>
-                </tr>
-                <tr>
-                  <td>자주 묻는 질문 2</td>
-                  <td>
-                    <NavLink to="/faq/2" className="detail-link">
-                      수정
-                    </NavLink>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
+          </section >
           <div className="card profile-card">
             <div className="profile-image">사진</div>
             <div className="profile-info">
@@ -111,11 +112,11 @@ const Post = () => {
             <div className="profile-actions">
             </div>
           </div>
-        </section >
+        </section>
 
         <section className="bottom-section">
           <div className="user-top">
-            <div className="card">
+            <div className="card postb-card">
               <div className="newUser">
                 <div className="card-title">문의</div>
                 <table className="list-table">

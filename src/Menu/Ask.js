@@ -23,9 +23,8 @@ const Ask = () => {
 
   return (
     <div className="dashboard-container">
-      {/* 사이드바 */}
       <nav className="sidebar">
-        <div className="logo">LOGO</div>
+        <div className="DashLogo">MINDSPACE</div>
         <ul>
           <li>
             <NavLink to="/" className={({ isActive }) => (isActive ? "active" : "")}>
@@ -89,21 +88,21 @@ const Ask = () => {
                   </div>
                 </div>
               </div>
-              
-          </div>
-          <div className="card profile-card">
-                <div className="profile-image">사진</div>
-                <div className="profile-info">
-                  <p>관리자</p>
-                  <span>아이디</span>
-                </div>
-                <div className="profile-actions">
-                </div>
-              </div>
-            </div>
-            <div className="empty">
 
             </div>
+            <div className="card profile-card">
+              <div className="profile-image">사진</div>
+              <div className="profile-info">
+                <p>관리자</p>
+                <span>아이디</span>
+              </div>
+              <div className="profile-actions">
+              </div>
+            </div>
+          </div>
+          <div className="empty">
+
+          </div>
         </section>
       </main>
     </div>

@@ -7,7 +7,7 @@ const UserSetting = () => {
   return (
     <div className="dashboard-container">
       <nav className="sidebar">
-        <div className="logo">LOGO</div>
+        <div className="DashLogo">MINDSPACE</div>
         <ul>
           <li>
             <NavLink to="/" className={({ isActive }) => (isActive ? "active" : "")}>

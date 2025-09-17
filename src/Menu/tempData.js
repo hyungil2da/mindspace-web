@@ -1,0 +1,30 @@
+export const TEMP_MEASUREMENT_COUNT_DATA = [
+    {
+        "date": "2025-09-07",
+        "count": 0
+    },
+    {
+        "date": "2025-09-08",
+        "count": 0
+    },
+    {
+        "date": "2025-09-09",
+        "count": 0
+    },
+    {
+        "date": "2025-09-10",
+        "count": 0
+    },
+    {
+        "date": "2025-09-11",
+        "count": 0
+    },
+    {
+        "date": "2025-09-12",
+        "count": 0
+    },
+    {
+        "date": "2025-09-13",
+        "count": 0
+    }
+];

@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Visitor from "./Visitor";
 import FAQ from "./FAQ";
 import Notice from "./Notice";
 import { NavLink } from "react-router-dom";
 import "./DashBoard.css";
 import DailySummary from "../Menu/DailySummary";
+import logo from '../assets/EmotionVR.png';
 
 const DashBoard = () => {
   const [newUsers, setNewUsers] = useState([]);
@@ -37,7 +39,11 @@ const DashBoard = () => {
   return (
     <div className="dashboard-container">
       <nav className="sidebar">
-        <div className="DashLogo">MINDSPACE</div>
+        <div className="DashLogo">
+                  <button className="logo-btn">
+  <img src={logo} alt="로고" className="logo-img" onClick={() => window.location.href = '../Main_page'}/>
+</button>
+          MINDSPACE</div>
         <ul>
           <li>
             <NavLink to="/DashBoard" className={({ isActive }) => (isActive ? "active" : "")}>
@@ -70,14 +76,14 @@ const DashBoard = () => {
       <main className="main-content">
         <section className="Upper">
           <section className="top">
-            <div className="card">
+            <div className="card dashboard-card">
               <div className="card-header">
                 <div className="card-title">방문자 현황</div>
               </div>
-              <div className="graph">그래프</div>
+              <Visitor />
             </div>
 
-            <div className="card">
+            <div className="card dashboard-card">
               <div className="card-header">
                 <div className="card-title-summary">일자별 요약</div>
               </div>
@@ -98,7 +104,7 @@ const DashBoard = () => {
         </section>
 
         <section className="bottom">
-          <div className="card">
+          <div className="card dashboard-card ">
             <div className="card-header">
               <div className="card-title">FAQ</div>
               <NavLink to="/FAQ" className="plus-btn">자세히</NavLink>
@@ -119,7 +125,7 @@ const DashBoard = () => {
             </div>
           </div>
 
-          <div className="card">
+          <div className="card dashboard-card">
             <div className="card-header">
               <div className="card-title">공지</div>
               <NavLink to="/Notice" className="plus-btn">자세히</NavLink>

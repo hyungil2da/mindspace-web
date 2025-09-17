@@ -42,7 +42,7 @@ const UserTotal = () => {
     return (
         <div className="dashboard-container">
             <nav className="sidebar">
-                <div className="logo">LOGO</div>
+                <div className="DashLogo">MINDSPACE</div>
                 <ul>
                     <li>
                         <NavLink to="/DashBoard" className={({ isActive }) => (isActive ? "active" : "")}>

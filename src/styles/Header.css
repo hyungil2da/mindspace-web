@@ -47,6 +47,7 @@
   display: flex;
   gap: 20px;
   transition: all 0.3s ease;
+  align-items: center;
 }
 
 .link {
@@ -54,6 +55,15 @@
   color: #333;
   font-weight: 500;
   transition: all 0.3s ease;
+}
+.dashboard-btn {
+  color: black;
+  font-weight: 500;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+  background-color: white;
+  transition: background-color 0.3s ease;
 }
 
 /* 햄버거 메뉴 기본 */
