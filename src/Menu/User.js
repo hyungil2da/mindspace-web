@@ -75,9 +75,9 @@ const User = () => {
       </nav>
 
       <main className="main-content">
-        <section className="Upper">
-          <section className="top">
-            <div className="card userlist-card">
+        <section className="top-section">
+          <div className="usertop">
+            <div className="card new-card">
               <div className="search">
                 <div className="card-title">신규 회원 목록</div>
                 <input
@@ -131,20 +131,19 @@ const User = () => {
                 </tbody>
               </table>
             </div>
-          </section>{/*top*/}
-          <div className="card profile-card">
-            <div className="profile-image">사진</div>
-            <div className="profile-info">
-              <p>관리자</p>
-              <span>아이디</span>
-            </div>
-            <div className="empty"></div>
           </div>
-        </section> {/*upper*/}
+        </section>
+        <div className="card profile-card">
+          <div className="profile-image">사진</div>
+          <div className="profile-info">
+            <p>MARS</p>
+            <span>Mars1234@gmail.com</span>
+          </div>
+        </div>
 
         <section className="top-section">
-          <div className="user-top">
-            <div className="card userlist-card">
+          <div className="usertop">
+            <div className="card total-card">
               <div className="search">
                 <div className="card-title">사용자 목록</div>
                 <input

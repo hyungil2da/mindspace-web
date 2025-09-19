@@ -66,7 +66,7 @@ const Notice = () => {
                 <div className="DashLogo">MINDSPACE</div>
                 <ul>
                     <li>
-                        <NavLink to="/" className={({ isActive }) => (isActive ? "active" : "")}>
+                        <NavLink to="/DashBoard" className={({ isActive }) => (isActive ? "active" : "")}>
                             대시보드
                         </NavLink>
                     </li>
@@ -94,84 +94,90 @@ const Notice = () => {
             </nav>
 
             <main className="main-content">
-                <section className="top-section">
-                    <div className="user-top">
-                        <div className="card">
-                            <div className="search">
-                                <div className="card-title">공지</div>
-                            </div>
-
-                            <table className="list-table border w-full">
-                                <thead>
-                                    <tr className="bg-gray-100">
-                                        <th className="p-2">작성일</th>
-                                        <th className="p-2">제목</th>
-                                        <th className="p-2">답변</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {notices.map((notice) => (
-                                        <React.Fragment key={notice.id}>
-                                            <tr>
-                                                <td className="p-2">{notice.date}</td>
-                                                <td className="p-2">{notice.title}</td>
-                                                <td className="p-2">
-                                                    <button
-                                                        className="text-blue-600 underline"
-                                                        onClick={() =>
-                                                            openRow === notice.id ? setOpenRow(null) : handleEdit(notice)
-                                                        }
-                                                    >
-                                                        {openRow === notice.id ? "닫기" : "수정"}
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            {openRow === notice.id && (
-                                                <tr>
-                                                    <td colSpan={3} className="p-4 bg-gray-50">
-                                                        <div className="mb-2">
-                                                            <label className="block mb-1 text-sm font-medium">제목 </label>
-                                                            <input
-                                                                type="text"
-                                                                value={editTitle}
-                                                                onChange={(e) => setEditTitle(e.target.value)}
-                                                                className="w-full border p-2 rounded" />
-                                                        </div>
-                                                        <div className="mb-2">
-                                                            <label className="block mb-1 text-sm font-medium">내용 </label>
-                                                            <textarea
-                                                                value={editContent}
-                                                                onChange={(e) => setEditContent(e.target.value)}
-                                                                className="w-full h-24 border p-2 rounded"
-                                                            />
-                                                        </div>
-                                                        <div className="flex justify-end gap-2 mt-2">
-                                                            <button
-                                                                className="px-3 py-1 bg-blue-500 text-white rounded"
-                                                                onClick={() => handleSave(notice.id)}
-                                                            >
-                                                                저장
-                                                            </button>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            )}
-                                        </React.Fragment>
-                                    ))}
-                                </tbody>
-                            </table>
-                        </div>
-                        <div className="card profile-card">
-                            <div className="profile-image">사진</div>
-                            <div className="profile-info">
-                                <p>관리자</p>
-                                <span>아이디</span>
-                            </div>
-                            <div className="profile-actions">
-                            </div>
-                        </div>
+                <div className="noticebox">
+                    <div className="search">
+                        <div className="card-title">공지</div>
                     </div>
-                </section>
+
+                    <table className="list-table border w-full">
+                        <thead>
+                            <tr className="bg-gray-100">
+                                <th className="p-2">작성일</th>
+                                <th className="p-2">제목</th>
+                                <th className="p-2">답변</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {notices.map((notice) => (
+                                <React.Fragment key={notice.id}>
+                                    <tr>
+                                        <td className="p-2">{notice.date}</td>
+                                        <td className="p-2">{notice.title}</td>
+                                        <td className="p-2">
+                                            <button
+                                                className="text-blue-600 underline"
+                                                onClick={() =>
+                                                    openRow === notice.id ? setOpenRow(null) : handleEdit(notice)
+                                                }
+                                            >
+                                                {openRow === notice.id ? "닫기" : "수정"}
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    {openRow === notice.id && (
+                                        <tr>
+                                            <td colSpan={3} className="p-4 bg-gray-50">
+                                                <div className="mb-2">
+                                                    <label className="block mb-1 text-sm font-medium">제목 </label>
+                                                    <input
+                                                        type="text"
+                                                        style={{
+                                                            width: '350px',
+                                                            height: '30px',
+                                                        }}
+                                                        value={editTitle}
+                                                        onChange={(e) => setEditTitle(e.target.value)}
+                                                        className="w-full border p-2 rounded" />
+                                                </div>
+                                                <div className="mb-2">
+                                                    <label className="block mb-1 text-sm font-medium">내용 </label>
+                                                    <textarea
+                                                        style={{
+                                                            marginTop: '5px',
+                                                            width: '350px',
+                                                            height: '30px',
+                                                        }}
+                                                        value={editContent}
+                                                        onChange={(e) => setEditContent(e.target.value)}
+                                                        className="w-full h-24 border p-2 rounded"
+                                                    />
+                                                </div>
+                                                <div className="flex justify-end gap-2 mt-2">
+                                                    <button
+                                                        className="px-3 py-1 bg-blue-500 text-white rounded"
+                                                        onClick={() => handleSave(notice.id)}
+                                                    >
+                                                        저장
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    )}
+                                </React.Fragment>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+                <div className="card profile-card">
+                    <div className="profile-image">사진</div>
+                    <div className="profile-info">
+                        <p>관리자</p>
+                        <span>아이디</span>
+                    </div>
+                    <div className="profile-actions">
+                    </div>
+                </div>
+
             </main>
         </div>
     );

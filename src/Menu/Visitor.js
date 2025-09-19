@@ -54,8 +54,8 @@ const Visitor = () => {
   }));
 
   return (
-    <div style={{ width: "100%", height: 400 }}>
-      <LineChart width={500} height={300} data={data}>
+    <div style={{ width: "100%", height: 285 }}>
+      <LineChart width={830} height={290} data={data}>
         <XAxis dataKey="date" />
         <YAxis />
         <CartesianGrid stroke="#eee" strokeDasharray="5 5" />

@@ -73,64 +73,72 @@ const UserTotal = () => {
             </nav>
 
             <main className="main-content">
-                <section className="top-section">
-                    <div className="card">
-                        <div className="search">
-                            <NavLink to="/NewTotal" className={({ isActive }) => (isActive ? "active" : "")}>
-                                신규 회원 목록
-                            </NavLink>
-                            <NavLink to="/UserTotal" className={({ isActive }) => (isActive ? "active" : "")}>
-                                전체 사용자 목록
-                            </NavLink>
-                            <input
-                                type="text"
-                                placeholder="이름 검색"
-                                value={searchTop}
-                                onChange={(e) => setSearchTop(e.target.value)}
-                                className="search-input"
-                            />
-                        </div>
-                        <table className="list-table">
-                            <thead>
-                                <tr>
-                                    <th>이름</th>
-                                    <th>아이디</th>
-                                    <th>가입일</th>
-                                    <th>검사횟수</th>
-                                    <th>검사정보</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {filteredTopUsers.length === 0 ? (
+                <section className="Upper">
+                    <section className="usertop">
+                        <div className="card userlist-card">
+                            <div className="search">
+                                <NavLink to="/NewTotal" className={({ isActive }) => (isActive ? "active" : "")}>
+                                    신규 회원 목록
+                                </NavLink>
+                                <NavLink to="/UserTotal" className={({ isActive }) => (isActive ? "active" : "")}>
+                                    전체 사용자 목록
+                                </NavLink>
+                                <input
+                                    type="text"
+                                    placeholder="이름 검색"
+                                    value={searchTop}
+                                    onChange={(e) => setSearchTop(e.target.value)}
+                                    className="search-input"
+                                />
+                            </div>
+                            <table className="list-table">
+                                <thead>
                                     <tr>
-                                        <td colSpan="5" className="empty">회원이 없습니다.</td>
+                                        <th>이름</th>
+                                        <th>아이디</th>
+                                        <th>가입일</th>
+                                        <th>검사횟수</th>
+                                        <th>검사정보</th>
                                     </tr>
-                                ) : (
-                                    filteredTopUsers.map((user, idx) => (
-                                        <tr key={idx}>
-                                            <td>{user.name || "이름"}</td>
-                                            <td>{user.email || "아이디"}</td>
-                                            <td>
-                                                {user.createdAt
-                                                    ? new Date(user.createdAt)
-                                                        .toLocaleDateString("ko-KR", {
-                                                            year: "numeric",
-                                                            month: "2-digit",
-                                                            day: "2-digit",
-                                                        })
-                                                        .replace(/\. /g, ".")
-                                                        .replace(/\.$/, "")
-                                                    : "가입일"}
-                                            </td>
-                                            <td>{user.measurmentCount ?? 0}</td>
-                                            <td>{user.measurementInfo || "-"}</td>
+                                </thead>
+                                <tbody>
+                                    {filteredTopUsers.length === 0 ? (
+                                        <tr>
+                                            <td colSpan="5" className="empty">회원이 없습니다.</td>
                                         </tr>
-                                    ))
-                                )}
-                            </tbody>
-                        </table>
+                                    ) : (
+                                        filteredTopUsers.map((user, idx) => (
+                                            <tr key={idx}>
+                                                <td>{user.name || "이름"}</td>
+                                                <td>{user.email || "아이디"}</td>
+                                                <td>
+                                                    {user.createdAt
+                                                        ? new Date(user.createdAt)
+                                                            .toLocaleDateString("ko-KR", {
+                                                                year: "numeric",
+                                                                month: "2-digit",
+                                                                day: "2-digit",
+                                                            })
+                                                            .replace(/\. /g, ".")
+                                                            .replace(/\.$/, "")
+                                                        : "가입일"}
+                                                </td>
+                                                <td>{user.measurmentCount ?? 0}</td>
+                                                <td>{user.measurementInfo || "-"}</td>
+                                            </tr>
+                                        ))
+                                    )}
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                    <div className="card profile-card">
+                        <div className="profile-image">사진</div>
+                        <div className="profile-info">
+                            <p>MARS</p>
+                            <span>Mars1234@gmail.com</span>
+                        </div>
                     </div>
-
                 </section>
             </main>
         </div>

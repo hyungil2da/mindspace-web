@@ -39,7 +39,7 @@ const Post = () => {
       <main className="main-content">
         <section className="Upper">
           <section className="top">
-            <div className="card post-card">
+            <div className="card post-card1">
               <div className="card-header">
                 <div className="card-title">FAQ</div>
               </div>
@@ -70,7 +70,7 @@ const Post = () => {
                 </tbody>
               </table>
             </div>
-            <div className="card post-card">
+            <div className="card post-card2">
               <div className="card-header">
                 <div className="card-title">공지</div>
               </div>
@@ -103,6 +103,7 @@ const Post = () => {
               </table>
             </div>
           </section >
+
           <div className="card profile-card">
             <div className="profile-image">사진</div>
             <div className="profile-info">
@@ -114,44 +115,40 @@ const Post = () => {
           </div>
         </section>
 
-        <section className="bottom-section">
-          <div className="user-top">
-            <div className="card postb-card">
-              <div className="newUser">
-                <div className="card-title">문의</div>
-                <table className="list-table">
-                  <thead>
-                    <tr>
-                      <th>작성일</th>
-                      <th>내용</th>
-                      <th>답변</th>
+        <section className="top-section">
+          <div className="top">
+            <div className="card post-card3">
+              <div className="card-title">문의</div>
+              <table className="list-table">
+                <thead>
+                  <tr>
+                    <th>작성일</th>
+                    <th>내용</th>
+                    <th>답변</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    { id: "Ask1", date: "2025-08-27", content: "문의 내용 1" },
+                    { id: "Ask2", date: "2025-08-26", content: "문의 내용 2" },
+                  ].map((item) => (
+                    <tr key={item.id}>
+                      <td>{item.date}</td>
+                      <td>{item.content}</td>
+                      <td>
+                        <NavLink to={`/Ask/${item.id}`} className="detail-link">
+                          상세보기
+                        </NavLink>
+                      </td>
                     </tr>
-                  </thead>
-                  <tbody>
-                    {[
-                      { id: "Ask1", date: "2025-08-27", content: "문의 내용 1" },
-                      { id: "Ask2", date: "2025-08-26", content: "문의 내용 2" },
-                    ].map((item) => (
-                      <tr key={item.id}>
-                        <td>{item.date}</td>
-                        <td>{item.content}</td>
-                        <td>
-                          <NavLink to={`/Ask/${item.id}`} className="detail-link">
-                            상세보기
-                          </NavLink>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+                  ))}
+                </tbody>
+              </table>
             </div>
-            <div className="empty">
-
-            </div>
-          </div>
-        </section>
-      </main >
+          <div className="empty"></div>
+        </div>
+      </section>
+    </main >
     </div >
   )
 }

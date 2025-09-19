@@ -97,74 +97,67 @@ const FAQ = () => {
                 </ul>
             </nav>
 
-            {/* 메인 */}
             <main className="main-content">
-                <section className="top-section">
-                    <div className="user-top">
-                        <div className="card">
-                            <div className="search">
-                                <div className="card-title">FAQ</div>
-                            </div>
-
-                            <table className="list-table border w-full">
-                                <thead>
-                                    <tr className="bg-gray-100">
-                                        <th className="p-2">제목</th>
-                                        <th className="p-2">답변</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {faqs.map((faq) => (
-                                        <React.Fragment key={faq.id}>
-                                            <tr>
-                                                <td className="p-2">{faq.title}</td>
-                                                <td className="p-2">
-                                                    <button
-                                                        className="text-blue-600 underline"
-                                                        onClick={() =>
-                                                            openRow === faq.id ? setOpenRow(null) : handleEdit(faq)
-                                                        }
-                                                    >
-                                                        {openRow === faq.id ? "닫기" : "수정"}
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                            {openRow === faq.id && (
-                                                <tr>
-                                                    <td colSpan={2} className="p-2 bg-gray-50">
-                                                        <textarea
-                                                            value={editContent}
-                                                            onChange={(e) => setEditContent(e.target.value)}
-                                                            className="w-full border p-2 rounded"
-                                                            rows={6} cols={80}
-                                                        />
-                                                        <div className="flex justify-end mt-2 gap-2">
-                                                            <button
-                                                                className="px-3 py-1 bg-blue-500 text-white rounded"
-                                                                onClick={() => handleSave(faq.id)}
-                                                            >
-                                                                저장
-                                                            </button>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            )}
-                                        </React.Fragment>
-                                    ))}
-                                </tbody>
-                            </table>
-                        </div>
-                        <div className="card profile-card">
-                            <div className="profile-image">사진</div>
-                            <div className="profile-info">
-                                <p>관리자</p>
-                                <span>아이디</span>
-                            </div>
-                            <div className="profile-actions">
-                            </div>
-                        </div>
+                <div className="faqtop">
+                    <div className="search">
+                        <div className="card-title">FAQ</div>
                     </div>
-                </section>
+
+                    <table className="list-table border w-full">
+                        <thead>
+                            <tr className="bg-gray-100">
+                                <th className="p-2">제목</th>
+                                <th className="p-2">답변</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {faqs.map((faq) => (
+                                <React.Fragment key={faq.id}>
+                                    <tr>
+                                        <td className="p-2">{faq.title}</td>
+                                        <td className="p-2">
+                                            <button
+                                                className="text-blue-600 underline"
+                                                onClick={() =>
+                                                    openRow === faq.id ? setOpenRow(null) : handleEdit(faq)
+                                                }
+                                            >
+                                                {openRow === faq.id ? "닫기" : "수정"}
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    {openRow === faq.id && (
+                                        <tr>
+                                            <td colSpan={2} className="p-2 bg-gray-50">
+                                                <textarea
+                                                    value={editContent}
+                                                    onChange={(e) => setEditContent(e.target.value)}
+                                                    className="w-full border p-2 rounded"
+                                                    rows={6} cols={80}
+                                                />
+                                                <div className="flex justify-end mt-2 gap-2">
+                                                    <button
+                                                        className="px-3 py-1 bg-blue-500 text-white rounded"
+                                                        onClick={() => handleSave(faq.id)}
+                                                    >
+                                                        저장
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    )}
+                                </React.Fragment>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+                <div className="card profile-card">
+                    <div className="profile-image">사진</div>
+                    <div className="profile-info">
+                        <p>MARS</p>
+                        <span>Mars1234@gmail.com</span>
+                    </div>
+                </div>
             </main>
         </div>
     );

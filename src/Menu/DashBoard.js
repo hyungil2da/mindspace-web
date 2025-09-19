@@ -76,14 +76,14 @@ const DashBoard = () => {
       <main className="main-content">
         <section className="Upper">
           <section className="top">
-            <div className="card dashboard-card">
+            <div className="card dashboard-card1">
               <div className="card-header">
                 <div className="card-title">방문자 현황</div>
               </div>
               <Visitor />
             </div>
 
-            <div className="card dashboard-card">
+            <div className="card dashboard-card2">
               <div className="card-header">
                 <div className="card-title-summary">일자별 요약</div>
               </div>
@@ -97,14 +97,14 @@ const DashBoard = () => {
           <div className="card profile-card">
             <div className="profile-image">사진</div>
             <div className="profile-info">
-              <p>관리자</p>
-              <span>아이디</span>
+              <p>MARS</p>
+              <span>Mars1234@gmail.com</span>
             </div>
           </div>
         </section>
 
         <section className="bottom">
-          <div className="card dashboard-card ">
+          <div className="card dashboard-card3 ">
             <div className="card-header">
               <div className="card-title">FAQ</div>
               <NavLink to="/FAQ" className="plus-btn">자세히</NavLink>
@@ -125,7 +125,7 @@ const DashBoard = () => {
             </div>
           </div>
 
-          <div className="card dashboard-card">
+          <div className="card dashboard-card3">
             <div className="card-header">
               <div className="card-title">공지</div>
               <NavLink to="/Notice" className="plus-btn">자세히</NavLink>

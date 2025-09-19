@@ -38,38 +38,28 @@ const Statistics = () => {
       </nav>
 
       <main className="main-content">
-        <section className="top-section">
-          <div className="user-top">
-            <div className="card stat-card">
-              <div className="card-title">방문자 통계</div>
-              <Visitor />
-            </div>
-
-            <div className="card profile-card">
-              <div className="profile-image">사진</div>
-              <div className="profile-info">
-                <p>관리자</p>
-                <span>아이디</span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="bottom">
-          <div className="card statb-card">
+        <section className="top">
+          <div className="card userlist-card">
             <div className="card-title">검사 횟수</div>
             <div className="graph"></div>
           </div>
-
-          <div className="card statb-card">
-            <div className="settingCard2">
-              <div className="card-title">변화도</div>
-              <div className="graph"></div>
+        </section>
+        <div className="card profile-card">
+            <div className="profile-image">사진</div>
+            <div className="profile-info">
+              <p>MARS</p>
+              <span>Mars1234@gmail.com</span>
             </div>
+          </div>
+
+        <section className="top">
+          <div className="card userlist-card">
+            <div className="card-title">변화도</div>
+            <div className="graph"></div>
           </div>
         </section>
       </main>
-    </div>
+    </div >
   );
 };
 
