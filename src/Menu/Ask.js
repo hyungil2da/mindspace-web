@@ -27,7 +27,7 @@ const Ask = () => {
         <div className="DashLogo">MINDSPACE</div>
         <ul>
           <li>
-            <NavLink to="/" className={({ isActive }) => (isActive ? "active" : "")}>
+            <NavLink to="/DashBoard" className={({ isActive }) => (isActive ? "active" : "")}>
               대시보드
             </NavLink>
           </li>
