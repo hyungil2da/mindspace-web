@@ -27,7 +27,7 @@ const Ask = () => {
         <div className="DashLogo">MINDSPACE</div>
         <ul>
           <li>
-            <NavLink to="/" className={({ isActive }) => (isActive ? "active" : "")}>
+            <NavLink to="/Dashboard" className={({ isActive }) => (isActive ? "active" : "")}>
               대시보드
             </NavLink>
           </li>
@@ -49,6 +49,11 @@ const Ask = () => {
           <li>
             <NavLink to="/Setting" className={({ isActive }) => (isActive ? "active" : "")}>
               설정
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/" className={({ isActive }) => (isActive ? "active" : "")}>
+              홈페이지
             </NavLink>
           </li>
         </ul>

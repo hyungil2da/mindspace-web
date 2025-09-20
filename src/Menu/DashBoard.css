@@ -7,6 +7,14 @@ a:active {
 
 }
 
+.DashLogo {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 20px;
+
+  text-align: center;
+}
+
 a:visited {
   color: black;
 }
@@ -176,7 +184,8 @@ a:visited {
 .dashboard-card3 {
   max-width: 504px;
   max-height: 350px;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .userlist-card {

@@ -34,6 +34,11 @@ const Statistics = () => {
               설정
             </NavLink>
           </li>
+          <li>
+            <NavLink to="/" className={({ isActive }) => (isActive ? "active" : "")}>
+              홈페이지
+            </NavLink>
+          </li>
         </ul>
       </nav>
 

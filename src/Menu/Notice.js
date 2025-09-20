@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./DashBoard.css";
 import axios from "axios";
+import { loadFaqs, loadNotices, saveFaqs, saveNotices } from "./DashBoard_Utility";
 
 const Notice = () => {
     const [users, setUsers] = useState([]);
@@ -14,6 +15,12 @@ const Notice = () => {
         { id: 2, date: "2025-05-18", title: "공지2", content: "두 번째 공지 내용입니다." },
         { id: 3, date: "2025-09-23", title: "공지3", content: "세 번째 공지 내용입니다." }
     ]);
+    useEffect(() => {
+        const saved = loadNotices();
+        if (saved.length) setNotices(saved);
+    }, []);
+
+    useEffect(() => {saveNotices(notices);}, [notices]);
 
     const [openRow, setOpenRow] = useState(null);
     const [editTitle, setEditTitle] = useState("");
