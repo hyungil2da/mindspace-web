@@ -107,12 +107,10 @@ const User = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {newUsers.length === 0 ? (
-                    <tr>
-                      <td colSpan="5" className="none">신규 회원이 없습니다.</td>
-                    </tr>
-                  ) : (
-                    newUsers.slice(0, 3).map((user, idx) => (
+                  {newUsers
+                    .filter((user) => user.name?.toLowerCase().includes(searchTop.toLowerCase()))
+                    .slice(0, 3)
+                    .map((user, idx) => (
                       <tr key={idx}>
                         <td>{user.name || "이름"}</td>
                         <td>{user.email || "아이디"}</td>
@@ -131,7 +129,11 @@ const User = () => {
                         <td>{user.measurmentCount ?? 0}</td>
                         <td>{user.measurementInfo || "-"}</td>
                       </tr>
-                    ))
+                    ))}
+                  {newUsers.filter((user) => user.name?.toLowerCase().includes(searchTop.toLowerCase())).length === 0 && (
+                    <tr>
+                      <td colSpan="5" className="none">검색 결과가 없습니다.</td>
+                    </tr>
                   )}
                 </tbody>
               </table>

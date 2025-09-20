@@ -1,7 +1,6 @@
-// 통계
 import React from "react";
 import { NavLink } from "react-router-dom";
-import Visitor from "./Visitor";
+import Count from "./Count";
 
 const Statistics = () => {
   return (
@@ -45,8 +44,8 @@ const Statistics = () => {
       <main className="main-content">
         <section className="top">
           <div className="card userlist-card">
-            <div className="card-title">검사 횟수</div>
-            <div className="graph"></div>
+            <div className="card-title">사용자 별 검사 횟수 평균</div>
+            <Count />
           </div>
         </section>
         <div className="card profile-card">

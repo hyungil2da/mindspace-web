@@ -11,6 +11,7 @@ import FAQ from "./Menu/FAQ";
 import Notice from "./Menu/Notice";
 import Ask from "./Menu/Ask";
 import Statistics from "./Menu/Statistics";
+import Count from "./Menu/Count";
 import Setting from "./Menu/Setting";
 import "./App.css";
 import Main_Page from "./pages/Main_Page";
@@ -30,6 +31,7 @@ const App = () => {
         <Route path="/Notice" element={<Notice />} />
         <Route path="/Ask/:id" element={<Ask />} />
         <Route path="/Statistics" element={<Statistics />} />
+        <Route path="/Count" element={<Count />} />
         <Route path="/Setting" element={<Setting />} />
         <Route path="/UserSetting" element={<UserSetting />} />
         <Route path="/" element={<Main_Page />} />
