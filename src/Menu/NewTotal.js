@@ -78,9 +78,9 @@ const UserTotal = () => {
             </nav>
 
             <main className="main-content">
-                <section className="top-section">
-                    <div className="usertop">
-                        <div className="card userlist-card">
+                <section className="Upper">
+                    <section className="top">
+                        <div className="card newlist-card">
                             <div className="search">
                                 <NavLink to="/NewTotal" className={({ isActive }) => (isActive ? "active" : "")}>
                                     신규 회원 목록
@@ -136,15 +136,15 @@ const UserTotal = () => {
                                 </tbody>
                             </table>
                         </div>
+                    </section>
+                    <div className="card profile-card">
+                        <div className="profile-image">사진</div>
+                        <div className="profile-info">
+                            <p>MARS</p>
+                            <span>Mars1234@gmail.com</span>
+                        </div>
                     </div>
                 </section>
-                <div className="card profile-card">
-                    <div className="profile-image">사진</div>
-                    <div className="profile-info">
-                        <p>MARS</p>
-                        <span>Mars1234@gmail.com</span>
-                    </div>
-                </div>
             </main>
         </div >
     );

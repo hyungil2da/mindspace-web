@@ -61,9 +61,9 @@ const Ask = () => {
 
       <main className="main-content">
         <section className="top-section">
-          <div className="user-top">
-            <div className="card">
-              <div className="title">문의</div>
+          <div className="usertop">
+            <div className="askcard">
+              <div className="card-title">문의</div>
 
               <hr className="divider" />
 
@@ -92,20 +92,16 @@ const Ask = () => {
                   </div>
                 </div>
               </div>
-
             </div>
-            <div className="card profile-card">
-              <div className="profile-image">사진</div>
-              <div className="profile-info">
-                <p>MARS</p>
-                <span>Mars1234@gmail.com</span>
-              </div>
-            </div>
-          </div>
-          <div className="empty">
-
           </div>
         </section>
+        <div className="card profile-card">
+            <div className="profile-image">사진</div>
+            <div className="profile-info">
+              <p>MARS</p>
+              <span>Mars1234@gmail.com</span>
+            </div>
+          </div>
       </main>
     </div>
   );

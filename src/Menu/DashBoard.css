@@ -113,7 +113,7 @@ a:visited {
   margin-bottom: 20px;
 }
 
-.faqtop{
+.faqtop {
   width: 885px;
   background: white;
   padding: 10px;
@@ -125,8 +125,8 @@ a:visited {
   flex: 1;
 }
 
-.usertop{
-  width: 885px;
+.usertop {
+  max-width: 85%;
   margin-bottom: 20px;
 }
 
@@ -189,7 +189,11 @@ a:visited {
 }
 
 .userlist-card {
-  max-width: 885px;
+  max-width: 85%;
+}
+
+.newlist-card {
+  max-width: 85%;
 }
 
 .post-card {
@@ -206,6 +210,14 @@ a:visited {
 
 .statb-card {
   max-width: 420px;
+}
+
+.askcard {
+  max-width: 85%;
+  background: white;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .faqbox {
@@ -232,8 +244,7 @@ a:visited {
   min-height: 219px;
 }
 
-.new-card 
-.total-card {
+.new-card .total-card {
   width: 820px;
   align-items: flex-start;
   gap: 16px;
@@ -280,7 +291,7 @@ a:visited {
 }
 
 .post-card3 {
-    max-width: 885px;
+  max-width: 885px;
 }
 
 .sub {
@@ -506,4 +517,41 @@ a:visited {
 .listTable th {
   border-bottom: 2px solid #000000;
   border-top: none;
+}
+
+.settingCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.photo-wrap {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.photo-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.edit {
+  font-size: 14px;
+  color: #888;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.id{
+  margin-top: 3px;
+  font-size: 14px;
+  color: #555;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

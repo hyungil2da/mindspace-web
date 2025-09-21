@@ -44,12 +44,32 @@ const Setting = () => {
         <section className="top-section">
           <div className="Setting-top">
             <div className="card">
-              <div className="newUser">
-                <div className="card-title">관리자 계정</div>
-                <div className="Bar">
-
+              <div className="card-title">관리자 계정</div>
+              <div className="settingCard">
+                <div className="photo-wrap">
+                  <img
+                    id="img"
+                    src="https://play-lh.googleusercontent.com/38AGKCqmbjZ9OuWx4YjssAz3Y0DTWbiM5HB0ove1pNBq_o9mtWfGszjZNxZdwt_vgHo"
+                    alt="사진"
+                  />
+                  <input
+                    type="file"
+                    id="photo-upload"
+                    accept="image/*"
+                    style={{ display: 'none' }}
+                  />
                 </div>
               </div>
+              <label htmlFor="photo-upload" className="edit">
+                수정
+              </label>
+              <input
+                type="file"
+                id="photo-upload"
+                accept="image/*"
+                style={{ display: 'none' }}
+              />
+              <div className='id'>아이디 : Mars1234@gmail.com</div>
             </div>
             <div className="settingCard">
               <h3>관리자 목록</h3>

@@ -112,10 +112,8 @@ const Post = () => {
           <div className="card profile-card">
             <div className="profile-image">사진</div>
             <div className="profile-info">
-              <p>관리자</p>
-              <span>아이디</span>
-            </div>
-            <div className="profile-actions">
+              <p>MARS</p>
+              <span>Mars1234@gmail.com</span>
             </div>
           </div>
         </section>
@@ -150,10 +148,10 @@ const Post = () => {
                 </tbody>
               </table>
             </div>
-          <div className="empty"></div>
-        </div>
-      </section>
-    </main >
+            <div className="empty"></div>
+          </div>
+        </section>
+      </main >
     </div >
   )
 }
