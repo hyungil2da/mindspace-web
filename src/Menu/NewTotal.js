@@ -54,10 +54,10 @@ const UserTotal = () => {
                             사용자 관리
                         </NavLink>
                     </li>
-                    <li>
+                    {/*<li>
                         <NavLink to="/Post" className={({ isActive }) => (isActive ? "active" : "")}>
                             게시판 관리
-                        </NavLink>
+                    </NavLink>
                     </li>
                     <li>
                         <NavLink to="/Statistics" className={({ isActive }) => (isActive ? "active" : "")}>
@@ -68,7 +68,7 @@ const UserTotal = () => {
                         <NavLink to="/Setting" className={({ isActive }) => (isActive ? "active" : "")}>
                             설정
                         </NavLink>
-                    </li>
+                    </li>*/}
                     <li>
                         <NavLink to="/" className={({ isActive }) => (isActive ? "active" : "")}>
                             홈페이지

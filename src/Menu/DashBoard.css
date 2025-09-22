@@ -136,9 +136,11 @@ a:visited {
 
 .bottom {
   display: grid;
-  grid-template-columns: 42% 41% 14%;
   gap: 20px;
 }
+/*
+grid-template-columns: 42% 41% 14%;
+*/
 
 .bottom-section {
   display: flex;
@@ -171,18 +173,18 @@ a:visited {
 }
 
 .dashboard-card1 {
-  max-width: 480px;
+  max-width: 35%;
   max-height: 350px;
   overflow: hidden;
 }
 
 .dashboard-card2 {
-  max-width: 390px;
+  max-width: 35%;
   max-height: 350px;
 }
 
 .dashboard-card3 {
-  max-width: 504px;
+  max-width: 35%;
   max-height: 350px;
   overflow-y: auto;
   overflow-x: hidden;

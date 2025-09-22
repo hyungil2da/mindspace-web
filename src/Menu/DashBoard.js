@@ -70,7 +70,7 @@ const DashBoard = () => {
               사용자 관리
             </NavLink>
           </li>
-          <li>
+          {/*<li>
             <NavLink to="/Post" className={({ isActive }) => (isActive ? "active" : "")}>
               게시판 관리
             </NavLink>
@@ -84,7 +84,7 @@ const DashBoard = () => {
             <NavLink to="/Setting" className={({ isActive }) => (isActive ? "active" : "")}>
               설정
             </NavLink>
-          </li>
+          </li>*/}
           <li>
             <NavLink to="/" className={({ isActive }) => (isActive ? "active" : "")}>
               홈페이지
@@ -123,7 +123,7 @@ const DashBoard = () => {
           </div>
         </section>
 
-        <section className="bottom">
+        <section className="top">
           <div className="card dashboard-card3 ">
             <div className="card-header">
               <div className="card-title">FAQ</div>

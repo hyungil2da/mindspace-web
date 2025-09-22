@@ -10,15 +10,16 @@ const Notice = () => {
     const [searchTop, setSearchTop] = useState("");
     const [searchBottom, setSearchBottom] = useState("");
 
-    const [notices, setNotices] = useState([
+    const defaultNotices = [
         { id: 1, date: "2025-02-01", title: "공지1", content: "첫 번째 공지 내용입니다." },
         { id: 2, date: "2025-05-18", title: "공지2", content: "두 번째 공지 내용입니다." },
         { id: 3, date: "2025-09-23", title: "공지3", content: "세 번째 공지 내용입니다." }
-    ]);
-    useEffect(() => {
+    ];
+    const [notices, setNotices] = useState(() => {
         const saved = loadNotices();
-        if (saved.length) setNotices(saved);
-    }, []);
+        return saved.length ? saved : defaultNotices;
+    });
+    useEffect(() => { saveNotices(notices); }, [notices]);
 
     useEffect(() => {saveNotices(notices);}, [notices]);
 
@@ -42,6 +43,7 @@ const Notice = () => {
         setOpenRow(null);
         setEditTitle("");
         setEditContent("");
+        alert("수정이 완료되었습니다.");
     };
 
     useEffect(() => {
@@ -72,31 +74,36 @@ const Notice = () => {
             <nav className="sidebar">
                 <div className="DashLogo">MINDSPACE</div>
                 <ul>
-                    <li>
-                        <NavLink to="/DashBoard" className={({ isActive }) => (isActive ? "active" : "")}>
-                            대시보드
-                        </NavLink>
+                  <li>
+                    <NavLink to="/DashBoard" className={({ isActive }) => (isActive ? "active" : "")}>
+                        대시보드
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/User" className={({ isActive }) => (isActive ? "active" : "")}>
+                       사용자 관리
+                    </NavLink>
+                  </li>
+                          {/*<li>
+                    <NavLink to="/Post" className={({ isActive }) => (isActive ? "active" : "")}>
+                      게시판 관리
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/Statistics" className={({ isActive }) => (isActive ? "active" : "")}>
+                      통계
+                    </NavLink>
                     </li>
                     <li>
-                        <NavLink to="/User" className={({ isActive }) => (isActive ? "active" : "")}>
-                            사용자 관리
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/Post" className={({ isActive }) => (isActive ? "active" : "")}>
-                            게시판 관리
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/Statistics" className={({ isActive }) => (isActive ? "active" : "")}>
-                            통계
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/Setting" className={({ isActive }) => (isActive ? "active" : "")}>
-                            설정
-                        </NavLink>
-                    </li>
+                    <NavLink to="/Setting" className={({ isActive }) => (isActive ? "active" : "")}>
+                        설정
+                    </NavLink>
+                  </li>*/}
+                  <li>
+                    <NavLink to="/" className={({ isActive }) => (isActive ? "active" : "")}>
+                       홈페이지
+                    </NavLink>
+                    </li>                    
                 </ul>
             </nav>
 

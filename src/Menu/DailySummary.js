@@ -39,7 +39,7 @@ const DailySummary = () => {
             <th>페이지뷰</th>
             <th>방문자</th>
             <th>가입</th>
-            <th>새 글</th>
+            {/*<th>새 글</th>*/}
           </tr>
         </thead>
         <tbody>
@@ -49,7 +49,7 @@ const DailySummary = () => {
               <td>{row.pageViews}</td>
               <td>{row.visitors}</td>
               <td>{row.signups}</td>
-              <td>{row.posts}</td>
+              {/*<td>{row.posts}</td>*/}
             </tr>
           ))}
           <tr className="summary-sum">
@@ -57,7 +57,7 @@ const DailySummary = () => {
             <td>{recentTotal.pageViews}</td>
             <td>{recentTotal.visitors}</td>
             <td>{recentTotal.signups}</td>
-            <td>{recentTotal.posts}</td>
+            {/*<td>{recentTotal.posts}</td>*/}
           </tr>
         </tbody>
       </table>

@@ -36,7 +36,7 @@ const Ask = () => {
               사용자 관리
             </NavLink>
           </li>
-          <li>
+          {/*<li>
             <NavLink to="/Post" className={({ isActive }) => (isActive ? "active" : "")}>
               게시판 관리
             </NavLink>
@@ -50,7 +50,7 @@ const Ask = () => {
             <NavLink to="/Setting" className={({ isActive }) => (isActive ? "active" : "")}>
               설정
             </NavLink>
-          </li>
+          </li>*/}
           <li>
             <NavLink to="/" className={({ isActive }) => (isActive ? "active" : "")}>
               홈페이지

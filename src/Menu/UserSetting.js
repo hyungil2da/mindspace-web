@@ -10,16 +10,16 @@ const UserSetting = () => {
         <div className="DashLogo">MINDSPACE</div>
         <ul>
           <li>
-            <NavLink to="/" className={({ isActive }) => (isActive ? "active" : "")}>
+            <NavLink to="/DashBoard" className={({ isActive }) => (isActive ? "active" : "")}>
               대시보드
             </NavLink>
           </li>
           <li>
             <NavLink to="/User" className={({ isActive }) => (isActive ? "active" : "")}>
-              사용자 관리
+               사용자 관리
             </NavLink>
           </li>
-          <li>
+          {/*<li>
             <NavLink to="/Post" className={({ isActive }) => (isActive ? "active" : "")}>
               게시판 관리
             </NavLink>
@@ -33,10 +33,10 @@ const UserSetting = () => {
             <NavLink to="/Setting" className={({ isActive }) => (isActive ? "active" : "")}>
               설정
             </NavLink>
-          </li>
+          </li>*/}
           <li>
             <NavLink to="/" className={({ isActive }) => (isActive ? "active" : "")}>
-              홈페이지
+               홈페이지
             </NavLink>
           </li>
         </ul>
