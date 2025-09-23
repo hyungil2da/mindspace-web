@@ -28,7 +28,7 @@ a:visited {
 
 .sidebar {
   width: 180px;
-  background-color: #353535;
+  background-color: #1D3162;
   color: white;
   min-height: 100vh;
 }
@@ -53,7 +53,7 @@ a:visited {
 }
 
 .sidebar ul li a.active {
-  background-color: #2D6DFF;
+  background-color: #5387ff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
@@ -104,11 +104,17 @@ a:visited {
   gap: 16px;
 }
 
-.top {
+.top1 {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
   margin-bottom: 20px;
+}
+
+.top2 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
 }
 
 .faqtop {
@@ -165,24 +171,24 @@ grid-template-columns: 42% 41% 14%;
 
 .dashboard-card1 {
   flex-basis: 43%;
-  max-height: 350px;
+  max-height: 335px;
 }
 
 .dashboard-card2 {
   flex-basis: 33.3%;
-  max-height: 350px;
+  max-height: 335px;
 }
 
 .dashboard-card3 {
   flex-basis: 42%;
-  max-height: 350px;
+  max-height: 325px;
   overflow-y: auto;
   overflow-x: hidden;
 }
 
 .dashboard-card4 {
   flex-basis: 41%;
-  max-height: 350px;
+  max-height: 325px;
   overflow-y: auto;
   overflow-x: hidden;
 }

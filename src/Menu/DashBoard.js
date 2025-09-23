@@ -14,12 +14,10 @@ const DashBoard = () => {
   const [faqData, setFaqData] = useState([]);
   const [noticeData, setNoticeData] = useState([]);
   
-  useEffect(() => { // faq 및 notice 데이터 로드
-    // 1) 최초 로드
+  useEffect(() => {
     setFaqData(loadFaqs());
     setNoticeData(loadNotices());
 
-    // 2) 다른 탭/페이지에서 수정될 수도 있으니 storage 이벤트로 동기화
     const onStorage = (e) => {
       if (e.key === "faqData") setFaqData(loadFaqs());
       if (e.key === "noticeData") setNoticeData(loadNotices());
@@ -32,12 +30,9 @@ const DashBoard = () => {
     axios.get("http://localhost:5001/api/users")
       .then((res) => {
         const allUsers = res.data.users || [];
-
-        // 오늘 날짜 기준 7일 전
         const oneWeekAgo = new Date();
         oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
 
-        // 가입일이 일주일 이내인 회원
         const recentUsers = allUsers.filter(user => {
           if (!user.createdAt) return false;
           const createdDate = new Date(user.createdAt);
@@ -55,10 +50,8 @@ const DashBoard = () => {
     <div className="dashboard-container">
       <nav className="sidebar">
         <div className="DashLogo">
-                  {/*<button className="logo-btn">
-                      <img src={logo} alt="로고" className="logo-img" onClick={() => window.location.href = '../Main_page'}/>
-                  </button>*/}
-          MINDSPACE</div>
+          MINDSPACE
+        </div>
         <ul>
           <li>
             <NavLink to="/DashBoard" className={({ isActive }) => (isActive ? "active" : "")}>
@@ -70,21 +63,6 @@ const DashBoard = () => {
               사용자 관리
             </NavLink>
           </li>
-          {/*<li>
-            <NavLink to="/Post" className={({ isActive }) => (isActive ? "active" : "")}>
-              게시판 관리
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/Statistics" className={({ isActive }) => (isActive ? "active" : "")}>
-              통계
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/Setting" className={({ isActive }) => (isActive ? "active" : "")}>
-              설정
-            </NavLink>
-          </li>*/}
           <li>
             <NavLink to="/" className={({ isActive }) => (isActive ? "active" : "")}>
               홈페이지
@@ -94,35 +72,35 @@ const DashBoard = () => {
       </nav>
 
       <main className="main-content">
-          <section className="top">
-            <div className="card dashboard-card1">
-              <div className="card-header">
-                <div className="card-title">방문자 현황</div>
-              </div>
-              <Visitor />
+        <section className="top1">
+          <div className="card dashboard-card1">
+            <div className="card-header">
+              <div className="card-title">방문자 현황</div>
             </div>
-
-            <div className="card dashboard-card2">
-              <div className="card-header">
-                <div className="card-title-summary">일자별 요약</div>
-              </div>
-
-              <div className="Daily">
-                <DailySummary />
-              </div>
-            </div>
-          </section>
-
-          <div className="card profile-card">
-            <div className="profile-image">사진</div>
-            <div className="profile-info">
-              <p>MARS</p>
-              <span>Mars1234@gmail.com</span>
-            </div>
+            <Visitor />
           </div>
 
-        <section className="top">
-          <div className="card dashboard-card3 ">
+          <div className="card dashboard-card2">
+            <div className="card-header">
+              <div className="card-title-summary">일자별 요약</div>
+            </div>
+
+            <div className="Daily">
+              <DailySummary />
+            </div>
+          </div>
+        </section>
+
+        <div className="card profile-card">
+          <div className="profile-image">사진</div>
+          <div className="profile-info">
+            <p>MARS</p>
+            <span>Mars1234@gmail.com</span>
+          </div>
+        </div>
+
+        <section className="top2">
+          <div className="card dashboard-card3">
             <div className="card-header">
               <div className="card-title">FAQ</div>
               <NavLink to="/FAQ" className="plus-btn">자세히</NavLink>
@@ -167,7 +145,7 @@ const DashBoard = () => {
             ))}
             </div>
           </div>
-      </section>
+        </section>
       </main>
     </div>
   );

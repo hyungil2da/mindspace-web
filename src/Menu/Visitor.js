@@ -55,15 +55,15 @@ const Visitor = () => {
   }));
 
   return (
-    <div style={{ width: "100%", height: "400" }}>
-      <LineChart width={500} height={300} data={data}>
+    <div style={{ width: "100%", height: "270" }}>
+      <LineChart width={500} height={280} data={data}>
         <XAxis dataKey="date" />
         <YAxis domain={['auto', 'auto']} />
         <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
         <Line
           type="monotone"
           dataKey="visitors"
-          stroke="#2D6DFF"
+          stroke="#1D3162"
           strokeWidth={2}
         />
         <Tooltip />

@@ -1,16 +1,38 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "./DailySummary.css";
 
 const DailySummary = () => {
-  // 최근 7일 날짜 자동 생성
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const fetchSummaryData = async () => {
+    try {
+      const apiUrl = "http://localhost:5001/api/users/measurements";
+      const response = await axios.get(apiUrl);
+
+      setData(response.data.data);
+    } catch (err) {
+      setError(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchSummaryData();
+  }, []);
+
+  /*
   const getLast7Days = () => {
     const days = [];
     for (let i = 0; i < 7; i++) {
       const date = new Date();
       date.setDate(date.getDate() - i);
       days.push({
-        date: date.toISOString().split("T")[0], // YYYY-MM-DD 형식
-        pageViews: Math.floor(Math.random() * 15), // 더미
+        date: date.toISOString().split("T")[0],
+        pageViews: Math.floor(Math.random() * 15),
         visitors: Math.floor(Math.random() * 10),
         signups: Math.floor(Math.random() * 2),
         posts: Math.floor(Math.random() * 5),
@@ -18,10 +40,10 @@ const DailySummary = () => {
     }
     return days;
   };
+  */
 
-  const data = getLast7Days();
+  // const totaldata = getLast7Days();
 
-  // 합계 계산
   const recentTotal = {
     pageViews: data.reduce((sum, d) => sum + d.pageViews, 0),
     visitors: data.reduce((sum, d) => sum + d.visitors, 0),
@@ -29,6 +51,14 @@ const DailySummary = () => {
     posts: data.reduce((sum, d) => sum + d.posts, 0),
     comments: data.reduce((sum, d) => sum + d.comments, 0),
   };
+
+  if (loading) {
+    return <div>로딩 중...</div>;
+  }
+
+  if (error) {
+    return <div>데이터 불러오기 실패 {error.message}</div>;
+  }
 
   return (
     <div className="daily-summary">
