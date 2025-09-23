@@ -7,20 +7,60 @@ import { NavLink } from "react-router-dom";
 import "./DashBoard.css";
 import DailySummary from "../Menu/DailySummary";
 import logo from '../assets/EmotionVR.png';
-import { loadFaqs, loadNotices } from "./DashBoard_Utility";
+import { loadFaqs, loadNotices, loadNews, saveNews } from "./DashBoard_Utility";
+import { newsUpdates } from "./newsinfo.js";
+
+function flattenNewsUpdates(updates) {
+  let id = 1;
+  const flat = [];
+  updates.forEach(group => {
+    (group.items || []).forEach(it => {
+      const date = (it.date || "").replace(/\./g, "-"); // "2025.07.20" -> "2025-07-20"
+      const title = it.version && it.version.trim() ? it.version : (it.content || "").split("\n")[0];
+      flat.push({
+        id: id++,
+        date,
+        title,
+        content: it.content || ""
+      });
+    });
+  });
+  // 최신순 정렬(날짜 내림차순)
+  flat.sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0));
+  return flat;
+}
+function mergeSeedWithExisting(existing, seed) {
+  if (!Array.isArray(existing) || existing.length === 0) return seed;
+  const keyOf = (n) => `${n.date}__${n.title}`;
+  const existingKeys = new Set(existing.map(keyOf));
+  const missing = seed.filter((n) => !existingKeys.has(keyOf(n)));
+  if (missing.length === 0) return existing;
+  const merged = [...missing, ...existing].sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0));
+  return merged;
+}
 
 const DashBoard = () => {
   const [newUsers, setNewUsers] = useState([]);
   const [faqData, setFaqData] = useState([]);
   const [noticeData, setNoticeData] = useState([]);
+  const [newsData, setNewsData] = useState([]);
   
   useEffect(() => {
     setFaqData(loadFaqs());
     setNoticeData(loadNotices());
+    const existingNews = loadNews();
+    const seed = flattenNewsUpdates(newsUpdates);
+    const merged = mergeSeedWithExisting(existingNews, seed);
+    setNewsData(merged);
+    // 변경이 있으면 저장 반영
+    if (JSON.stringify(existingNews || []) !== JSON.stringify(merged)) {
+      saveNews(merged);
+    }
 
     const onStorage = (e) => {
       if (e.key === "faqData") setFaqData(loadFaqs());
       if (e.key === "noticeData") setNoticeData(loadNotices());
+      if (e.key === "newsData") setNewsData(loadNews());
     };
     window.addEventListener("storage", onStorage);
     return () => window.removeEventListener("storage", onStorage);
@@ -124,10 +164,11 @@ const DashBoard = () => {
             ))}
             </div>
           </div>
+          {/*}
           <div className="card dashboard-card4">
             <div className="card-header">
               <div className="card-title">공지</div>
-              <NavLink to="/Notice" className="plus-btn">자세히</NavLink>
+              <NavLink to="/News" className="plus-btn">자세히</NavLink>
             </div>
 
             <div className="notice-list">
@@ -136,13 +177,37 @@ const DashBoard = () => {
                 { id: 2, title: "공지 제목2", content: "내용2", isNew: false },
                 { id: 3, title: "공지 제목3", content: "내용3", isNew: false }
               ]
-              ).slice(0, (noticeData.length || 3)).map((n) => (
+              ).slice(0, (noticeData.length || 4)).map((n) => (
               <div key={n.id} className="notice-item">
                 <p className="notice-title">{n.isNew && <span className="new-label">[NEW] </span>}{n.title}</p>
                 <span className="notice-content">{n.content}</span>
                 <hr />
               </div>
             ))}
+            </div>
+          </div>
+          */}
+          <div className="card dashboard-card4">
+            <div className="card-header">
+              <div className="card-title">뉴스</div>
+                <NavLink to="/News" className="plus-btn">자세히</NavLink>
+              </div>
+
+            <div className="notice-list">
+              {(newsData.length ? newsData : []).slice(0, (newsData.length || 4)).map((n) => (
+                <div key={n.id} className="notice-item">
+                  <p className="notice-title">{n.title}</p>
+                  <span className="notice-content">{n.content}</span>
+                  <hr />
+                </div>
+              ))}
+              {newsData.length === 0 && (
+                <div className="notice-item">
+                  <p className="notice-title">(뉴스 없음)</p>
+                  <span className="notice-content">첫 뉴스를 추가해 보세요.</span>
+                  <hr />
+                </div>
+              )}
             </div>
           </div>
         </section>

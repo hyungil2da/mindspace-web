@@ -1,4 +1,4 @@
-/*import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/NewsSection.css";
 import { loadNews } from "../Menu/DashBoard_Utility";
 
@@ -26,8 +26,8 @@ function NewsSection() {
 }
 
 export default NewsSection;
-*/
 
+/*
 import React from 'react';
 import '../styles/NewsSection.css';
 import { newsUpdates } from '../data/news';
@@ -55,3 +55,4 @@ function NewsSection() {
 }
 
 export default NewsSection;
+*/
