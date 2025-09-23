@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  ResponsiveContainer,
   XAxis,
   YAxis,
   Tooltip,
@@ -14,11 +15,11 @@ const TEMP_MEASUREMENT_COUNT_DATA = {
   data: [
     {
       date: "2025-09-07",
-      count: 0,
+      count: 3,
     },
     {
       date: "2025-09-08",
-      count: 0,
+      count: 2,
     },
     {
       date: "2025-09-09",
@@ -26,19 +27,19 @@ const TEMP_MEASUREMENT_COUNT_DATA = {
     },
     {
       date: "2025-09-10",
-      count: 0,
+      count: 1,
     },
     {
       date: "2025-09-11",
-      count: 0,
+      count: 1,
     },
     {
       date: "2025-09-12",
-      count: 0,
+      count: 3,
     },
     {
       date: "2025-09-13",
-      count: 0,
+      count: 2,
     },
   ],
   period: {
@@ -54,10 +55,10 @@ const Visitor = () => {
   }));
 
   return (
-    <div style={{ width: "100%", height: 285 }}>
-      <LineChart width={830} height={290} data={data}>
+    <div style={{ width: "100%", height: "400" }}>
+      <LineChart width={500} height={300} data={data}>
         <XAxis dataKey="date" />
-        <YAxis />
+        <YAxis domain={['auto', 'auto']} />
         <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
         <Line
           type="monotone"

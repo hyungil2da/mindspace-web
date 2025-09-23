@@ -94,7 +94,6 @@ const DashBoard = () => {
       </nav>
 
       <main className="main-content">
-        <section className="Upper">
           <section className="top">
             <div className="card dashboard-card1">
               <div className="card-header">
@@ -121,7 +120,6 @@ const DashBoard = () => {
               <span>Mars1234@gmail.com</span>
             </div>
           </div>
-        </section>
 
         <section className="top">
           <div className="card dashboard-card3 ">
@@ -148,7 +146,7 @@ const DashBoard = () => {
             ))}
             </div>
           </div>
-          <div className="card dashboard-card3">
+          <div className="card dashboard-card4">
             <div className="card-header">
               <div className="card-title">공지</div>
               <NavLink to="/Notice" className="plus-btn">자세히</NavLink>

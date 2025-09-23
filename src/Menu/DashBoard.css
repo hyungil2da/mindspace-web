@@ -31,7 +31,6 @@ a:visited {
   background-color: #353535;
   color: white;
   min-height: 100vh;
-  padding-top: 20px;
 }
 
 .sidebar ul {
@@ -103,12 +102,11 @@ a:visited {
 .Upper {
   display: flex;
   gap: 16px;
-  align-items: flex-start;
 }
 
 .top {
-  flex: 1;
   display: flex;
+  flex-wrap: wrap;
   gap: 16px;
   margin-bottom: 20px;
 }
@@ -121,23 +119,16 @@ a:visited {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.top .card {
-  flex: 1;
-}
-
 .usertop {
   max-width: 85%;
   margin-bottom: 20px;
-}
-
-.top-section {
-  grid-template-columns: 41% 41% 15%;
 }
 
 .bottom {
   display: grid;
   gap: 20px;
 }
+
 /*
 grid-template-columns: 42% 41% 14%;
 */
@@ -173,18 +164,24 @@ grid-template-columns: 42% 41% 14%;
 }
 
 .dashboard-card1 {
-  max-width: 35%;
+  flex-basis: 43%;
   max-height: 350px;
-  overflow: hidden;
 }
 
 .dashboard-card2 {
-  max-width: 35%;
+  flex-basis: 33.3%;
   max-height: 350px;
 }
 
 .dashboard-card3 {
-  max-width: 35%;
+  flex-basis: 42%;
+  max-height: 350px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.dashboard-card4 {
+  flex-basis: 41%;
   max-height: 350px;
   overflow-y: auto;
   overflow-x: hidden;
@@ -344,7 +341,7 @@ grid-template-columns: 42% 41% 14%;
   padding: 20px;
   background-color: #353535;
   width: 151px;
-  height: 300px;
+  height: 270px;
   position: absolute;
   right: 10px;
 }
@@ -549,7 +546,7 @@ grid-template-columns: 42% 41% 14%;
   align-items: center;
 }
 
-.id{
+.id {
   margin-top: 3px;
   font-size: 14px;
   color: #555;
