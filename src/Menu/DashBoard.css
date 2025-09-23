@@ -170,7 +170,7 @@ grid-template-columns: 42% 41% 14%;
 }
 
 .dashboard-card1 {
-  flex-basis: 43%;
+  flex-basis: 40%;
   max-height: 335px;
 }
 
