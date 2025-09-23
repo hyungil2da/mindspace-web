@@ -69,6 +69,7 @@ const DashBoard = () => {
             </NavLink>
           </li>          
         </ul>
+        
         <div className="card profile-card">
             <div className="profile-image">사진</div>
             <div className="profile-info">
