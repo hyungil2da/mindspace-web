@@ -12,9 +12,11 @@
 }
 
 .faq-list {
-  max-width: 700px;
+  max-height: 300px;
+  overflow-y: auto;
   margin: 0 auto;
   text-align: left;
+  padding-right : 4px;
 }
 
 .faq-item {

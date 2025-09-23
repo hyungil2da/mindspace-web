@@ -23,6 +23,7 @@ a:visited {
   display: flex;
   height: 100%;
   background: #f5f5f5;
+  width:100%;
 }
 
 
@@ -117,6 +118,13 @@ a:visited {
   gap: 16px;
 }
 
+.top1 .top2 {
+  display : grid;
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  gap:20px;
+  align-items : start;;
+}
+
 .faqtop {
   width: 885px;
   background: white;
@@ -126,8 +134,11 @@ a:visited {
 }
 
 .usertop {
-  max-width: 85%;
-  margin-bottom: 20px;
+  flex-direction: column;   
+  align-items: center;      
+  justify-content: center;  
+  max-width: 100%;
+  margin: 0 auto 20px auto; 
 }
 
 .bottom {
@@ -169,28 +180,23 @@ grid-template-columns: 42% 41% 14%;
   min-height: 233px;
 }
 
-.dashboard-card1 {
-  flex-basis: 43%;
-  max-height: 335px;
-}
 
+.dashboard-card1,
 .dashboard-card2 {
-  flex-basis: 33.3%;
   max-height: 335px;
 }
 
-.dashboard-card3 {
-  flex-basis: 42%;
+.dashboard-card3,
+.dashboard-card4 {
   max-height: 325px;
   overflow-y: auto;
   overflow-x: hidden;
 }
 
-.dashboard-card4 {
-  flex-basis: 41%;
-  max-height: 325px;
-  overflow-y: auto;
-  overflow-x: hidden;
+.dashboard-card1, .dashboard-card2, .dashboard-card3, .dashboard-card4 {
+  width : 49%;
+  max-width : none;
+  box-sizing: border-box;
 }
 
 .userlist-card {
@@ -345,11 +351,11 @@ grid-template-columns: 42% 41% 14%;
 .profile-card {
   text-align: center;
   padding: 20px;
-  background-color: #353535;
+  background-color: #3a58a5;
   width: 151px;
   height: 270px;
-  position: absolute;
-  right: 10px;
+  border-radius: 8px;
+  margin: 20px auto 0 auto;
 }
 
 .profile-bundle {

@@ -39,6 +39,13 @@ const Post = () => {
             </NavLink>
           </li>          
         </ul>
+          <div className="card profile-card">
+            <div className="profile-image">사진</div>
+            <div className="profile-info">
+              <p>MARS</p>
+              <span>Mars1234@gmail.com</span>
+            </div>
+          </div>
       </nav>
 
       <main className="main-content">
@@ -108,14 +115,6 @@ const Post = () => {
               </table>
             </div>
           </section >
-
-          <div className="card profile-card">
-            <div className="profile-image">사진</div>
-            <div className="profile-info">
-              <p>MARS</p>
-              <span>Mars1234@gmail.com</span>
-            </div>
-          </div>
         </section>
 
         <section className="top-section">
