@@ -564,3 +564,35 @@ grid-template-columns: 42% 41% 14%;
   justify-content: center;
   align-items: center;
 }
+
+.measurement-panel {
+  background: #f8fafc;
+  border-top: 1px solid #e5e7eb;
+  padding: 8px 12px 12px;
+  max-width:80%;
+  overflow-x: auto;
+}
+
+/* 6행 × 최대 10열 테이블 */
+.measurement-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.measurement-table th,
+.measurement-table td {
+  border: 1px solid #e5e7eb;
+  padding: 6px 8px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.measurement-rowhdr {
+  background: #eef2f7;
+  width: 110px;
+  white-space: nowrap;
+}
+
+.measurement-cell {
+  min-width: 90px;
+}

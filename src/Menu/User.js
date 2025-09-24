@@ -133,8 +133,8 @@ const User = () => {
                               .replace(/\.$/, "")
                             : "가입일"}
                         </td>
-                        <td>{user.measurmentCount ?? 0}</td>
-                        <td>{user.measurementInfo || "-"}</td>
+                        {/*<td>{user.measurmentCount ?? 0}</td>
+                        <td>{user.measurementInfo || "-"}</td>*/}
                       </tr>
                     ))}
                   {newUsers.filter((user) => user.name?.toLowerCase().includes(searchTop.toLowerCase())).length === 0 && (
@@ -172,7 +172,7 @@ const User = () => {
                     <th>아이디</th>
                     <th>가입일</th>
                     <th>검사횟수</th>
-                    <th>검사정보</th>
+                    {/*<th>검사정보</th>*/}
                   </tr>
                 </thead>
                 <tbody>
@@ -198,7 +198,7 @@ const User = () => {
                             : "가입일"}
                         </td>
                         <td>{user.measurmentCount ?? 0}</td>
-                        <td>{user.measurementInfo || "-"}</td>
+                        {/*<td>{user.measurementInfo || "-"}</td>*/}
                       </tr>
                     ))
                   )}
