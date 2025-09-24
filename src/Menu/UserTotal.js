@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./DashBoard.css";
 import axios from "axios";
+const [showExtraTable, setShowExtraTable] = useState(false);
 
 const UserTotal = () => {
     const [users, setUsers] = useState([]);
@@ -124,6 +125,28 @@ const UserTotal = () => {
                                                 </td>
                                                 <td>{user.measurementCount ?? 0}</td>
                                                 <td>{user.measurementInfo || "-"}</td>
+                                                <button
+    onClick={() => setShowExtraTable(prev => !prev)}
+    className="toggle-btn"
+>
+    {showExtraTable ? "닫기" : "+"}
+</button>
+
+{showExtraTable && (
+    <table className="listTable extra-table">
+        <thead>
+            <tr>
+                <th>추가 항목</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>데이터</td>
+            </tr>
+        </tbody>
+    </table>
+)}
+
                                             </tr>
                                         ))
                                     )}
@@ -143,6 +166,8 @@ const UserTotal = () => {
                                     ))}
                                 </div>
                             )}
+
+                            
                         </div>
                     </section>
                     <div className="card profile-card">
