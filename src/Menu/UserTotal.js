@@ -105,37 +105,6 @@ const UserTotal = () => {
     }
 
 
-    // 표 렌더를 위한 6행 구성
-    /*function buildMatrixRows(measurements = []) {
-      // 최근 10개만 사용(가장 최신이 뒤쪽에 오도록 정렬 가정)
-      const cols = measurements.slice(-10);
-      const formatKST = (iso) => {
-        try {
-          return new Date(iso).toLocaleString("ko-KR", {
-            year: "2-digit",
-            month: "2-digit",
-            day: "2-digit",
-            hour: "2-digit",
-            minute: "2-digit",
-          }).replace(/\. /g, ".").replace(/\.$/, "");
-        } catch {
-          return iso;
-        }
-      };
-      const rowLabels = [
-        { key: "timestamp", label: "날짜/시간", fmt: (v) => formatKST(v) },
-        { key: "depression", label: "우울", fmt: (v) => v.toFixed(2) },
-        { key: "anxiety", label: "불안", fmt: (v) => v.toFixed(2) },
-        { key: "stress", label: "스트레스", fmt: (v) => v.toFixed(2) },
-        { key: "anger", label: "분노", fmt: (v) => v.toFixed(2) },
-        { key: "stability", label: "안정", fmt: (v) => v.toFixed(2) },
-      ];
-      // rows: [{label, cells:[]}]
-      return rowLabels.map(({ key, label, fmt }) => ({
-        label,
-        cells: cols.map((m) => fmt(m[key])),
-      }));
-    }*/
     // 표 렌더를 위한 가로형 그리드(열=라벨 6개, 행=측정 N개)
     function buildGridData(measurements = []) {
         // 최근 10개만 사용, 최신이 위로 오도록 내림차순 정렬
