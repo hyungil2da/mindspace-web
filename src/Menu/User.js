@@ -126,8 +126,8 @@ const User = () => {
                               .replace(/\.$/, "")
                             : "가입일"}
                         </td>
-                        <td>{user.measurmentCount ?? 0}</td>
-                        <td>{user.measurementInfo || "-"}</td>
+                        {/*<td>{user.measurmentCount ?? 0}</td>
+                        <td>{user.measurementInfo || "-"}</td>*/}
                       </tr>
                     ))}
                   {newUsers.filter((user) => user.name?.toLowerCase().includes(searchTop.toLowerCase())).length === 0 && (
