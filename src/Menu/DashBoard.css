@@ -560,3 +560,17 @@ grid-template-columns: 42% 41% 14%;
   justify-content: center;
   align-items: center;
 }
+
+.chart-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.chart-labels {
+  text-align: center;
+  font-size: 14px;
+  color: #555;
+  
+}

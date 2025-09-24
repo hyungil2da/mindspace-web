@@ -1,6 +1,8 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import {
+  Tooltip,
+  ResponsiveContainer,
   Label,
   Legend,
   PieChart,
@@ -16,7 +18,7 @@ const DailySummary = () => {
 
   const fetchSummaryData = async () => {
     try {
-      const apiUrl = "http://localhost:5001/api/users/measurements";
+      const apiUrl = "http://localhost:5001/api/measurements/{measurementId}/emotion";
       const response = await axios.get(apiUrl);
 
       setData(response.data.data);
@@ -32,57 +34,9 @@ const DailySummary = () => {
   }, []);
 
   return (
-    <PieChart
-      accessibilityLayer
-      data={[
-        {
-          amt: 1400,
-          fill: '#8884d8',
-          name: 'depression',
-          pv: 2400,
-          uv: 31.47
-        },
-        {
-          amt: 720,
-          fill: '#83a6ed',
-          name: 'anxiety',
-          pv: 4567,
-          uv: 26.69
-        },
-        {
-          amt: 680,
-          fill: '#8dd1e1',
-          name: 'stress',
-          pv: 1398,
-          uv: 15.69
-        },
-        {
-          amt: 1700,
-          fill: '#82ca9d',
-          name: 'angry',
-          pv: 9800,
-          uv: 8.22
-        },
-        {
-          amt: 1500,
-          fill: '#a4de6c',
-          name: 'stability',
-          pv: 3908,
-          uv: 8.63
-        }
-      ]}
-      height={300}
-      margin={{
-        bottom: 5,
-        left: 5,
-        right: 5,
-        top: 5
-      }}
-      syncMethod="index"
-      width={500}
-    >
-      <Pie
-        cornerRadius={8}
+    <div className="chart-container">
+      <PieChart
+        accessibilityLayer
         data={[
           {
             amt: 1400,
@@ -108,7 +62,7 @@ const DailySummary = () => {
           {
             amt: 1700,
             fill: '#82ca9d',
-            name: 'angry',
+            name: 'anger',
             pv: 9800,
             uv: 8.22
           },
@@ -120,36 +74,73 @@ const DailySummary = () => {
             uv: 8.63
           }
         ]}
-        dataKey="uv"
-        innerRadius={50}
-        nameKey="name"
-        outerRadius={80}
+        width={400}
+        height={250}
+        margin={{
+          bottom: 5,
+          left: 5,
+          right: 5,
+          top: 5
+        }}
+        syncMethod="index"
       >
-        <Label
-          dy={-7}
-          fill="#000"
-          fontSize={12}
-          fontWeight="bold"
-          position="center"
+        <Pie
+          activeShape={{
+            fill: 'red'
+          }}
+          data={[
+            {
+              amt: 1400,
+              fill: '#8884d8',
+              name: 'depression',
+              pv: 2400,
+              uv: 31.47
+            },
+            {
+              amt: 720,
+              fill: '#83a6ed',
+              name: 'anxiety',
+              pv: 4567,
+              uv: 26.69
+            },
+            {
+              amt: 680,
+              fill: '#8dd1e1',
+              name: 'stress',
+              pv: 1398,
+              uv: 15.69
+            },
+            {
+              amt: 1700,
+              fill: '#82ca9d',
+              name: 'anger',
+              pv: 9800,
+              uv: 8.22
+            },
+            {
+              amt: 1500,
+              fill: '#a4de6c',
+              name: 'stability',
+              pv: 3908,
+              uv: 8.63
+            }
+          ]}
+          dataKey="uv"
+          outerRadius={80}
+          nameKey="name"
         >
-          Emotion
-        </Label>
-        <Label
-          dy={8}
-          fontSize={12}
-          fontWeight="bold"
-          position="center"
-        >
-          Chart
-        </Label>
+        </Pie>
+        <Tooltip defaultIndex={3} />
         <Legend
           align="right"
           layout="vertical"
           verticalAlign="middle"
         />
-      </Pie>
-    </PieChart>
-    
+      </PieChart>
+      <div className="chart-labels">
+        <p>Emotion Chart</p>
+      </div>
+    </div>
   );
 };
 
