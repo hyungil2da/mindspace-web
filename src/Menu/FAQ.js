@@ -13,9 +13,12 @@ const defaultFaqs = [
   { id: 5, title: "데이터는 어떻게 저장되고 보호되나요?", content: "사용자의 닉네임, 측정 횟수, 마지막 기록, 설문 결과 등 모든 데이터는 서버에 안전하게 저장되며, 암호화 처리됩니다. 백엔드와 관리자 페이지에서만 접근 가능합니다." },
   { id: 6, title: "누가 이 앱을 사용하면 좋을까요?", content: "심리적 불편함을 겪고 있는 누구나 사용할 수 있어요. 특히 학생, 직장인, 불안/우울 증상을 경험하는 분들께 추천합니다." }
 ];
+ 
+const getDefaultById = (id) => defaultFaqs.find((f) => f.id === id);
 
 const FAQ = () => {
     const [users, setUsers] = useState([]);
+    const [editTitle, setEditTitle] = useState("");
     const [newUsers, setNewUsers] = useState([]);
     const [searchTop, setSearchTop] = useState("");
     const [searchBottom, setSearchBottom] = useState("");
@@ -25,7 +28,7 @@ const FAQ = () => {
     const [faqs, setFaqs] = useState(() => {
     const saved = loadFaqs();
     return saved.length ? saved : defaultFaqs;
-  });
+    });
 
     // faqs 변경 시 자동 저장
     useEffect(() => {
@@ -33,19 +36,52 @@ const FAQ = () => {
     }, [faqs]);
 
     const handleEdit = (faq) => {
-        setOpenRow(faq.id);
-        setEditContent(faq.content);
+    setOpenRow(faq.id);
+    setEditTitle(faq.title ?? "");
+    setEditContent(faq.content ?? "");
     };
 
     const handleSave = (id) => {
         setFaqs((prev) =>
             prev.map((faq) =>
-                faq.id === id ? { ...faq, content: editContent } : faq
+            faq.id === id ? { ...faq, title: editTitle, content: editContent } : faq
             )
         );
         setOpenRow(null);
+        setEditTitle("");
         setEditContent("");
         alert("수정이 완료되었습니다.");
+    };
+
+    const getDefaultById = (id) => defaultFaqs.find((f) => f.id === id);
+    const handleReset = (id) => {
+        const def = getDefaultById(id);
+        const resetTitle = def ? def.title : "";
+        const resetContent = def ? def.content : "";
+        setFaqs((prev) =>
+        prev.map((faq) =>
+            faq.id === id ? { ...faq, title: resetTitle, content: resetContent } : faq
+            )
+        );
+        setEditTitle(resetTitle);
+        setEditContent(resetContent);
+        alert("초기화되었습니다.");
+    };
+
+    const handleAdd = () => {
+        const nextId = faqs.length ? Math.max(...faqs.map((f) => f.id)) + 1 : 1;
+        const newItem = { id: nextId, title: "새 질문", content: "" };
+        setFaqs((prev) => [...prev, newItem]);
+        setOpenRow(nextId);
+        setEditTitle(newItem.title);
+        setEditContent(newItem.content);
+    };
+
+    const deleteFaq = (id) => {
+        if (window.confirm("정말로 이 FAQ를 삭제하시겠습니까?")) {
+            setFaqs((prev) => prev.filter((faq) => faq.id !== id));
+            alert("삭제되었습니다.");
+        }
     };
 
     useEffect(() => {
@@ -115,6 +151,13 @@ const FAQ = () => {
                         </NavLink>
                     </li>            
                 </ul>
+                <div className="card profile-card">
+                    <div className="profile-image">사진</div>
+                    <div className="profile-info">
+                        <p>MARS</p>
+                        <span>Mars1234@gmail.com</span>
+                    </div>
+                </div>
             </nav>
 
             <main className="main-content">
@@ -122,12 +165,16 @@ const FAQ = () => {
                     <div className="search">
                         <div className="card-title">FAQ</div>
                     </div>
-
+                    <div className="flex justify-end mt-3">
+                        <button className="px-3 py-1 bg-green-600 text-white rounded" onClick={handleAdd}>
+                            FAQ 추가
+                        </button>
+                    </div>
                     <table className="list-table border w-full">
                         <thead>
                             <tr className="bg-gray-100">
                                 <th className="p-2">제목</th>
-                                <th className="p-2">답변</th>
+                                <th className="p-2">편집</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -144,11 +191,14 @@ const FAQ = () => {
                                             >
                                                 {openRow === faq.id ? "닫기" : "수정"}
                                             </button>
+                                            <button className="px-3 py-1 bg-gray-500 text-white rounded" onClick={() => handleReset(faq.id)}>초기화</button>
+                                            <button className="px-3 py-1 bg-red-600 text-white rounded" onClick={() => deleteFaq(faq.id)}>삭제</button>
                                         </td>
                                     </tr>
                                     {openRow === faq.id && (
                                         <tr>
                                             <td colSpan={2} className="p-2 bg-gray-50">
+                                                <input type="text" value={editTitle} onChange={(e) => setEditTitle(e.target.value)} className="w-full border p-2 rounded" placeholder="질문(제목)" style={{ marginBottom: "8px" }}/>
                                                 <textarea
                                                     value={editContent}
                                                     onChange={(e) => setEditContent(e.target.value)}
@@ -156,12 +206,8 @@ const FAQ = () => {
                                                     rows={6} cols={80}
                                                 />
                                                 <div className="flex justify-end mt-2 gap-2">
-                                                    <button
-                                                        className="px-3 py-1 bg-blue-500 text-white rounded"
-                                                        onClick={() => handleSave(faq.id)}
-                                                    >
-                                                        저장
-                                                    </button>
+                                                    <button className="px-3 py-1 bg-blue-500 text-white rounded" onClick={() => handleSave(faq.id)}>저장</button>
+                                                    
                                                 </div>
                                             </td>
                                         </tr>
@@ -170,13 +216,6 @@ const FAQ = () => {
                             ))}
                         </tbody>
                     </table>
-                </div>
-                <div className="card profile-card">
-                    <div className="profile-image">사진</div>
-                    <div className="profile-info">
-                        <p>MARS</p>
-                        <span>Mars1234@gmail.com</span>
-                    </div>
                 </div>
             </main>
         </div>
