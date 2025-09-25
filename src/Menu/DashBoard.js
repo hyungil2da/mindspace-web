@@ -130,7 +130,7 @@ const DashBoard = () => {
 
           <div className="card dashboard-card2">
             <div className="card-header">
-              <div className="card-title-summary">일자별 요약</div>
+              <div className="card-title-summary">오늘의 검사 수치</div>
             </div>
 
             <div className="Daily">

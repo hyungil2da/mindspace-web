@@ -9,7 +9,6 @@ import UserTotal from "./Menu/UserTotal";
 import Post from "./Menu/Post";
 import FAQ from "./Menu/FAQ";
 import Notice from "./Menu/Notice";
-import Ask from "./Menu/Ask";
 import Statistics from "./Menu/Statistics";
 import Count from "./Menu/Count";
 import Setting from "./Menu/Setting";
@@ -30,7 +29,6 @@ const App = () => {
         <Route path="/Post" element={<Post />} />
         <Route path="/FAQ" element={<FAQ />} />
         <Route path="/Notice" element={<Notice />} />
-        <Route path="/Ask/:id" element={<Ask />} />
         <Route path="/Statistics" element={<Statistics />} />
         <Route path="/Count" element={<Count />} />
         <Route path="/Setting" element={<Setting />} />

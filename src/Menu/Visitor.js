@@ -15,7 +15,7 @@ const TEMP_MEASUREMENT_COUNT_DATA = {
   data: [
     {
       date: "2025-09-07",
-      count: 3,
+      count: 2,
     },
     {
       date: "2025-09-08",
@@ -55,8 +55,8 @@ const Visitor = () => {
   }));
 
   return (
-    <div style={{ width: "100%", height: "270" }}>
-      <LineChart width={500} height={280} data={data}>
+    <div style={{ width: "100%", height: "290" }}>
+      <LineChart width={500} height={300} data={data}>
         <XAxis dataKey="date" />
         <YAxis domain={['auto', 'auto']} />
         <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
