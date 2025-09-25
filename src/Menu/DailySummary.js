@@ -103,6 +103,8 @@ const DailySummary = () => {
     } else {
       fetchSummaryData();
     }
+=======
+    fetchSummaryData();
   }, []);
 
   return (

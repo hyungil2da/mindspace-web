@@ -179,6 +179,11 @@ grid-template-columns: 42% 41% 14%;
   min-height: 233px;
 }
 
+.dashboard-card1 {
+  flex-basis: 40%;
+  max-height: 335px;
+}
+
 
 .dashboard-card1,
 .dashboard-card2 {
@@ -564,6 +569,19 @@ grid-template-columns: 42% 41% 14%;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.chart-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.chart-labels {
+  text-align: center;
+  font-size: 14px;
+  color: #555;
 }
 
 .measurement-panel {

@@ -19,7 +19,7 @@ const safeSet = (key, value) => {
     if (typeof window === "undefined" || !window.localStorage) return;
     window.localStorage.setItem(key, JSON.stringify(value || []));
   } catch {
-    // ignore
+
   }
 };
 
