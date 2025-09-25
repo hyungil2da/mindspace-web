@@ -64,44 +64,52 @@ const UserTotal = () => {
         });
     }
 
-    // 서버 연동: 토글 시 해당 유저 측정 기록을 가져옴
+    // 서버 연동: 행 토글 시 해당 유저의 최근 감정 기록을 가져옴
     async function handleToggleDetail(user) {
         const next = expandedUserId === user._id ? null : user._id;
         setExpandedUserId(next);
+
         if (next && !measurementMap[user._id]) {
             try {
-                const res = await axios.get("http://localhost:5001/api/measurements", {
-                    params: { userId: user._id, limit: 10, order: "desc" }
-                });
-                // 서버 응답이 배열 형태라고 가정
-                const items = res.data.items || res.data || [];
-                // 오래된 순으로 정렬되도록 reverse (필요 시 서버에서 이미 정렬해주면 생략)
-                const normalized = items
-                    .slice(0, 10)
-                    .reverse()
-                    .map(m => ({
-                        timestamp: m.timestamp,
-                        depression: m.depression,
-                        anxiety: m.anxiety,
-                        stress: m.stress,
-                        anger: m.anger,
-                        stability: m.stability
-                    }));
-                /*
-                  timestamp : 날짜 및 시간
-                  depression : 우울 점수
-                  anxiety : 불안 점수
-                  stress : 스트레스 점수
-                  anger : 분노 점수
-                  stability : 안정 점수
-                */
-                setMeasurementMap(prev => ({ ...prev, [user._id]: normalized }));
+                const url = `http://localhost:5001/api/users/recent-emotions/${user._id}`;
+                const res = await axios.get(url);
+                const normalized = toMeasurementsFromRecentEmotions(res.data);
+                setMeasurementMap((prev) => ({ ...prev, [user._id]: normalized }));
             } catch (err) {
-                console.error("측정 기록 불러오기 실패:", err);
-                // 실패 시 더미라도 표시하고 싶다면 fallback:
-                // ensureDummyMeasurements(user._id, user.measurementCount ?? 6);
+                console.error("최근 감정 기록 불러오기 실패:", err);
+                // 필요 시 임시 더미 사용:
+                ensureDummyMeasurements(user._id, user.measurementCount ?? 6);
             }
         }
+    }
+
+    // recent-emotions 응답을 화면용 measurements 배열로 변환
+    function toMeasurementsFromRecentEmotions(apiData) {
+        const list = Array.isArray(apiData?.emotionResults) ? apiData.emotionResults : [];
+
+        const parseTs = (d, t) => {
+            // 날짜와 시간이 없거나 비정상일 때도 안전하게 처리
+            const date = d || "1970-01-01";
+            const time = t || "00:00:00";
+            // 브라우저 파서가 안정적으로 읽도록 T 연결
+            return new Date(`${date}T${time}`).getTime();
+        };
+
+        // 최신순 정렬(내림차순) 후 최대 10개
+        const sorted = [...list].sort((a, b) => parseTs(b.date, b.time) - parseTs(a.date, a.time)).slice(0, 10);
+
+        return sorted.map((item) => {
+            const e = item.emotions || {};
+            // 일부 키가 비어 있으면 0으로 기본값
+            return {
+                timestamp: `${item.date}T${item.time || "00:00:00"}`,
+                depression: Number.isFinite(e.depression) ? e.depression : 0,
+                anxiety: Number.isFinite(e.anxiety) ? e.anxiety : 0,
+                stress: Number.isFinite(e.stress) ? e.stress : 0,
+                anger: Number.isFinite(e.anger) ? e.anger : 0,
+                stability: Number.isFinite(e.stability) ? e.stability : 0,
+            };
+        });
     }
 
 
@@ -131,14 +139,36 @@ const UserTotal = () => {
 
         const header = ["날짜/시간", "우울", "불안", "스트레스", "분노", "안정"];
 
-        const body = rows.map((m) => [
-            formatKST(m.timestamp),
-            Number(m.depression ?? 0).toFixed(2),
-            Number(m.anxiety ?? 0).toFixed(2),
-            Number(m.stress ?? 0).toFixed(2),
-            Number(m.anger ?? 0).toFixed(2),
-            Number(m.stability ?? 0).toFixed(2),
-        ]);
+        const body = rows.map((m) => {
+            const raw = [
+                Number(m.depression ?? 0),
+                Number(m.anxiety ?? 0),
+                Number(m.stress ?? 0),
+                Number(m.anger ?? 0),
+                Number(m.stability ?? 0),
+            ];
+            const allZero = raw.every((v) => v === 0);
+            const emotions = raw.map((v) => v.toFixed(2));
+
+            // 상위 2개 인덱스 찾기
+            let majorIdx = null;
+            let minorIdx = null;
+            if (!allZero) {
+                const sorted = raw
+                    .map((v, i) => ({ v, i }))
+                    .sort((a, b) => b.v - a.v); // 값 내림차순
+                majorIdx = sorted[0]?.i ?? null;
+                minorIdx = sorted[1]?.i ?? null;
+            }
+
+            return {
+                timestamp: formatKST(m.timestamp),
+                emotions,   // ["0.00", "0.12", ...]
+                allZero,
+                majorIdx,
+                minorIdx,
+            };
+        });
 
         return { header, body };
     }
@@ -221,7 +251,7 @@ const UserTotal = () => {
                                 <tbody>
                                     {currentUsers.length === 0 ? (
                                         <tr>
-                                            <td colSpan="5" className="empty">회원이 없습니다.</td>
+                                            <td colSpan={5} className="empty">회원이 없습니다.</td>
                                         </tr>
                                     ) : (
                                         currentUsers.map((user, idx) => {
@@ -265,11 +295,25 @@ const UserTotal = () => {
                                                                                     <td className="empty" colSpan={grid.header.length}>기록이 없습니다.</td>
                                                                                 </tr>
                                                                             ) : (
-                                                                                        grid.body.map((row, rIdx) => (
+                                                                                grid.body.map((row, rIdx) => (
                                                                                     <tr key={rIdx}>
-                                                                                        {row.map((cell, cIdx) => (
-                                                                                            <td key={cIdx} className="measurement-cell">{cell}</td>
-                                                                                        ))}
+                                                                                        <td className="measurement-cell">{row.timestamp}</td>
+                                                                                        {row.allZero ? (
+                                                                                            <td className="measurement-cell" colSpan={5}>
+                                                                                                감정 결과가 출력 되지 않았습니다.
+                                                                                            </td>
+                                                                                        ) : (
+                                                                                            row.emotions.map((cell, cIdx) => {
+                                                                                                let extraClass = "";
+                                                                                                if (cIdx === row.majorIdx) extraClass = "major-cell";
+                                                                                                else if (cIdx === row.minorIdx) extraClass = "minor-cell";
+                                                                                                return (
+                                                                                                    <td key={cIdx} className={`measurement-cell ${extraClass}`}>
+                                                                                                        {cell}
+                                                                                                    </td>
+                                                                                                );
+                                                                                            })
+                                                                                        )}
                                                                                     </tr>
                                                                                 ))
                                                                             )}
