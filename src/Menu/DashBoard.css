@@ -179,17 +179,17 @@ grid-template-columns: 42% 41% 14%;
   min-height: 233px;
 }
 
-.dashboard-card1 {
-  flex-basis: 40%;
-  max-height: 335px;
-}
-
-
 .dashboard-card1,
-.dashboard-card2 {
-  max-height: 335px;
+.dashboard-card2,
+.dashboard-card3,
+.dashboard-card4 {
+  min-height: 380px;
+  max-height: 400px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
+.dashboard-card2,
 .dashboard-card3,
 .dashboard-card4 {
   max-height: 325px;
@@ -579,9 +579,13 @@ grid-template-columns: 42% 41% 14%;
 }
 
 .chart-labels {
-  text-align: center;
+  display: flex;
+  align-items: center;     /* 세로 중앙 */
+  justify-content: center; /* 가로 중앙 */
   font-size: 14px;
   color: #555;
+  min-height: 150px;       /* 차트 영역 높이와 맞춤 */
+  text-align: center;
 }
 
 .measurement-panel {
