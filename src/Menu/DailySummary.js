@@ -50,7 +50,7 @@ const DailySummary = () => {
   const [pieData, setPieData] = useState([]); // 원그래프에 바로 쓰일 데이터(name/uv/fill)
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const useDummy = false; // 더미모드로 교체하고 싶으면 true로
+  const useDummy = true; // 더미모드로 교체하고 싶으면 true로
 
   const fetchSummaryData = async () => {
     setLoading(true);
