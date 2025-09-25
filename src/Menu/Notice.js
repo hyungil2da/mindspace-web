@@ -105,6 +105,15 @@ const Notice = () => {
                     </NavLink>
                     </li>                    
                 </ul>
+                <div className="card profile-card">
+                    <div className="profile-image">사진</div>
+                    <div className="profile-info">
+                        <p>관리자</p>
+                        <span>아이디</span>
+                    </div>
+                    <div className="profile-actions">
+                    </div>
+                </div>
             </nav>
 
             <main className="main-content">
@@ -181,15 +190,6 @@ const Notice = () => {
                             ))}
                         </tbody>
                     </table>
-                </div>
-                <div className="card profile-card">
-                    <div className="profile-image">사진</div>
-                    <div className="profile-info">
-                        <p>관리자</p>
-                        <span>아이디</span>
-                    </div>
-                    <div className="profile-actions">
-                    </div>
                 </div>
 
             </main>

@@ -77,12 +77,19 @@ const User = () => {
             </NavLink>
           </li>
         </ul>
+        <div className="card profile-card">
+          <div className="profile-image">사진</div>
+          <div className="profile-info">
+            <p>MARS</p>
+            <span>Mars1234@gmail.com</span>
+          </div>
+        </div>
       </nav>
 
       <main className="main-content">
         <section className="top-section">
           <div className="usertop">
-            <div className="card new-card">
+            <div className="card  new-card">
               <div className="search">
                 <div className="card-title">신규 회원 목록</div>
                 <input
@@ -102,8 +109,8 @@ const User = () => {
                     <th>이름</th>
                     <th>아이디</th>
                     <th>가입일</th>
-                    <th>검사횟수</th>
-                    <th>검사정보</th>
+                    {/*<th>검사횟수</th>
+                    <th>검사정보</th>*/}
                   </tr>
                 </thead>
                 <tbody>
@@ -140,13 +147,6 @@ const User = () => {
             </div>
           </div>
         </section>
-        <div className="card profile-card">
-          <div className="profile-image">사진</div>
-          <div className="profile-info">
-            <p>MARS</p>
-            <span>Mars1234@gmail.com</span>
-          </div>
-        </div>
 
         <section className="top-section">
           <div className="usertop">
@@ -172,7 +172,7 @@ const User = () => {
                     <th>아이디</th>
                     <th>가입일</th>
                     <th>검사횟수</th>
-                    <th>검사정보</th>
+                    {/*<th>검사정보</th>*/}
                   </tr>
                 </thead>
                 <tbody>
@@ -198,7 +198,7 @@ const User = () => {
                             : "가입일"}
                         </td>
                         <td>{user.measurmentCount ?? 0}</td>
-                        <td>{user.measurementInfo || "-"}</td>
+                        {/*<td>{user.measurementInfo || "-"}</td>*/}
                       </tr>
                     ))
                   )}

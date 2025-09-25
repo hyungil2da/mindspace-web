@@ -1,4 +1,32 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import FaqItem from './FaqItem';
+import '../styles/FaqSection.css';
+import { loadFaqs } from '../Menu/DashBoard_Utility';
+
+function FaqSection() {
+  const [faqData, setFaqData] = useState([]);
+
+  useEffect(() => {
+    const saved = loadFaqs();
+    setFaqData(Array.isArray(saved) ? saved : []);
+  }, []);
+
+  return (
+    <section className="faq-section" id="faq">
+      <h2 className="faq-title">자주 묻는 질문</h2>
+      <div className="faq-list">
+        {faqData.map((item, index) => (
+          <FaqItem key={index} question={item.title} answer={item.content} />
+        ))}
+      </div>
+    </section>
+  );
+}
+
+export default FaqSection;
+
+
+/*import React from 'react';
 import FaqItem from '../components/FaqItem';
 import '../styles/FaqSection.css';
 
@@ -46,7 +74,6 @@ function FaqSection() {
         ))}
       </div>
 
-      {/* 추가 문의 버튼 
       <div className="faq-contact">
         <button
           className="faq-button"
@@ -54,10 +81,9 @@ function FaqSection() {
         >
           추가 문의하기
         </button>
-      </div>*/}
-      
+      </div>
     </section>
   );
 }
 
-export default FaqSection;
+export default FaqSection;*/

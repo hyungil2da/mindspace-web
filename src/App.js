@@ -14,6 +14,7 @@ import Count from "./Menu/Count";
 import Setting from "./Menu/Setting";
 import "./App.css";
 import Main_Page from "./pages/Main_Page";
+import News from "./Menu/News";
 
 const App = () => {
   return (
@@ -33,6 +34,7 @@ const App = () => {
         <Route path="/Setting" element={<Setting />} />
         <Route path="/UserSetting" element={<UserSetting />} />
         <Route path="/" element={<Main_Page />} />
+        <Route path="/News" element={<News />} />
       </Routes>
     </div>
   );
