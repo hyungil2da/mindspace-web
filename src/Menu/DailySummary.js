@@ -1,4 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { useEffect, useState } from "react";
+import {
+  Tooltip,
+  ResponsiveContainer,
+  Label,
+  Legend,
+  PieChart,
+  Pie,
+} from "recharts";
 import axios from "axios";
 import "./DailySummary.css";
 
@@ -24,73 +33,113 @@ const DailySummary = () => {
     fetchSummaryData();
   }, []);
 
-  /*
-  const getLast7Days = () => {
-    const days = [];
-    for (let i = 0; i < 7; i++) {
-      const date = new Date();
-      date.setDate(date.getDate() - i);
-      days.push({
-        date: date.toISOString().split("T")[0],
-        pageViews: Math.floor(Math.random() * 15),
-        visitors: Math.floor(Math.random() * 10),
-        signups: Math.floor(Math.random() * 2),
-        posts: Math.floor(Math.random() * 5),
-      });
-    }
-    return days;
-  };
-  */
-
-  // const totaldata = getLast7Days();
-
-  const recentTotal = {
-    pageViews: data.reduce((sum, d) => sum + d.pageViews, 0),
-    visitors: data.reduce((sum, d) => sum + d.visitors, 0),
-    signups: data.reduce((sum, d) => sum + d.signups, 0),
-    posts: data.reduce((sum, d) => sum + d.posts, 0),
-    comments: data.reduce((sum, d) => sum + d.comments, 0),
-  };
-
-  if (loading) {
-    return <div>로딩 중...</div>;
-  }
-
-  if (error) {
-    return <div>데이터 불러오기 실패 {error.message}</div>;
-  }
-
   return (
-    <div className="daily-summary">
-      <table className="summary-table">
-        <thead>
-          <tr>
-            <th>일자</th>
-            <th>페이지뷰</th>
-            <th>방문자</th>
-            <th>가입</th>
-            {/*<th>새 글</th>*/}
-          </tr>
-        </thead>
-        <tbody>
-          {data.map((row, idx) => (
-            <tr key={idx}>
-              <td>{row.date}</td>
-              <td>{row.pageViews}</td>
-              <td>{row.visitors}</td>
-              <td>{row.signups}</td>
-              {/*<td>{row.posts}</td>*/}
-            </tr>
-          ))}
-          <tr className="summary-sum">
-            <td>최근 7일 합계</td>
-            <td>{recentTotal.pageViews}</td>
-            <td>{recentTotal.visitors}</td>
-            <td>{recentTotal.signups}</td>
-            {/*<td>{recentTotal.posts}</td>*/}
-          </tr>
-        </tbody>
-      </table>
+    <div className="chart-container">
+      <PieChart
+        accessibilityLayer
+        data={[
+          {
+            amt: 1400,
+            fill: '#8884d8',
+            name: 'depression',
+            pv: 2400,
+            uv: 31.47
+          },
+          {
+            amt: 720,
+            fill: '#83a6ed',
+            name: 'anxiety',
+            pv: 4567,
+            uv: 26.69
+          },
+          {
+            amt: 680,
+            fill: '#8dd1e1',
+            name: 'stress',
+            pv: 1398,
+            uv: 15.69
+          },
+          {
+            amt: 1700,
+            fill: '#82ca9d',
+            name: 'anger',
+            pv: 9800,
+            uv: 8.22
+          },
+          {
+            amt: 1500,
+            fill: '#a4de6c',
+            name: 'stability',
+            pv: 3908,
+            uv: 8.63
+          }
+        ]}
+        width={400}
+        height={250}
+        margin={{
+          bottom: 5,
+          left: 5,
+          right: 5,
+          top: 5
+        }}
+        syncMethod="index"
+      >
+        <Pie
+          activeShape={{
+            fill: 'red'
+          }}
+          data={[
+            {
+              amt: 1400,
+              fill: '#8884d8',
+              name: 'depression',
+              pv: 2400,
+              uv: 31.47
+            },
+            {
+              amt: 720,
+              fill: '#83a6ed',
+              name: 'anxiety',
+              pv: 4567,
+              uv: 26.69
+            },
+            {
+              amt: 680,
+              fill: '#8dd1e1',
+              name: 'stress',
+              pv: 1398,
+              uv: 15.69
+            },
+            {
+              amt: 1700,
+              fill: '#82ca9d',
+              name: 'anger',
+              pv: 9800,
+              uv: 8.22
+            },
+            {
+              amt: 1500,
+              fill: '#a4de6c',
+              name: 'stability',
+              pv: 3908,
+              uv: 8.63
+            }
+          ]}
+          dataKey="uv"
+          outerRadius={80}
+          nameKey="name"
+        >
+        </Pie>
+        <Tooltip defaultIndex={3} />
+        <Legend
+          align="right"
+          layout="vertical"
+          verticalAlign="middle"
+        />
+      </PieChart>
+      <div className="chart-labels">
+        <p>Emotion Chart</p>
+      </div>
     </div>
   );
 };
