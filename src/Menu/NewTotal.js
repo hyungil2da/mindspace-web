@@ -87,7 +87,7 @@ const UserTotal = () => {
             <main className="main-content">
                 <section className="Upper">
                     <section className="top">
-                        <div className="card newlist-card">
+                        <div className="card new-card">
                             <div className="search">
                                 <NavLink to="/NewTotal" className={({ isActive }) => (isActive ? "active" : "")}>
                                     신규 회원 목록
