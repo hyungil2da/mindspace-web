@@ -103,44 +103,49 @@ const DailySummary = () => {
     } else {
       fetchSummaryData();
     }
-    fetchSummaryData();
   }, []);
 
   return (
     <div className="chart-container">
-      <PieChart
-        accessibilityLayer
-        data={pieData}
-        width={400}
-        height={250}
-        margin={{
-          bottom: 5,
-          left: 5,
-          right: 5,
-          top: 5
-        }}
-        syncMethod="index"
-      >
-        <Pie
-          activeShape={{
-            fill: 'red'
+      {loading ? (
+        <div className="chart-labels">로딩 중...</div>
+      ) : error ? (
+        <div className="chart-labels">데이터를 불러오는 중 오류가 발생했습니다.</div>
+      ) : (!useDummy && pieData.every(d => (d?.uv ?? 0) === 0)) ? (
+        <div className="chart-labels">오늘의 첫 감정 검사를 시작해보세요!</div>
+      ) : (
+        <PieChart
+          accessibilityLayer
+          width={400}
+          height={250}
+          margin={{
+            bottom: 5,
+            left: 5,
+            right: 5,
+            top: 5
           }}
-          data={pieData}
-          dataKey="uv"
-          outerRadius={80}
-          nameKey="name"
+          syncMethod="index"
         >
-        </Pie>
-        <Tooltip defaultIndex={3} />
-        <Legend
-          align="right"
-          layout="vertical"
-          verticalAlign="middle"
-        />
-      </PieChart>
-      <div className="chart-labels">
-        <p>Emotion Chart</p>
-      </div>
+          <Pie
+            activeShape={{
+              fill: 'red'
+            }}
+            data={pieData}
+            dataKey="uv"
+            outerRadius={80}
+            nameKey="name"
+          >{pieData.map((entry, idx) => (
+            <Cell key={idx} fill={entry.fill} />
+          ))}
+          </Pie>
+          <Tooltip defaultIndex={3} />
+          <Legend
+            align="right"
+            layout="vertical"
+            verticalAlign="middle"
+          />
+        </PieChart>)}
+      <div className="chart-labels"><p>Emotion Chart</p></div>
     </div>
   );
 };
