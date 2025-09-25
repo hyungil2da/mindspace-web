@@ -179,17 +179,17 @@ grid-template-columns: 42% 41% 14%;
   min-height: 233px;
 }
 
-.dashboard-card1 {
-  flex-basis: 40%;
-  max-height: 335px;
-}
-
-
 .dashboard-card1,
-.dashboard-card2 {
-  max-height: 335px;
+.dashboard-card2,
+.dashboard-card3,
+.dashboard-card4 {
+  min-height: 380px;
+  max-height: 400px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
+.dashboard-card2,
 .dashboard-card3,
 .dashboard-card4 {
   max-height: 325px;
