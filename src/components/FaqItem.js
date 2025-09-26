@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import '../styles/FaqSection.css';
-
+import '../styles/color.css';
 function FaqItem({ question, answer }) {
   const [open, setOpen] = useState(false);
   const contentRef = useRef(null);

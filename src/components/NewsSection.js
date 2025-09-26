@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../styles/NewsSection.css";
 import { loadNews } from "../Menu/DashBoard_Utility";
-
+import '../styles/color.css';
 function NewsSection() {
   const [news, setNews] = useState([]);
 

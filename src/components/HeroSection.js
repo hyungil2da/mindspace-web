@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import SurveyPopup from './SurveyPopup';
 import '../styles/HeroSection.css';
-
+import '../styles/color.css';
 function HeroSection() {
   const [showPopup, setShowPopup] = useState(false);
   const [surveyScore, setSurveyScore] = useState(null);

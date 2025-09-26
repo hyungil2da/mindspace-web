@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/SystemFlow.css";
-
+import '../styles/color.css';
 import survey from "../assets/survey.jpg";
 import facial from "../assets/facial.jpg";
 import brain from "../assets/brain.jpg";

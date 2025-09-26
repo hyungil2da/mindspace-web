@@ -1,7 +1,10 @@
+/* src/styles/SystemFlowSection.css */
 .system-flow-container {
   text-align: center;
   padding: 30px;
   font-family: 'Arial', sans-serif;
+  background-color: var(--bg-base);
+  color: var(--text-base);
 }
 
 h2 {
@@ -21,7 +24,7 @@ h2 {
 }
 
 .light-gray {
-  background-color: #f5f5f5;
+  background-color: var(--light-bg);
   padding: 20px;
   border-radius: 20px;
   transition: padding 0.3s ease-in-out;
@@ -29,7 +32,7 @@ h2 {
 
 /* 공통 카드 스타일 */
 .flow-card {
-  background: white;
+  background: var(--bg-base);
   padding: 10px;
   border-radius: 15px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
@@ -54,6 +57,7 @@ h2 {
   font-size: 14px;
   margin: 0;
   word-break: keep-all;
+  color: var(--text-base);
 }
 
 /* 화살표 스타일 */
@@ -66,26 +70,28 @@ h2 {
 
 .arrow {
   font-size: 25px;
-  color: #666;
+  color: var(--brown);
   transition: font-size 0.3s ease, transform 0.3s ease, left 0.3s ease, right 0.3s ease;
 }
 
 .arrow-horizontal {
   font-size: 22px;
-  color: #aaa;
+  color: var(--brown);
   transition: font-size 0.3s ease;
 }
 
-#middle-to-bottom {
-  position: relative;
-  left: 22vw;
-  transition: left 0.3s ease;
-}
-
-#top-to-middle {
-  position: relative;
-  right: 22vw;
-  transition: right 0.3s ease;
+/* 큰 화면에서 화살표 가운데 정렬 */
+@media (min-width: 1025px) {
+  #middle-to-bottom,
+  #top-to-middle {
+    position: static;
+    left: auto;
+    right: auto;
+    /* 추가: 화살표를 수평으로 배치하기 위해 flexbox 속성 활용 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 /* ✅ 입력 카드 그룹 (설문조사, 안면인식, 뇌파측정) */
@@ -112,7 +118,7 @@ h2 {
 }
 
 .card-group:nth-of-type(3) .flow-card img {
-  width: 700px;
+  width: 70px;
   height: 70px;
 }
 
@@ -171,51 +177,51 @@ h2 {
     right: 0;
   }
   /* ✅ 입력 카드 그룹 (설문조사, 안면인식, 뇌파측정) */
-.card-group:nth-of-type(1) .flow-card {
-  width: 150px;
-  height: 150px;
-}
+  .card-group:nth-of-type(1) .flow-card {
+    width: 150px;
+    height: 150px;
+  }
 
-.card-group:nth-of-type(1) .flow-card img {
-  width: 60px;
-  height: 60px;
-}
+  .card-group:nth-of-type(1) .flow-card img {
+    width: 60px;
+    height: 60px;
+  }
 
-.card-group:nth-of-type(1) .flow-card p {
-  font-size: 15px;
-}
+  .card-group:nth-of-type(1) .flow-card p {
+    font-size: 15px;
+  }
 
-/* ✅ 중단 카드 그룹 (서버/앱/VR) */
-.card-group:nth-of-type(3) .flow-card {
-  width: 120px;
-  height: 150px;
-  padding: 5px;
-}
+  /* ✅ 중단 카드 그룹 (서버/앱/VR) */
+  .card-group:nth-of-type(3) .flow-card {
+    width: 120px;
+    height: 150px;
+    padding: 5px;
+  }
 
-.card-group:nth-of-type(3) .flow-card img {
-  width: 60px;
-  height: 60px;
-}
+  .card-group:nth-of-type(3) .flow-card img {
+    width: 60px;
+    height: 60px;
+  }
 
-.card-group:nth-of-type(3) .flow-card p {
-  font-size: 14px;
-}
+  .card-group:nth-of-type(3) .flow-card p {
+    font-size: 14px;
+  }
 
-/* ✅ 하단 카드 그룹 (불멍/두더지/세월/동물) */
-.card-group:nth-of-type(5) .flow-card {
-  width: 110px;
-  height: 150px;
-  padding: 10px;
-}
+  /* ✅ 하단 카드 그룹 (불멍/두더지/세월/동물) */
+  .card-group:nth-of-type(5) .flow-card {
+    width: 110px;
+    height: 150px;
+    padding: 10px;
+  }
 
-.card-group:nth-of-type(5) .flow-card img {
-  width: 70px;
-  height: 70px;
-}
+  .card-group:nth-of-type(5) .flow-card img {
+    width: 70px;
+    height: 70px;
+  }
 
-.card-group:nth-of-type(5) .flow-card p {
-  font-size: 14px;
-}
+  .card-group:nth-of-type(5) .flow-card p {
+    font-size: 14px;
+  }
 }
 
 /* ✅ 모바일 화면 (500px 이하) */
@@ -263,7 +269,7 @@ h2 {
   .card-group:nth-of-type(1) .flow-card,
   .card-group:nth-of-type(3) .flow-card,
   .card-group:nth-of-type(5) .flow-card {
-    width: 700px;
+    width: 120px;
     height: 100px;
     padding: 10px;
   }

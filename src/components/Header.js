@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import logo from '../assets/EmotionVR.png';
 import '../styles/Header.css';
+import '../styles/color.css';
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -8,7 +9,7 @@ function Header() {
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
   return (
-    <header className="header">
+    <header className="header"> 
       <a className="logo" href="#">
         <img src={logo} alt="로고" />
         <span className="logo-text" data-short="MS">MindSpace</span>

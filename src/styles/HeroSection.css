@@ -8,7 +8,7 @@
 
 .subtitle {
   font-size: 18px;
-  color: #777;
+  color: var(--text-base); /* 변경 */
   margin-bottom: 20px;
   transition: font-size 0.3s ease;
 }
@@ -18,37 +18,37 @@
   font-weight: 700;
   line-height: 1.4;
   margin-bottom: 30px;
-  color: #2d2d2d;
+  color: var(--text-base); /* 변경 */
   transition: font-size 0.3s ease;
 }
 
 .description {
   font-size: 18px;
-  color: #444;
+  color: var(--text-base); /* 변경 */
   margin-bottom: 40px;
   line-height: 1.6;
   transition: font-size 0.3s ease;
 }
 
 .hero-btn {
-  background-color: #f9a826;
+  background-color: var(--brown); /* 변경 */
   border: none;
   border-radius: 8px;
   padding: 14px 28px;
   font-size: 16px;
   font-weight: 600;
-  color: white;
+  color: var(--bg-base); /* 변경 */
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
 .hero-btn:hover {
-  background-color: #e08d00;
+  background-color: var(--olive); /* 변경 */
 }
 
 .caption {
   font-size: 14px;
-  color: #aaa;
+  color: var(--brown); /* 변경 */
   margin-top: 10px;
   transition: font-size 0.3s ease;
 }
