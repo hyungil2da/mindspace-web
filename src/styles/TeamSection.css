@@ -1,12 +1,13 @@
 .team-section {
   padding: 30px 20px;
-  background-color: #f7f7f7;
+  background-color: var(--light-bg); /* 변경 */
   text-align: center;
 }
 
 .team-title {
   font-size: 32px;
   font-weight: bold;
+  color: var(--text-base); /* 적용 */
   margin-bottom: 30px;
 }
 
@@ -33,12 +34,12 @@
   font-size: 15px;
   font-weight: 600;
   margin-bottom: 6px;
-  color: #333;
+  color: var(--text-base); /* 변경 */
 }
 
 .team-names {
   font-size: 16px;
-  color: #777;
+  color: var(--brown); /* 변경 */
 }
 
 /* 태블릿 (768px 이하) */

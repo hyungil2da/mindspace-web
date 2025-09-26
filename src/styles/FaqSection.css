@@ -1,6 +1,6 @@
 .faq-section {
   padding: 40px 20px;
-  background-color: #fff;
+  background-color: var(--bg-base); /* 적용 */
   text-align: center;
 }
 
@@ -18,7 +18,7 @@
 }
 
 .faq-item {
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--light-bg); /* 적용 */
   padding: 16px 0;
 }
 
@@ -29,6 +29,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  color: var(--text-base); /* 적용 */
 }
 
 .faq-answer-wrapper {
@@ -40,7 +41,7 @@
 .faq-answer {
   margin-top: 10px;
   font-size: 16px;
-  color: #444;
+  color: var(--text-base); /* 적용 */
   padding-right: 5px;
 }
 
@@ -51,8 +52,8 @@
 
 .faq-button {
   padding: 12px 24px;
-  background-color: #4c72ff;
-  color: white;
+  background-color: var(--brown); /* 적용 */
+  color: var(--bg-base); /* 변경 */
   border: none;
   border-radius: 8px;
   font-size: 16px;
@@ -61,7 +62,8 @@
 }
 
 .faq-button:hover {
-  background-color: #3a5be0;
+  background-color: var(--olive); /* 적용 */
+  color: var(--light-bg); /* 변경 */
 }
 
 

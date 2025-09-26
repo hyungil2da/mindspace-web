@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import questions from '../data/questions';
 import '../styles/SurveyPopup.css';
-
+import '../styles/color.css';
 function SurveyPopup({ onClose }) {
   const [current, setCurrent] = useState(0);
   const [answers, setAnswers] = useState([]);

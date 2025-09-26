@@ -8,6 +8,7 @@ export const teamMembers = [
   { name: "오태관", role: "앱 기능 / 디자인" },
   { name: "구지현", role: "웹 기능 / 디자인" },
   { name: "김병권", role: "웹 기능 / 디자인" },
+  { name: "김형중", role: "웹 기능 / 디자인" },
   { name: "노현길", role: "총괄 / DB통신" },
   { name: "김형중", role: "감정 분석 / DB통신" }
 ];

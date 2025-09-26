@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import SurveyPopup from './SurveyPopup';
 import '../styles/HeroSection.css';
-
+import '../styles/color.css';
 function HeroSection() {
   const [showPopup, setShowPopup] = useState(false);
   const [surveyScore, setSurveyScore] = useState(null);
@@ -18,7 +18,7 @@ function HeroSection() {
   };
 
   const getButtonText = () => {
-    if (surveyScore === null) return '체험해보기';
+    if (surveyScore === null) return '체험해보기 - 불안 척도';
     return `설문 완료 - ${surveyLevel}`;
   };
 

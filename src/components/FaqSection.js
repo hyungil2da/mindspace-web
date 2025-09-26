@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import FaqItem from './FaqItem';
 import '../styles/FaqSection.css';
 import { loadFaqs } from '../Menu/DashBoard_Utility';
-
+import '../styles/color.css';
 function FaqSection() {
   const [faqData, setFaqData] = useState([]);
 
