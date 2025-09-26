@@ -353,10 +353,11 @@ grid-template-columns: 42% 41% 14%;
 }
 
 .profile-card {
+  min-width: 100px;
+  max-width: 120px;
   text-align: center;
   padding: 20px;
   background-color: #749dff;
-  width: 151px;
   height: 270px;
   border-radius: 8px;
   margin: 20px auto 0 auto;

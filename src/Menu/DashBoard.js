@@ -110,7 +110,7 @@ const DashBoard = () => {
           </li>          
         </ul>
         
-        <div className="card profile-card" style={{ maxWidth:'100px'}}>
+        <div className="card profile-card">
             <div className="profile-image">사진</div>
             <div className="profile-info">
               <p>MARS</p>
