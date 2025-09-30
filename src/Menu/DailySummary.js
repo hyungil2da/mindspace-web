@@ -18,7 +18,7 @@ const DailySummary = () => {
 
   const fetchSummaryData = async () => {
     try {
-      const apiUrl = "http://localhost:5001/api/users/measurements";
+      const apiUrl = "http://localhost:5001 /api/measurements/${measurementId}/emotion";
       const response = await axios.get(apiUrl);
 
       setData(response.data.data);
