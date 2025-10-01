@@ -32,7 +32,7 @@ h2 {
 
 /* 공통 카드 스타일 */
 .flow-card {
-  background: var(--bg-base);
+  background: white;
   padding: 10px;
   border-radius: 15px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
