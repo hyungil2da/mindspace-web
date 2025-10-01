@@ -36,11 +36,11 @@ function majorKeyFromEmotions(e = {}) {
 // 더미 데이터(현재 하드코딩 배열과 동일 구조 유지: name/uv/fill)
 function buildDummyPieData() {
   return [
-    { name: "depression", uv: 31, fill: emotionColors.depression },
-    { name: "anxiety", uv: 26, fill: emotionColors.anxiety },
-    { name: "stress", uv: 15, fill: emotionColors.stress },
-    { name: "anger", uv: 8, fill: emotionColors.anger },
-    { name: "stability", uv: 8, fill: emotionColors.stability },
+    { name: "우울", uv: 31, fill: emotionColors.depression },
+    { name: "불안", uv: 26, fill: emotionColors.anxiety },
+    { name: "스트레스", uv: 15, fill: emotionColors.stress },
+    { name: "분노", uv: 8, fill: emotionColors.anger },
+    { name: "안정", uv: 8, fill: emotionColors.stability },
   ];
 }
 
