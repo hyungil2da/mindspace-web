@@ -44,9 +44,12 @@ function ScrollToTop() {
   
   return (
     visible && (
-      <button className="scroll-to-top" onClick={scrollToTop}>
-        ⬆
-      </button>
+      <button 
+        onClick={scrollToTop} 
+        style={buttonStyle}
+        onMouseEnter={(e) => Object.assign(e.currentTarget.style, hoverStyle)}
+        onMouseLeave={(e) => Object.assign(e.currentTarget.style, buttonStyle)}
+      />
     )
   );
 }
