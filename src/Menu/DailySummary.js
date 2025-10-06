@@ -30,7 +30,7 @@ function majorKeyFromEmotions(e = {}) {
   const vals = emotionKeys.map((k) => Number(e[k] ?? 0));
   if (vals.every((v) => v === 0)) return null;
   const maxIdx = vals.map((v, i) => ({ v, i })).sort((a, b) => b.v - a.v)[0].i;
-  return emotionKeys[maxIdx];
+  return vals[maxIdx] > 0 ? emotionKeys[maxIdx] : null;
 }
 
 // 더미 데이터(현재 하드코딩 배열과 동일 구조 유지: name/uv/fill)
@@ -50,7 +50,7 @@ const DailySummary = () => {
   const [pieData, setPieData] = useState([]); // 원그래프에 바로 쓰일 데이터(name/uv/fill)
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const useDummy = true; // 더미모드로 교체하고 싶으면 true로
+  const useDummy = false; // 더미모드로 교체하고 싶으면 true로
 
   const fetchSummaryData = async () => {
     setLoading(true);
@@ -77,7 +77,7 @@ const DailySummary = () => {
         list.forEach((item) => {
           if (item?.date !== today) return; // 오늘만
           const major = majorKeyFromEmotions(item?.emotions || {});
-          if (major) counts[major] += 1;    // all-zero는 제외
+          if (major) counts[major] ++;    // all-zero는 제외
         });
       });
 

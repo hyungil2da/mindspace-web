@@ -111,7 +111,7 @@ const DashBoard = () => {
         </ul>
         
         <div className="card profile-card">
-            <div className="profile-image">사진</div>
+            <div className="profile-image"><img src="src/Menu/EmotionVR.png" alt="Profile" /></div>
             <div className="profile-info">
               <p>MARS</p>
               <span>Mars1234@gmail.com</span>
