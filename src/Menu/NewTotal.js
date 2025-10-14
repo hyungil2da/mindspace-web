@@ -11,7 +11,7 @@ const UserTotal = () => {
     const [searchBottom, setSearchBottom] = useState("");
 
     useEffect(() => {
-        axios.get("http://localhost:5001/api/users")
+        axios.get("https://mindspace-1hpk.onrender.com/api/users")
             .then((res) => {
                 console.log("회원정보 불러오기 성공:", res.data);
                 const allUsers = res.data.users || [];

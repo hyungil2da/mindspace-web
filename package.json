@@ -25,7 +25,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:5001",
+  "proxy": "https://mindspace-1hpk.onrender.com/",
   "eslintConfig": {
     "extends": [
       "react-app",

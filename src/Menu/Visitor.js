@@ -66,10 +66,12 @@ const Visitor = () => {
         // 필요하면 환경변수로 교체하세요.
         const API_URL =
           process.env.REACT_APP_API_URL ||
-          "http://localhost:5001/api/measurements/daily-count";
+          "https://mindspace-1hpk.onrender.com/api/measurements/daily-count";
 
         console.log(`API 호출 시도: ${API_URL}`);
         const res = await axios.get(API_URL);
+
+        console.log("API 응답:", res.data);
 
         // --- 응답 안전하게 처리 ---
         // 1) 일반적으로는 res.data.data가 배열이어야 함
