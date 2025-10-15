@@ -101,30 +101,27 @@ a:visited {
 }
 
 .Upper {
-  /*display: flex;*/
   gap: 16px;
 }
 
-.top1 {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-  margin-bottom: 20px;
-  height: auto;
-}
 
+.top1,
 .top2 {
   display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
+  justify-content: space-between;  /* 양쪽 여백 정렬 */
+  align-items: stretch;            /* 세로 길이 맞추기 */
+  gap: 20px;                       /* div 사이 간격 */
+  margin: 5px;                    /* 바깥 여백 */
+  box-sizing: border-box;
 }
 
-.top1 .top2 {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
-  gap: 20px;
-  align-items: start;
-  ;
+.top1 > div,
+.top2 > div {
+  flex: 1;                         /* 각 div가 균등하게 공간 채움 */
+  background: white;               /* 카드 배경 */
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-sizing: border-box;
 }
 
 .faqtop {
@@ -147,9 +144,6 @@ a:visited {
   gap: 20px;
 }
 
-/*
-grid-template-columns: 42% 41% 14%;
-*/
 
 .bottom-section {
   display: flex;
@@ -181,28 +175,50 @@ grid-template-columns: 42% 41% 14%;
   min-height: 233px;
 }
 
-.dashboard-card1 {
-  flex-basis: 40%;
-  max-height: 335px;
-}
-
-
+.dashboard-card1,
 .dashboard-card2,
 .dashboard-card3,
 .dashboard-card4 {
-  max-height: 325px;
   overflow-y: auto;
   overflow-x: hidden;
 }
 
 .dashboard-card1,
-.dashboard-card2,
+.dashboard-card2{
+  height: 390px;
+  max-width: none;
+  box-sizing: border-box;
+}
+
 .dashboard-card3,
 .dashboard-card4 {
   width: 49%;
   max-width: none;
   box-sizing: border-box;
 }
+
+.dashboard-card1, .dashboard-card2 {
+  min-width : 420px;
+}
+
+
+.dashboard-card5 {
+  max-width: none;
+  box-sizing: border-box;
+}
+.spotlight-controls {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.spotlight-select {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
 
 .userlist-card {
   max-width: 100%;
@@ -586,7 +602,6 @@ grid-template-columns: 42% 41% 14%;
   justify-content: center; /* 가로 중앙 */
   font-size: 14px;
   color: #555;
-  min-height: 150px;       /* 차트 영역 높이와 맞춤 */
   text-align: center;
 }
 

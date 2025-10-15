@@ -9,6 +9,7 @@ import DailySummary from "../Menu/DailySummary";
 import logo from '../assets/EmotionVR.png';
 import { loadFaqs, loadNotices, loadNews, saveNews } from "./DashBoard_Utility";
 import { newsUpdates } from "./newsinfo.js";
+import UserSpotlight from "./UserSpotlight";
 
 function flattenNewsUpdates(updates) {
   let id = 1;
@@ -142,6 +143,12 @@ const DashBoard = () => {
         <section className="top2">
           <div className="card dashboard-card3">
             <div className="card-header">
+              <div className="card-title">검사 기록</div>
+            </div>
+            <UserSpotlight users={newUsers} />
+          </div>
+          <div className="card dashboard-card3">
+            <div className="card-header">
               <div className="card-title">FAQ</div>
               <NavLink to="/FAQ" className="plus-btn">자세히</NavLink>
             </div>
@@ -162,52 +169,6 @@ const DashBoard = () => {
                 <hr />
               </div>
             ))}
-            </div>
-          </div>
-          {/*}
-          <div className="card dashboard-card4">
-            <div className="card-header">
-              <div className="card-title">공지</div>
-              <NavLink to="/News" className="plus-btn">자세히</NavLink>
-            </div>
-
-            <div className="notice-list">
-              {(noticeData.length ? noticeData : [
-                { id: 1, title: "공지 제목1", content: "내용1", isNew: true },
-                { id: 2, title: "공지 제목2", content: "내용2", isNew: false },
-                { id: 3, title: "공지 제목3", content: "내용3", isNew: false }
-              ]
-              ).slice(0, (noticeData.length || 4)).map((n) => (
-              <div key={n.id} className="notice-item">
-                <p className="notice-title">{n.isNew && <span className="new-label">[NEW] </span>}{n.title}</p>
-                <span className="notice-content">{n.content}</span>
-                <hr />
-              </div>
-            ))}
-            </div>
-          </div>
-          */}
-          <div className="card dashboard-card4">
-            <div className="card-header">
-              <div className="card-title">뉴스</div>
-                <NavLink to="/News" className="plus-btn">자세히</NavLink>
-              </div>
-
-            <div className="notice-list">
-              {(newsData.length ? newsData : []).slice(0, (newsData.length || 4)).map((n) => (
-                <div key={n.id} className="notice-item">
-                  <p className="notice-title">{n.title}</p>
-                  <span className="notice-content">{n.content}</span>
-                  <hr />
-                </div>
-              ))}
-              {newsData.length === 0 && (
-                <div className="notice-item">
-                  <p className="notice-title">(뉴스 없음)</p>
-                  <span className="notice-content">첫 뉴스를 추가해 보세요.</span>
-                  <hr />
-                </div>
-              )}
             </div>
           </div>
         </section>
