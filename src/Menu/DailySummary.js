@@ -57,14 +57,14 @@ const DailySummary = () => {
     setError(null);
     try {
       // 1) 전체 유저
-      const usersRes = await axios.get("https://mindspace-1hpk.onrender.com/api/users");
+      const usersRes = await axios.get("https://localhost:5001/api/users");
       const users = Array.isArray(usersRes?.data?.users) ? usersRes.data.users : [];
       const today = getTodayKstYmd();
 
       // 2) 유저별 최근 감정 병렬 조회
       const reqs = users.map((u) =>
         axios
-          .get(`https://mindspace-1hpk.onrender.com/api/users/recent-emotions/${u._id}`)
+          .get(`https://localhost:5001/api/users/recent-emotions/${u._id}`)
           .then((res) => res.data)
           .catch(() => null)
       );

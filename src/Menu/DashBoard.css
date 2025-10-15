@@ -621,7 +621,6 @@ grid-template-columns: 42% 41% 14%;
   color: white;
   font-weight: bold;
 }
-
 .measurement-cell.minor-cell {
   background-color: #749dff; /* 밝은 파랑 */
   color: white;

@@ -66,7 +66,7 @@ const Visitor = () => {
         // 필요하면 환경변수로 교체하세요.
         const API_URL =
           process.env.REACT_APP_API_URL ||
-          "https://mindspace-1hpk.onrender.com/api/measurements/daily-count";
+          "https://localhost:5001/api/measurements/daily-count";
 
         console.log(`API 호출 시도: ${API_URL}`);
         const res = await axios.get(API_URL);
@@ -84,8 +84,6 @@ const Visitor = () => {
         } else if (Array.isArray(res?.data)) {
           rawData = res.data;
         } else if (res?.data?.emotionAnalysis) {
-          // 예시로 주신 payload가 emotionAnalysis라면 날짜 기반 daily-count가 아닌 다른 응답임.
-          // 여기서는 안전하게 빈 배열로 처리하고 로그에 안내를 남김.
           console.warn(
             "API가 daily-count 형식(배열)을 반환하지 않았습니다. 받은 응답:",
             res.data
@@ -98,6 +96,21 @@ const Visitor = () => {
 
         // 1) 데이터 정규화 및 visitors 키 설정 (count 사용)
         const normalized = normalizeDailyRows(rawData);
+        function normalizeDailyRows(rows) {
+          if (!Array.isArray(rows)) return [];
+          return rows
+            .map((item) => {
+              if (item?.date) {
+                // 🚨 서버 데이터의 날짜 문자열 앞뒤 공백을 제거 (날짜 매칭 오류 방지)
+                const dateKey = item.date.trim();
+
+                const countValue = Number(item?.count ?? 0);
+                return { date: dateKey, visitors: isNaN(countValue) ? 0 : countValue };
+              }
+              return null;
+            })
+            .filter(Boolean);
+        }
 
         // 2) 최근 7일 축에 맞춰 0 채움
         const filled = fillMissingWithZero(normalized);

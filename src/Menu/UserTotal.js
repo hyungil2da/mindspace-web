@@ -14,7 +14,7 @@ const UserTotal = () => {
     const [measurementMap, setMeasurementMap] = useState({});
 
     useEffect(() => {
-        axios.get("https://mindspace-1hpk.onrender.com/api/users")
+        axios.get("https://localhost:5001/api/users")
             .then((res) => {
                 const allUsers = res.data.users || [];
                 setUsers(allUsers);
@@ -71,7 +71,7 @@ const UserTotal = () => {
 
         if (next && !measurementMap[user._id]) {
             try {
-                const url = `https://mindspace-1hpk.onrender.com/api/users/recent-emotions/${user._id}`;
+                const url = `https://localhost:5001/api/users/recent-emotions/${user._id}`;
                 const res = await axios.get(url);
                 const normalized = toMeasurementsFromRecentEmotions(res.data);
                 setMeasurementMap((prev) => ({ ...prev, [user._id]: normalized }));
