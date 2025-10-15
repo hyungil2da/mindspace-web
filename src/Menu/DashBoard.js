@@ -67,7 +67,7 @@ const DashBoard = () => {
   }, []);
 
   useEffect(() => {
-    axios.get("https://localhost:5001/api/users")
+    axios.get("http://localhost:5001/api/users")
       .then((res) => {
         const allUsers = res.data.users || [];
         const oneWeekAgo = new Date();
