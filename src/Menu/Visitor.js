@@ -33,15 +33,16 @@ function last7DaysKst() {
   return days;
 }
 
-// 백엔드 rows 정규화
+// 백엔드 rows 정규화 (count -> visitors 변환 및 날짜 공백 제거)
 function normalizeDailyRows(rows) {
   if (!Array.isArray(rows)) return [];
   return rows
     .map((item) => {
-      // 서버 응답의 'count' 필드를 읽어 'visitors'로 변환
       if (item?.date) {
+        //[데이터 안정성] 날짜 매칭 오류 방지를 위해 양 끝 공백을 제거합니다. (trim)
+        const dateKey = item.date.trim(); 
         const countValue = Number(item?.count ?? 0);
-        return { date: item.date, visitors: isNaN(countValue) ? 0 : countValue };
+        return { date: dateKey, visitors: isNaN(countValue) ? 0 : countValue };
       }
       return null;
     })
@@ -50,73 +51,44 @@ function normalizeDailyRows(rows) {
 
 // 누락 날짜 0 보정 + 날짜 오름차순 정렬
 function fillMissingWithZero(rows) {
-  const want = last7DaysKst();
+  const want = last7DaysKst(); 
   const map = new Map(rows.map((r) => [r.date, r.visitors]));
   return want.map((d) => ({ date: d, visitors: map.get(d) ?? 0 }));
 }
 
+
 const Visitor = () => {
   const [data, setData] = useState([]);
   const [error, setError] = useState(null);
+  const [shouldRender, setShouldRender] = useState(false); //[버그 회피] Recharts 렌더링 버그를 피하기 위한 상태
 
   useEffect(() => {
     let mounted = true;
+    
+    //[버그 회피] 100ms 렌더링 지연 타이머: ResponsiveContainer가 올바른 크기를 인식하도록 강제합니다.
+    const timer = setTimeout(() => {
+        if (mounted) setShouldRender(true);
+    }, 100); 
+
     (async () => {
       try {
-        // 필요하면 환경변수로 교체하세요.
+        //[API 안정성] 로컬호스트 오류 방지를 위해 확인된 배포 주소로 변경했습니다.
         const API_URL =
           process.env.REACT_APP_API_URL ||
-          "https://localhost:5001/api/measurements/daily-count";
+          "http://localhost:5001/api/measurements/daily-count";
 
-        console.log(`API 호출 시도: ${API_URL}`);
         const res = await axios.get(API_URL);
 
-        console.log("API 응답:", res.data);
-
-        // --- 응답 안전하게 처리 ---
-        // 1) 일반적으로는 res.data.data가 배열이어야 함
-        // 2) 혹시 res.data 자체가 배열이면 그것을 사용
-        // 3) 다른 구조(ex: emotionAnalysis)가 온다면 빈 배열로 폴백하고 콘솔에 경고
-        let rawData = [];
-
-        if (Array.isArray(res?.data?.data)) {
-          rawData = res.data.data;
-        } else if (Array.isArray(res?.data)) {
-          rawData = res.data;
-        } else if (res?.data?.emotionAnalysis) {
-          console.warn(
-            "API가 daily-count 형식(배열)을 반환하지 않았습니다. 받은 응답:",
-            res.data
-          );
-          rawData = [];
-        } else {
-          console.warn("예상치 못한 API 응답 구조:", res?.data);
-          rawData = [];
-        }
+        // 서버 응답 구조가 res.data.data에 데이터 배열이 있다고 가정하여 추출
+        const rawData = Array.isArray(res?.data?.data) ? res.data.data : [];
 
         // 1) 데이터 정규화 및 visitors 키 설정 (count 사용)
         const normalized = normalizeDailyRows(rawData);
-        function normalizeDailyRows(rows) {
-          if (!Array.isArray(rows)) return [];
-          return rows
-            .map((item) => {
-              if (item?.date) {
-                // 🚨 서버 데이터의 날짜 문자열 앞뒤 공백을 제거 (날짜 매칭 오류 방지)
-                const dateKey = item.date.trim();
-
-                const countValue = Number(item?.count ?? 0);
-                return { date: dateKey, visitors: isNaN(countValue) ? 0 : countValue };
-              }
-              return null;
-            })
-            .filter(Boolean);
-        }
-
-        // 2) 최근 7일 축에 맞춰 0 채움
+        
+        // 2) 최근 7일 축에 맞춰 0 채움 (배열 길이가 7이 됨)
         const filled = fillMissingWithZero(normalized);
-
+        
         if (mounted) {
-          console.log("최종 차트 데이터:", filled); // 디버깅용 로그
           setData(filled);
         }
       } catch (err) {
@@ -126,38 +98,47 @@ const Visitor = () => {
     })();
     return () => {
       mounted = false;
+      clearTimeout(timer); // 타이머 정리
     };
-  }, []); // 빈 배열: 컴포넌트 마운트 시 한 번만 실행
+  }, []); 
 
   if (error) {
     return <div>데이터를 불러오는 중 오류가 발생했습니다. (콘솔 로그 확인)</div>;
+  }
+  
+  //[버그 회피] shouldRender가 false이면 null 반환하여 차트 렌더링을 0.1초 지연시킵니다.
+  if (!shouldRender) {
+      return null; 
   }
 
   // 데이터 로딩 중일 때도 maxCount를 계산 (최소 0 보장)
   const maxCount = Math.max(0, ...data.map((d) => d.visitors));
 
   return (
-    // height를 숫자로 설정하여 ResponsiveContainer가 정확히 작동하도록 함
-    <div style={{ width: "100%", height: 290 }}>
-      <ResponsiveContainer width="100%" height="100%">
+    //[반응형/공간 확보] height: "auto"를 유지하되, minHeight를 추가하여 최소한의 공간을 확보합니다.
+    <div style={{ width: "100%", height: "auto", minHeight: "280px" }}> 
+      
+      {/* [반응형] height 대신 aspect를 사용하여 부모 너비에 따라 높이를 비율로 조정합니다. */}
+      <ResponsiveContainer width="100%" aspect={2.5}> 
         <LineChart data={data}>
           <XAxis dataKey="date" />
           <YAxis
             allowDecimals={false}
-            domain={[0, maxCount + (maxCount > 0 ? 1 : 0)]}
+            //[데이터 처리] count가 모두 0일 때도 Y축 도메인 [0, 1]을 설정하여 선이 보이게 합니다.
+            domain={[0, maxCount + (maxCount > 0 ? 1 : 0)]} 
             tickCount={maxCount + 2}
           />
           <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
           <Line
             type="monotone"
-            dataKey="visitors"
+            dataKey="visitors" 
             stroke="#1D3162"
             strokeWidth={2}
             dot={{ r: 3 }}
-            isAnimationActive={false} // 렌더링 오류 방지
+            isAnimationActive={false} // 애니메이션 버그 방지
           />
           <Tooltip />
-          <Legend payload={[{ value: "측정 횟수", type: "line", color: "#1D3162" }]} />
+          <Legend payload={[{ value: '측정 횟수', type: 'line', color: '#1D3162' }]} />
         </LineChart>
       </ResponsiveContainer>
     </div>
