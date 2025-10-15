@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import '../styles/ScrollToTop.css';
-
+import '../styles/color.css';
 function ScrollToTop() {
   const [visible, setVisible] = useState(false);
 
@@ -41,7 +41,6 @@ function ScrollToTop() {
     transform: 'scale(1.1)',
     backgroundColor: '#9A6A4E', // 약간 어두운 갈색
   };
-  
   return (
     visible && (
       <button 
@@ -49,7 +48,9 @@ function ScrollToTop() {
         style={buttonStyle}
         onMouseEnter={(e) => Object.assign(e.currentTarget.style, hoverStyle)}
         onMouseLeave={(e) => Object.assign(e.currentTarget.style, buttonStyle)}
-      />
+      >
+        ⬆
+      </button>
     )
   );
 }

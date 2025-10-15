@@ -3,6 +3,7 @@ import FishingMain from '../assets/FishingMain.png';
 import MoleMain from '../assets/MoleMain.jpg'
 import FireMain from '../assets/FireMain.png';
 import AnimalMain from '../assets/AnimalMain.png';
+import '../styles/color.css';
 function FeatureSection() {
   return (
     <section className="feature-section" id="feature">

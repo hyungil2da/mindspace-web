@@ -1,9 +1,3 @@
-/* 공통 스타일 */
-* {
-  box-sizing: border-box;
-  max-width: 100%;
-}
-
 .header {
   position: fixed;
   width: 100%;
@@ -11,20 +5,20 @@
   top: 0;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 5px 20px;
   background-color: white;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.05);
   z-index: 1000;
-  align-items: center;
-  flex-wrap: wrap;
-  padding: 5px 20px; /* 좌우 여백은 여기서 줘 */
   transition: all 0.3s ease-in-out;
+  box-sizing: border-box; /* 추가 */
 }
-
 
 .logo {
   font-size: 24px;
   font-weight: bold;
-  color: #333;
+  color: var(--text-base);
   display: flex;
   align-items: center;
   text-decoration: none;
@@ -39,37 +33,49 @@
 }
 
 .logo-text {
-  color: #333;
+  color: var(--text-base);
   font-weight: bold;
 }
 
 .nav {
   display: flex;
+  align-items: center;
   gap: 20px;
   transition: all 0.3s ease;
-  align-items: center;
 }
 
 .link {
   text-decoration: none;
-  color: #333;
+
+  color: var(--text-base);
   font-weight: 500;
   transition: all 0.3s ease;
 }
-.dashboard-btn {
-  color: black;
-  font-weight: 500;
-  border: none;
-  text-decoration: none;
-  cursor: pointer;
-  background-color: white;
-  transition: background-color 0.3s ease;
+.link:hover{
+  color: var(--brown); /* 글자 색만 변경 */
+  font-size: 1.08em;
 }
 
-/* 햄버거 메뉴 기본 */
+.dashboard-btn {
+  color: var(--text-base);
+  font-weight: 500;
+  /* border: 1px solid var(--brown); */ /* 테두리 제거 */
+  padding: 6px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  cursor: pointer;
+  background-color: transparent;
+  transition: all 0.3s ease;
+}
+
+.dashboard-btn:hover {
+  /* background-color: var(--brown); */ /* 배경 제거 */
+  color: var(--olive); /* 글자 색만 변경 */
+}
+
+/* 햄버거 메뉴 */
 .hamburger {
   display: none;
-  overflow: hidden;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -78,85 +84,40 @@
   cursor: pointer;
   gap: 5px;
   z-index: 1001;
-  position: relative;
 }
 
 .bar {
   width: 24px;
   height: 3px;
-  background-color: #333;
+  background-color: var(--text-base);
   border-radius: 2px;
   transition: all 0.3s ease;
-  transform-origin: center;
 }
 
-/* 열렸을 때 X로 변형 */
+/* 햄버거 열렸을 때 X로 변형 */
 .hamburger.open .bar:nth-child(1) {
-  transform: rotate(45deg) translate(5.5px, 5.5px); /* 기존보다 살짝 줄임 */
+  transform: rotate(45deg) translate(5.5px, 5.5px);
 }
-
-
 .hamburger.open .bar:nth-child(2) {
   opacity: 0;
 }
-
-
 .hamburger.open .bar:nth-child(3) {
-  transform: rotate(-45deg) translate(5.5px, -5.5px); /* 이것도 */
+  transform: rotate(-45deg) translate(5.5px, -5.5px);
 }
 
-
-
-/* 반응형 */
-
-/* 데스크탑 (1025px 이상) */
-@media (min-width: 1025px) {
-  .logo {
-    font-size: 28px;
-  }
-  .link {
-    font-size: 18px;
-  }
-}
-
-/* 태블릿 가로 */
-@media (max-width: 1024px) {
-  .logo {
-    font-size: 24px;
-  }
-  .link {
-    font-size: 16px;
-  }
-  .nav {
-    gap: 15px;
-  }
-}
-
-/* 태블릿 세로 */
-@media (max-width: 768px) {
-  .logo {
-    font-size: 22px;
-  }
-  .link {
-    font-size: 15px;
-  }
-  .nav {
-    gap: 12px;
-  }
-}
-
-/* 모바일 (480px 이하) */
+/* 헤더 반응형 */
+@media (min-width: 1025px) { .logo { font-size: 28px; } .link { font-size: 18px; } }
+@media (max-width: 1024px) { .logo { font-size: 24px; } .link { font-size: 16px; } .nav { gap: 15px; } }
+@media (max-width: 768px) { .logo { font-size: 22px; } .link { font-size: 15px; } .nav { gap: 12px; } }
 @media (max-width: 600px) {
-  .hamburger {
-    display: flex;
-  }
-
+  .hamburger { display: flex; }
   .nav {
     position: absolute;
-    top: 60px;
-    right: 10px;
+
+    top: 100%;
+    right: 20px; /* 오른쪽 여백을 20px로 설정 */
     flex-direction: column;
-    background-color: white;
+    background-color: var(--light-bg);
     padding: 15px 20px;
     border-radius: 10px;
     box-shadow: 0 8px 16px rgba(0,0,0,0.1);
@@ -166,37 +127,11 @@
     transform-origin: top;
     transition: all 0.3s ease;
   }
-
-  .nav.open {
-    opacity: 1;
-    visibility: visible;
-    transform: scaleY(1);
-  }
+  .nav.open { opacity: 1; visibility: visible; transform: scaleY(1); }
+  .logo-text { font-size: 0; }
   .logo-text::before {
     content: attr(data-short);
-  }
-
-  .logo-text {
     font-size: 20px;
-    color: #333;
-  }
-
-  .logo-text::after {
-    content: '';
-  }
-
-  .logo-text {
-    font-size: 20px;
-    color: #333;
-  }
-
-  /* 원래 텍스트 숨기기 */
-  .logo-text {
-    font-size: 0; /* 텍스트 안보이게 */
-  }
-
-  .logo-text::before {
-    font-size: 20px;
-    content: attr(data-short); /* EC 표시 */
+    color: var(--text-base);
   }
 }

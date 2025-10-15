@@ -198,7 +198,7 @@ const FAQ = () => {
                                     {openRow === faq.id && (
                                         <tr>
                                             <td colSpan={2} className="p-2 bg-gray-50">
-                                                <input type="text" value={editTitle} onChange={(e) => setEditTitle(e.target.value)} className="w-full border p-2 rounded" placeholder="질문(제목)" style={{ marginBottom: "8px" }}/>
+                                                <textarea type="text" value={editTitle} onChange={(e) => setEditTitle(e.target.value)} className="w-full border p-2 rounded" placeholder="질문(제목)" style={{ margin: "8px", padding: "2px" }}/>
                                                 <textarea
                                                     value={editContent}
                                                     onChange={(e) => setEditContent(e.target.value)}

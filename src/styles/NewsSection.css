@@ -1,12 +1,13 @@
 .news-section {
   padding: 80px 20px;
-  background-color: #f0f4ff;
+  background-color: var(--light-bg); /* 변경 */
   text-align: center;
 }
 
 .news-title {
   font-size: 32px;
   font-weight: bold;
+  color: var(--text-base); /* 적용 */
   margin-bottom: 40px;
 }
 
@@ -17,7 +18,7 @@
 .news-month {
   font-size: 24px;
   font-weight: 600;
-  color: #333;
+  color: var(--text-base); /* 변경 */
   margin-bottom: 20px;
 }
 
@@ -30,7 +31,7 @@
 }
 
 .news-item {
-  background: #fff;
+  background: var(--bg-base); /* 변경 */
   padding: 20px;
   margin-bottom: 16px;
   border-radius: 10px;
@@ -44,7 +45,7 @@
 
 .news-date {
   font-weight: bold;
-  color: #4c72ff;
+  color: var(--brown); /* 변경 */
   display: inline-block;
   margin-bottom: 6px;
 }
@@ -52,12 +53,12 @@
 .news-version {
   margin-left: 8px;
   font-size: 14px;
-  color: #777;
+  color: var(--brown); /* 변경 */
 }
 
 .news-content {
   font-size: 16px;
-  color: #444;
+  color: var(--text-base); /* 변경 */
   margin-top: 4px;
 }
 

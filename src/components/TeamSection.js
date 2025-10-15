@@ -1,7 +1,7 @@
 import React from 'react';
 import '../styles/TeamSection.css';
 import { teamMembers } from '../data/team';
-
+import '../styles/color.css';
 function TeamSection() {
   // 역할별로 그룹화
   const grouped = teamMembers.reduce((acc, { name, role }) => {
