@@ -224,13 +224,7 @@ const UserTotal = () => {
                     <section className="top">
                         <div className="card userlist-card">
                             <div className="search">
-                                <NavLink to="/NewTotal" className={({ isActive }) => (isActive ? "active" : "")}>
-                                    신규 회원 목록
-                                </NavLink>
-                                <NavLink to="/UserTotal" className={({ isActive }) => (isActive ? "active" : "")}>
-                                    전체 사용자 목록
-                                </NavLink>
-                                <input
+                                <input style={{marginLeft:"650px"}}
                                     type="text"
                                     placeholder="이름을 검색해 주세요"
                                     value={searchTop}
