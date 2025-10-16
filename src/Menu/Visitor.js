@@ -78,6 +78,7 @@ const Visitor = () => {
           "http://localhost:5001/api/measurements/daily-count";
 
         const res = await axios.get(API_URL);
+        console.log("7일간 측정 데이터:", res.data);
 
         // 서버 응답 구조가 res.data.data에 데이터 배열이 있다고 가정하여 추출
         const rawData = Array.isArray(res?.data?.data) ? res.data.data : [];
