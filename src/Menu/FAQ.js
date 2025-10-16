@@ -162,7 +162,7 @@ const FAQ = () => {
                     </li>            
                 </ul>
                 <div className="card profile-card">
-                    <div className="profile-image">사진</div>
+                    <div className="profile-image"><img src="https://www.dongyang.ac.kr/sites/dmu/images/sub/char2-1.png" alt="Profile" /></div>
                     <div className="profile-info">
                         <p>MARS</p>
                         <span>Mars1234@gmail.com</span>
@@ -176,8 +176,9 @@ const FAQ = () => {
                         <div className="card-title">FAQ</div>
                     </div>
                     <div className="flex justify-end mt-3">
-                        <button className="px-3 py-1 bg-green-600 text-white rounded" onClick={handleAdd}>
+                        <button className="px-3 py-1 bg-green-600 text-white rounded" onClick={handleAdd} style={{backgroundColor: '#1D3162', color: 'white', border: 'none', borderRadius: '4px',width: '80px', height: '40px', cursor: 'pointer'}}>
                             FAQ 추가
+                            
                         </button>
                     </div>
                     <table className="list-table border w-full">
@@ -193,16 +194,16 @@ const FAQ = () => {
                                     <tr>
                                         <td className="p-2">{faq.title}</td>
                                         <td className="p-2">
-                                            <button
+                                            <button style={{backgroundColor: '#1D3162', color: 'white', border: 'none', borderRadius: '4px',width: '50px', height: '30px', cursor: 'pointer', fontSize: '12px', marginRight: '8px'}}
                                                 className="text-blue-600 underline"
                                                 onClick={() =>
-                                                    openRow === faq.id ? setOpenRow(null) : handleEdit(faq)
+                                                    openRow === faq.id ? setOpenRow(null) : handleEdit(faq) 
                                                 }
                                             >
                                                 {openRow === faq.id ? "닫기" : "수정"}
                                             </button>
-                                            <button className="px-3 py-1 bg-gray-500 text-white rounded" onClick={() => handleReset(faq.id)}>초기화</button>
-                                            <button className="px-3 py-1 bg-red-600 text-white rounded" onClick={() => deleteFaq(faq.id)}>삭제</button>
+                                            <button className="px-3 py-1 bg-gray-500 text-white rounded" onClick={() => handleReset(faq.id)} style={{backgroundColor: '#1D3162', color: 'white', border: 'none', borderRadius: '4px',width: '50px', height: '30px', cursor: 'pointer', fontSize: '12px', marginRight: '8px'}}>초기화</button>
+                                            <button className="px-3 py-1 bg-red-600 text-white rounded" onClick={() => deleteFaq(faq.id)} style={{backgroundColor: '#1D3162', color: 'white', border: 'none', borderRadius: '4px',width: '50px', height: '30px', cursor: 'pointer', fontSize: '12px', marginRight: '8px'}}>삭제</button>
                                         </td>
                                     </tr>
                                     {openRow === faq.id && (

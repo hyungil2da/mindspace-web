@@ -112,7 +112,7 @@ const DashBoard = () => {
 
         <div className="card profile-card">
           <div className="profile-image">
-            <img src={mindspaceImage} alt="Profile" />
+            <img src="https://www.dongyang.ac.kr/sites/dmu/images/sub/char2-1.png"/>
           </div>
           <div className="profile-info">
             <p>MARS</p>

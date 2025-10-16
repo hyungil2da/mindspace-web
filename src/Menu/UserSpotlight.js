@@ -125,7 +125,7 @@ const UserSpotlight = ({ defaultUserId = "" }) => {
         </select>
       </div>
 
-      <div className="measurement-panel">
+      <div className="measurement-panel" style={{marginLeft: "70px"}}>
         {loading ? (
           <div className="empty">불러오는 중...</div>
         ) : (
