@@ -378,6 +378,9 @@ a:visited {
   height: 270px;
   border-radius: 8px;
   margin: 20px auto 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .profile-bundle {
@@ -490,15 +493,18 @@ a:visited {
 }
 
 .profile-image {
-  min-width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: #ddd;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 100px; 
+  height: 100px; 
+  overflow: hidden; 
+  border-radius: 50%; 
 }
 
+.profile-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  
+}
 .answer-box {
   flex-grow: 1;
 }

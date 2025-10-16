@@ -6,7 +6,7 @@ import Notice from "./Notice";
 import { NavLink } from "react-router-dom";
 import "./DashBoard.css";
 import DailySummary from "../Menu/DailySummary";
-import logo from '../assets/EmotionVR.png';
+import mindspaceImage from './dmu.jpg';
 import { loadFaqs, loadNotices, loadNews, saveNews } from "./DashBoard_Utility";
 import { newsUpdates } from "./newsinfo.js";
 import UserSpotlight from "./UserSpotlight";
@@ -45,7 +45,7 @@ const DashBoard = () => {
   const [faqData, setFaqData] = useState([]);
   const [noticeData, setNoticeData] = useState([]);
   const [newsData, setNewsData] = useState([]);
-  
+
   useEffect(() => {
     setFaqData(loadFaqs());
     setNoticeData(loadNotices());
@@ -108,16 +108,18 @@ const DashBoard = () => {
             <NavLink to="/" className={({ isActive }) => (isActive ? "active" : "")}>
               홈페이지
             </NavLink>
-          </li>          
+          </li>
         </ul>
-        
+
         <div className="card profile-card">
-            <div className="profile-image"><img src="src/Menu/EmotionVR.png" alt="Profile" /></div>
-            <div className="profile-info">
-              <p>MARS</p>
-              <span>Mars1234@gmail.com</span>
-            </div>
+          <div className="profile-image">
+            <img src={mindspaceImage} alt="Profile" />
           </div>
+          <div className="profile-info">
+            <p>MARS</p>
+            <span>Mars1234@gmail.com</span>
+          </div>
+        </div>
       </nav>
 
       <main className="main-content">
@@ -139,7 +141,7 @@ const DashBoard = () => {
             </div>
           </div>
         </section>
-        
+
         <section className="top2">
           <div className="card dashboard-card3">
             <div className="card-header">
@@ -162,13 +164,13 @@ const DashBoard = () => {
                 { id: 5, title: "데이터는 어떻게 저장되고 보호되나요?", content: "사용자의 닉네임, 측정 횟수, 마지막 기록, 설문 결과 등 모든 데이터는 서버에 안전하게 저장되며, 암호화 처리됩니다. 백엔드와 관리자 페이지에서만 접근 가능합니다." },
                 { id: 6, title: "누가 이 앱을 사용하면 좋을까요?", content: "심리적 불편함을 겪고 있는 누구나 사용할 수 있어요. 특히 학생, 직장인, 불안/우울 증상을 경험하는 분들께 추천합니다." }
               ]
-            ).slice(0, faqData.length).map((faq) => (
-              <div key={faq.id} className="faqItem">
-                <p className="faq-question">{faq.title}</p>
-                <span className="faq-answer">{faq.content}</span>
-                <hr />
-              </div>
-            ))}
+              ).slice(0, faqData.length).map((faq) => (
+                <div key={faq.id} className="faqItem">
+                  <p className="faq-question">{faq.title}</p>
+                  <span className="faq-answer">{faq.content}</span>
+                  <hr />
+                </div>
+              ))}
             </div>
           </div>
         </section>
