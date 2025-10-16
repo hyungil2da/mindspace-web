@@ -12,11 +12,11 @@ const defaultFaqs = [
   // **카테고리 2: 측정 기술 및 원리 (기술적 요소 집중 반영)**
   { id: 2, title: "이 앱은 어떤 방식으로 감정을 측정하나요?", content: "설문조사(PSS, BDI-II, BAI), **안면 인식(mediapipe, Tensorflow, OpenCV, CNN 딥러닝 모델)**, 뇌파 측정 기기를 통해 감정 데이터를 수집하고 분석합니다. 특히 안면 인식은 **비접촉식**이며 **비디오 영상**을 활용합니다." },
   { id: 3, title: "측정 가능한 감정 요소는 무엇인가요?", content: "**기본 감정 7가지 (분노, 혐오, 두려움, 행복, 슬픔, 놀람, 무표정)**와 함께 우울/슬픔, 불안/공포, 스트레스, 분노 등의 심리 문제로 분류해 분석합니다." },
-  { id: 4, title: "Q. 감정은 어떤 과정을 거쳐 분석되나요?", content: "A. 먼저 **Haar Cascade 알고리즘**으로 얼굴 영역을 실시간 감지(1단계)합니다. 이후 **CNN 딥러닝 모델**이 얼굴 표정을 **48x48 픽셀** 크기로 표준화하여 분석(2단계)하며, 최종적으로 7가지 감정 수치를 **0~1 사이의 확률**로 실시간 분류(3단계)합니다." },
-  { id: 5, title: "Q. 이 시스템의 핵심 기능과 작동 방식은 무엇인가요?", content: "A. 이 시스템은 **AI 기반 솔루션**으로, 카메라를 통해 **비접촉식**으로 얼굴 표정을 분석하여 **7가지 감정**을 **실시간**으로 측정합니다. 주요 기능은 **얼굴 감지, AI 감정 분석, 감정 분류**입니다." },
+  { id: 4, title: "감정은 어떤 과정을 거쳐 분석되나요?", content: "A. 먼저 **Haar Cascade 알고리즘**으로 얼굴 영역을 실시간 감지(1단계)합니다. 이후 **CNN 딥러닝 모델**이 얼굴 표정을 **48x48 픽셀** 크기로 표준화하여 분석(2단계)하며, 최종적으로 7가지 감정 수치를 **0~1 사이의 확률**로 실시간 분류(3단계)합니다." },
+  { id: 5, title: "이 시스템의 핵심 기능과 작동 방식은 무엇인가요?", content: "A. 이 시스템은 **AI 기반 솔루션**으로, 카메라를 통해 **비접촉식**으로 얼굴 표정을 분석하여 **7가지 감정**을 **실시간**으로 측정합니다. 주요 기능은 **얼굴 감지, AI 감정 분석, 감정 분류**입니다." },
   
   // **카테고리 3: 결과 활용 및 강점**
-  { id: 6, title: "Q. 이 시스템이 제공하는 주요 특징과 이점은 무엇인가요?", content: "A. **실시간 처리**로 즉시 결과 확인이 가능하고, **딥러닝 기반**의 **높은 정확도**로 **다중 감정 분석**이 가능합니다. 사용자에게는 감정 변화를 즉시 보여주는 혁신적인 경험을 제공합니다." },
+  { id: 6, title: "이 시스템이 제공하는 주요 특징과 이점은 무엇인가요?", content: "A. **실시간 처리**로 즉시 결과 확인이 가능하고, **딥러닝 기반**의 **높은 정확도**로 **다중 감정 분석**이 가능합니다. 사용자에게는 감정 변화를 즉시 보여주는 혁신적인 경험을 제공합니다." },
   { id: 7, title: "감정 측정 결과는 어떻게 활용되나요?", content: "측정 결과는 서버에서 종합 분석 후, 결과를 안내해줍니다. 이를 통한 사용자 맞춤형 심리 치유 솔루션인 VR게임을 추천해주어 보다 몰입감 있는 심리치유 경험을 제공합니다." },
 
   // **카테고리 4: 이용 안내 및 보안**
@@ -24,8 +24,6 @@ const defaultFaqs = [
   { id: 9, title: "데이터는 어떻게 저장되고 보호되나요?", content: "사용자의 닉네임, 측정 횟수, 마지막 기록, 설문 결과 등 모든 데이터는 서버에 안전하게 저장되며, 암호화 처리됩니다. 백엔드와 관리자 페이지에서만 접근 가능합니다." }
 ];
  
-const getDefaultById = (id) => defaultFaqs.find((f) => f.id === id);
-
 const FAQ = () => {
     const [users, setUsers] = useState([]);
     const [editTitle, setEditTitle] = useState("");
@@ -35,9 +33,20 @@ const FAQ = () => {
     const [openRow, setOpenRow] = useState(null);
     const [editContent, setEditContent] = useState("");
 
+    // localStorage에서 데이터를 로드하거나 없으면 defaultFaqs 사용
     const [faqs, setFaqs] = useState(() => {
-    const saved = loadFaqs();
-    return saved.length ? saved : defaultFaqs;
+        try {
+            const saved = loadFaqs();
+            if (saved && saved.length > 0) {
+                return saved;
+            }
+            // 저장된 데이터가 없으면 초기 데이터 저장 후 반환
+            saveFaqs(defaultFaqs);
+            return defaultFaqs;
+        } catch (error) {
+            console.error('FAQ 데이터 로드 실패:', error);
+            return defaultFaqs;
+        }
     });
 
     // faqs 변경 시 자동 저장
@@ -215,7 +224,7 @@ const FAQ = () => {
                                                     value={editContent}
                                                     onChange={(e) => setEditContent(e.target.value)}
                                                     className="w-full border p-2 rounded"
-                                                    rows={6} cols={80}
+                                                    rows={9} cols={80}
                                                 />
                                                 <div className="flex justify-end mt-2 gap-2">
                                                     <button className="px-3 py-1 bg-blue-500 text-white rounded" onClick={() => handleSave(faq.id)}>저장</button>
