@@ -107,7 +107,7 @@ const UserSpotlight = ({ defaultUserId = "" }) => {
       <div className="spotlight-controls">
         <input
           className="search-input"
-          placeholder="이름/이메일 검색"
+          placeholder="이름 또는 이메일을 검색해 주세요"
           value={keyword}
           onChange={e => setKeyword(e.target.value)}
         />
@@ -116,7 +116,7 @@ const UserSpotlight = ({ defaultUserId = "" }) => {
           value={userId}
           onChange={e => setUserId(e.target.value)}
         >
-          <option value="">유저 선택</option>
+          <option value="">유저를 선택해 주세요</option>
           {filteredUsers.map(u => (
             <option key={u._id} value={u._id}>
               {u.name || "(이름)"} / {u.email || "(아이디)"} / {u._id}

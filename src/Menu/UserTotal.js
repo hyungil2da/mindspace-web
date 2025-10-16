@@ -232,7 +232,7 @@ const UserTotal = () => {
                                 </NavLink>
                                 <input
                                     type="text"
-                                    placeholder="이름 검색"
+                                    placeholder="이름을 검색해 주세요"
                                     value={searchTop}
                                     onChange={handleSearchChange}
                                     className="search-input"

@@ -26,11 +26,11 @@ const emotionNameMap = {
 
 // 감정별 색
 const emotionColors = {
-  depression: "#8884d8",
-  anxiety: "#83a6ed",
-  stress: "#8dd1e1",
-  anger: "#82ca9d",
-  stability: "#a4de6c",
+  depression: "#00a7e3",
+  anxiety: "#fb9d44",
+  stress: "#ffd400",
+  anger: "#930000",
+  stability: "#5cab40",
 };
 
 // 모두 0이면 null, 아니면 major 키 반환
@@ -136,7 +136,7 @@ const DailySummary = () => {
         >
           <Pie
             activeShape={{
-              fill: 'red'
+              fill: '#444444',
             }}
             data={pieData}
             dataKey="uv"
