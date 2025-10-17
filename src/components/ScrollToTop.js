@@ -41,6 +41,7 @@ function ScrollToTop() {
     transform: 'scale(1.1)',
     backgroundColor: '#9A6A4E', // 약간 어두운 갈색
   };
+
   return (
     visible && (
       <button 

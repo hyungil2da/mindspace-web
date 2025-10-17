@@ -17,7 +17,7 @@ function TeamSection() {
 
   return (
     <section className="team-section" id="team">
-      <h2 className="team-title">개발자 소개</h2>
+            <h2 className="team-title">개발자 소개</h2>
       <div className="team-rows">
         {[firstLine, secondLine].map((line, i) => (
           <div className="team-row" key={i}>

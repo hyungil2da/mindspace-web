@@ -41,13 +41,13 @@ function SurveyPopup({ onClose }) {
   const getOptionsByType = (type) => {
     switch (type) {
       case 'BAI':
-        return ['전혀 아님', '가끔 있음', '자주 있음', '거의 항상'];
+        return ['전혀 아님', '가끔 있음', '보통','자주 있음', '거의 항상'];
       case 'BDI':
-        return ['전혀 그렇지 않다', '약간 그렇다', '자주 그렇다', '항상 그렇다'];
+        return ['전혀 그렇지 않다', '약간 그렇다','보통', '자주 그렇다', '항상 그렇다'];
       case 'PSS':
-        return ['전혀 없음', '가끔 있음', '자주 있음', '매우 자주 있음'];
+        return ['전혀 없음', '가끔 있음', '보통','자주 있음', '매우 자주 있음'];
       default:
-        return ['0', '1', '2', '3'];
+        return ['0', '1','2', '3', '4'];
     }
   };
 

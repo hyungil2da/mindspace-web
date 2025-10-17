@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import logo from '../assets/EmotionVR.png';
+import logo from '../assets/mindspace_logo.png';
 import '../styles/Header.css';
 import '../styles/color.css';
+
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -11,8 +12,7 @@ function Header() {
   return (
     <header className="header"> 
       <a className="logo" href="#">
-        <img src={logo} alt="로고" />
-        <span className="logo-text" data-short="MS">MindSpace</span>
+        <img src={logo} alt="MindSpace Logo" className="logo-image" />
       </a>
 
       <nav className={`nav ${menuOpen ? 'open' : ''}`}>

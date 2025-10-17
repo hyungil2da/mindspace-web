@@ -42,7 +42,8 @@
   margin-top: 10px;
   font-size: 16px;
   color: var(--text-base); /* 적용 */
-  padding-right: 5px;
+  padding: 0 8px;
+  word-break: keep-all;
 }
 
 .faq-contact {

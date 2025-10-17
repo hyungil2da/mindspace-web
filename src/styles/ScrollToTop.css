@@ -3,7 +3,7 @@
   position: fixed;
   bottom: 2rem;
   right: 2rem;
-  background-color: var(--brown);
+  background-color: var(--sidebar-base);
   color: #fff;
   border: none;
   border-radius: 9999px; /* Tailwind의 rounded-full과 동일 */
@@ -23,5 +23,5 @@
 .scroll-to-top:focus {
   outline: 2px solid transparent;
   outline-offset: 2px;
-  box-shadow: 0 0 0 2px var(--brown);
+  box-shadow: 0 0 0 2px var(--sidebatar-hover);
 }

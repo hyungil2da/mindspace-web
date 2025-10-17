@@ -46,6 +46,11 @@ const DashBoard = () => {
   const [noticeData, setNoticeData] = useState([]);
   const [newsData, setNewsData] = useState([]);
 
+   // 기본 테스트 유저 데이터 추가
+  const defaultTestUser = {
+    email: "test04@test.com"
+  };
+  
   useEffect(() => {
     setFaqData(loadFaqs());
     setNoticeData(loadNotices());

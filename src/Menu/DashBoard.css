@@ -110,9 +110,13 @@ a:visited {
   display: flex;
   justify-content: space-between;  /* 양쪽 여백 정렬 */
   align-items: stretch;            /* 세로 길이 맞추기 */
-  gap: 20px;                       /* div 사이 간격 */
-  margin: 5px;                    /* 바깥 여백 */
+  gap: 10px;                       /* div 사이 간격 */
+  margin: 10px;                    /* 바깥 여백 */
   box-sizing: border-box;
+}
+
+.top2 {
+  max-height: 50%;
 }
 
 .top1 > div,
@@ -185,16 +189,16 @@ a:visited {
 
 .dashboard-card1,
 .dashboard-card2{
-  height: 390px;
+  height: 100%;
   max-width: none;
   box-sizing: border-box;
 }
 
 .dashboard-card3,
 .dashboard-card4 {
-  width: 49%;
   max-width: none;
-  box-sizing: border-box;
+  min-height: 110%;
+  max-height: 500px;
 }
 
 .dashboard-card1, .dashboard-card2 {
@@ -374,7 +378,7 @@ a:visited {
   max-width: 120px;
   text-align: center;
   padding: 20px;
-  background-color: #444;
+  background-color: white;
   height: 150px;
   border-radius: 8px;
   margin: 20px auto 0 auto;
@@ -386,8 +390,8 @@ a:visited {
 .profile-bundle {
   width: 80px;
   height: 80px;
-  background: #444;
-  color: white;
+  background: var(--light-bg);
+  color: var(--text-base);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -397,12 +401,13 @@ a:visited {
 
 .profile-info p {
   margin: 5px 0 0 0;
+  color: var(--text-base);
   font-weight: bold;
 }
 
 .profile-info span {
   font-size: 0.7rem;
-  color: #aaa;
+  color: var(--text-base);
 }
 
 .list-table {
@@ -615,7 +620,8 @@ a:visited {
   background: #f8fafc;
   border-top: 1px solid #e5e7eb;
   padding: 8px 12px 12px;
-  max-width: 80%;
+  max-width: 90%;
+  align-items: center;
   overflow-x: auto;
 }
 

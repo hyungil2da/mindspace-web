@@ -65,16 +65,27 @@ function normalizeRecentEmotions(apiData) {
   });
 }
 
-const UserSpotlight = ({ defaultUserId = "" }) => {
+const DEFAULT_BASE_EMAIL = "mars@mars.com"; // 기본 테스트 유저 이메일 - MARS
+
+const UserSpotlight = () => {
   const [users, setUsers] = useState([]);
-  const [userId, setUserId] = useState(defaultUserId);
+  const [userId, setUserId] = useState(""); // userId는 _id 값
   const [measurements, setMeasurements] = useState([]);
   const [loading, setLoading] = useState(false);
   const [keyword, setKeyword] = useState("");
 
   useEffect(() => {
     axios.get(`${apiBase}/api/users`)
-      .then(res => setUsers(res.data.users || []))
+      .then(res => {
+        const userList = res.data.users || [];
+        setUsers(userList);
+
+        // 최초 로딩 시 test04@test.com의 _id를 찾아서 기본 선택
+        if (userList.length && !userId) {
+          const baseUser = userList.find(u => u.email === DEFAULT_BASE_EMAIL);
+          if (baseUser) setUserId(baseUser._id);
+        }
+      })
       .catch(err => console.error("유저 목록 불러오기 실패:", err));
   }, []);
 
