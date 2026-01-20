@@ -6,23 +6,24 @@ import gifGameplay from './gifGameplay.gif';
 function VideoSection() {
   return (
     <section className="video-section" id="video">
-      <h2 className="video-title">시연 모습</h2>
+      <h2 className="video-title">시연 영상</h2>
       <div className="video-container">
         <div className="video-box">
-          <img
+
+          { <img
             src={gifResearch}
-            title="감정 검사"
-            alt="감정 검사"
+            title="시연영상1"
+            alt="시연영상1"
             className="video-gif"
-          />
+          /> }
         </div>
         <div className="video-box">
-          <img
+          { <img
             src={gifGameplay}
-            title="게임 플레이 모습"
-            alt="게임 플레이 모습"
+            title="시연영상2"
+            alt="시연영상2"
             className="video-gif"
-          />
+          /> }
         </div>
       </div>
     </section>

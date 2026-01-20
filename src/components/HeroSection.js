@@ -18,7 +18,7 @@ function HeroSection() {
   };
 
   const getButtonText = () => {
-    if (surveyScore === null) return '체험해보기 - 불안 척도';
+    if (surveyScore === null) return '체험해보기-불안 척도';
     return `설문 완료 - ${surveyLevel}`;
   };
 

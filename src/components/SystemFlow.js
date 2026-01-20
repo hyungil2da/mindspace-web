@@ -73,8 +73,8 @@ function SystemFlow() {
           <p>두더지</p>
         </div>
         <div className="flow-card">
-          <img src={fishingicon} alt="세월" />
-          <p>세월</p>
+          <img src={fishingicon} alt="낚시" />
+          <p>낚시</p>
         </div>
         <div className="flow-card">
           <img src={animalicon} alt="동물" />

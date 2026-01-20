@@ -1,6 +1,6 @@
 .team-section {
   padding: 30px 20px;
-  background-color: var(--light-bg); /* 변경 */
+  background-color: var(--heavy-bg); /* 변경 */
   text-align: center;
 }
 
@@ -14,7 +14,6 @@
 .team-rows {
   display: flex;
   flex-direction: column;
-  gap: 20px;
   align-items: center;
 }
 
@@ -40,6 +39,7 @@
 .team-names {
   font-size: 16px;
   color: var(--brown); /* 변경 */
+  margin: 0;
 }
 
 /* 태블릿 (768px 이하) */

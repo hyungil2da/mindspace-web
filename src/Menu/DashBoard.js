@@ -6,16 +6,17 @@ import Notice from "./Notice";
 import { NavLink } from "react-router-dom";
 import "./DashBoard.css";
 import DailySummary from "../Menu/DailySummary";
-import logo from '../assets/EmotionVR.png';
+import mindspaceImage from './dmu.jpg';
 import { loadFaqs, loadNotices, loadNews, saveNews } from "./DashBoard_Utility";
 import { newsUpdates } from "./newsinfo.js";
+import UserSpotlight from "./UserSpotlight";
 
 function flattenNewsUpdates(updates) {
   let id = 1;
   const flat = [];
   updates.forEach(group => {
     (group.items || []).forEach(it => {
-      const date = (it.date || "").replace(/\./g, "-"); // "2025.07.20" -> "2025-07-20"
+      const date = (it.date || "").replace(/\./g, "-");
       const title = it.version && it.version.trim() ? it.version : (it.content || "").split("\n")[0];
       flat.push({
         id: id++,
@@ -25,10 +26,10 @@ function flattenNewsUpdates(updates) {
       });
     });
   });
-  // 최신순 정렬(날짜 내림차순)
   flat.sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0));
   return flat;
 }
+
 function mergeSeedWithExisting(existing, seed) {
   if (!Array.isArray(existing) || existing.length === 0) return seed;
   const keyOf = (n) => `${n.date}__${n.title}`;
@@ -44,6 +45,11 @@ const DashBoard = () => {
   const [faqData, setFaqData] = useState([]);
   const [noticeData, setNoticeData] = useState([]);
   const [newsData, setNewsData] = useState([]);
+
+   // 기본 테스트 유저 데이터 추가
+  const defaultTestUser = {
+    email: "test04@test.com"
+  };
   
   useEffect(() => {
     setFaqData(loadFaqs());
@@ -52,7 +58,6 @@ const DashBoard = () => {
     const seed = flattenNewsUpdates(newsUpdates);
     const merged = mergeSeedWithExisting(existingNews, seed);
     setNewsData(merged);
-    // 변경이 있으면 저장 반영
     if (JSON.stringify(existingNews || []) !== JSON.stringify(merged)) {
       saveNews(merged);
     }
@@ -107,16 +112,18 @@ const DashBoard = () => {
             <NavLink to="/" className={({ isActive }) => (isActive ? "active" : "")}>
               홈페이지
             </NavLink>
-          </li>          
+          </li>
         </ul>
-        
+
         <div className="card profile-card">
-            <div className="profile-image">사진</div>
-            <div className="profile-info">
-              <p>MARS</p>
-              <span>Mars1234@gmail.com</span>
-            </div>
+          <div className="profile-image">
+            <img src="https://www.dongyang.ac.kr/sites/dmu/images/sub/char2-1.png"/>
           </div>
+          <div className="profile-info">
+            <p>MARS</p>
+            <span>Mars1234@gmail.com</span>
+          </div>
+        </div>
       </nav>
 
       <main className="main-content">
@@ -138,15 +145,30 @@ const DashBoard = () => {
             </div>
           </div>
         </section>
-        
+
         <section className="top2">
+          <div className="card dashboard-card3">
+            <div className="card-header">
+              <div className="card-title">검사 기록</div>
+            </div>
+            <UserSpotlight users={newUsers} />
+          </div>
+
+          {/* ✅ FAQ 카드 (줄바꿈/들여쓰기 유지) */}
           <div className="card dashboard-card3">
             <div className="card-header">
               <div className="card-title">FAQ</div>
               <NavLink to="/FAQ" className="plus-btn">자세히</NavLink>
             </div>
 
-            <div className="faq-list">
+            <div
+              className="faq-list"
+              style={{
+                maxHeight: "300px",   // 고정 높이
+                overflowY: "auto",     // 스크롤 활성화
+                paddingRight: "8px",
+              }}
+            >
               {(faqData.length ? faqData : [
                 { id: 1, title: "왜 심리치유 게임을 개발하게 되었나요?", content: "코로나19 이후 증가한 스트레스, 우울, 불안 등의 심리문제에 접근성과 지속성을 갖춘 대안을 제시하기 위함입니다. 기존 심리치료는 비용, 사회적 편견, 불편한 접근성 등의 어려움이 있었습니다." },
                 { id: 2, title: "이 앱은 어떤 방식으로 감정을 측정하나요?", content: "설문조사(PSS, BDI-II, BAI), 안면 인식(mediapipe, Tensorflow, OpenCV, CNN 모델), 뇌파 측정 기기를 통해 감정 데이터를 수집하고 분석합니다." },
@@ -154,60 +176,18 @@ const DashBoard = () => {
                 { id: 4, title: "측정 가능한 감정 요소는 무엇인가요?", content: "기본 감정(7가지)과 함께 우울/슬픔, 불안/공포, 스트레스, 분노 등의 심리 문제로 분류해 분석합니다." },
                 { id: 5, title: "데이터는 어떻게 저장되고 보호되나요?", content: "사용자의 닉네임, 측정 횟수, 마지막 기록, 설문 결과 등 모든 데이터는 서버에 안전하게 저장되며, 암호화 처리됩니다. 백엔드와 관리자 페이지에서만 접근 가능합니다." },
                 { id: 6, title: "누가 이 앱을 사용하면 좋을까요?", content: "심리적 불편함을 겪고 있는 누구나 사용할 수 있어요. 특히 학생, 직장인, 불안/우울 증상을 경험하는 분들께 추천합니다." }
-              ]
-            ).slice(0, faqData.length).map((faq) => (
-              <div key={faq.id} className="faqItem">
-                <p className="faq-question">{faq.title}</p>
-                <span className="faq-answer">{faq.content}</span>
-                <hr />
-              </div>
-            ))}
-            </div>
-          </div>
-          {/*}
-          <div className="card dashboard-card4">
-            <div className="card-header">
-              <div className="card-title">공지</div>
-              <NavLink to="/News" className="plus-btn">자세히</NavLink>
-            </div>
-
-            <div className="notice-list">
-              {(noticeData.length ? noticeData : [
-                { id: 1, title: "공지 제목1", content: "내용1", isNew: true },
-                { id: 2, title: "공지 제목2", content: "내용2", isNew: false },
-                { id: 3, title: "공지 제목3", content: "내용3", isNew: false }
-              ]
-              ).slice(0, (noticeData.length || 4)).map((n) => (
-              <div key={n.id} className="notice-item">
-                <p className="notice-title">{n.isNew && <span className="new-label">[NEW] </span>}{n.title}</p>
-                <span className="notice-content">{n.content}</span>
-                <hr />
-              </div>
-            ))}
-            </div>
-          </div>
-          */}
-          <div className="card dashboard-card4">
-            <div className="card-header">
-              <div className="card-title">뉴스</div>
-                <NavLink to="/News" className="plus-btn">자세히</NavLink>
-              </div>
-
-            <div className="notice-list">
-              {(newsData.length ? newsData : []).slice(0, (newsData.length || 4)).map((n) => (
-                <div key={n.id} className="notice-item">
-                  <p className="notice-title">{n.title}</p>
-                  <span className="notice-content">{n.content}</span>
+              ]).slice(0, faqData.length).map((faq) => (
+                <div key={faq.id} className="faqItem">
+                  <p className="faq-question">{faq.title}</p>
+                  <span
+                    className="faq-answer"
+                    style={{ whiteSpace: "pre-wrap" }} // ✅ 줄바꿈/들여쓰기 유지
+                  >
+                    {faq.content}
+                  </span>
                   <hr />
                 </div>
               ))}
-              {newsData.length === 0 && (
-                <div className="notice-item">
-                  <p className="notice-title">(뉴스 없음)</p>
-                  <span className="notice-content">첫 뉴스를 추가해 보세요.</span>
-                  <hr />
-                </div>
-              )}
             </div>
           </div>
         </section>

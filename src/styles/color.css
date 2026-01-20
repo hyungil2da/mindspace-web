@@ -1,7 +1,24 @@
 :root {
-  --bg-base: #F8F5F2;
-  --text-base: #1F1F1F;
-  --brown: #A67B5B;
-  --olive: #708238;
-  --light-bg: #F5EFE6;
+  /* 기본 색상 (흰색 대신 아주 밝은 푸른색) */
+  --bg-base: #F8FAFC;       /* 기본/카드 배경과 유사하게 설정 */
+  --text-base: #212529;
+  --light-bg: #DEE2E6;
+  --heavy-bg:rgb(197, 201, 204);  
+
+  /* 포인트 색상 */
+  --brown: var(--color-accent);
+  --olive: var(--sidebar-hover);
+  --color-accent: #1d56a2;
+
+  /* 대시보드 테마 색상 */
+  --sidebar-base: #1d56a2;
+  --sidebar-hover:#1D3162 ;
+  --dashboard-bg: #000000;       /* 전체 배경 (메인 톤) */
+  --main-content-bg: #EBEFF2;    /* 메인 콘텐츠 영역 배경 */
+
+  /* 카드 및 구분선 */
+  --card-bg: #F8FAFC;              /* ⭐️ 순수 흰색 대신 밝은 푸른색으로 변경 */
+  --shadow-color: rgba(0, 0, 0, 0.08); /* 그림자 연하게 */
+  --border-light: #C5C9CD;
+  --text-secondary: #6C757D;
 }

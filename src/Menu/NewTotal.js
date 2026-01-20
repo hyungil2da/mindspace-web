@@ -76,7 +76,7 @@ const UserTotal = () => {
                     </li>
                 </ul>
                     <div className="card profile-card">
-                        <div className="profile-image">사진</div>
+                        <div className="profile-image"><img src="https://www.dongyang.ac.kr/sites/dmu/images/sub/char2-1.png" alt="Profile" /></div>
                         <div className="profile-info">
                             <p>MARS</p>
                             <span>Mars1234@gmail.com</span>
@@ -97,7 +97,7 @@ const UserTotal = () => {
                                 </NavLink>
                                 <input
                                     type="text"
-                                    placeholder="이름 검색"
+                                    placeholder="이름을 검색해 주세요"
                                     value={searchTop}
                                     onChange={(e) => setSearchTop(e.target.value)}
                                     className="search-input"

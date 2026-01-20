@@ -106,7 +106,7 @@ const Notice = () => {
                     </li>                    
                 </ul>
                 <div className="card profile-card">
-                    <div className="profile-image">사진</div>
+                    <div className="profile-image"><img src="https://www.dongyang.ac.kr/sites/dmu/images/sub/char2-1.png" alt="Profile" /></div>
                     <div className="profile-info">
                         <p>관리자</p>
                         <span>아이디</span>

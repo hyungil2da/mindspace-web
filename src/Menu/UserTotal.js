@@ -211,7 +211,7 @@ const UserTotal = () => {
                     </li>
                 </ul>
                 <div className="card profile-card">
-                    <div className="profile-image">사진</div>
+                    <div className="profile-image"><img src="https://www.dongyang.ac.kr/sites/dmu/images/sub/char2-1.png" alt="Profile" /></div>
                     <div className="profile-info">
                         <p>MARS</p>
                         <span>Mars1234@gmail.com</span>
@@ -224,15 +224,9 @@ const UserTotal = () => {
                     <section className="top">
                         <div className="card userlist-card">
                             <div className="search">
-                                <NavLink to="/NewTotal" className={({ isActive }) => (isActive ? "active" : "")}>
-                                    신규 회원 목록
-                                </NavLink>
-                                <NavLink to="/UserTotal" className={({ isActive }) => (isActive ? "active" : "")}>
-                                    전체 사용자 목록
-                                </NavLink>
-                                <input
+                                <input style={{marginLeft:"650px"}}
                                     type="text"
-                                    placeholder="이름 검색"
+                                    placeholder="이름을 검색해 주세요"
                                     value={searchTop}
                                     onChange={handleSearchChange}
                                     className="search-input"
@@ -271,7 +265,7 @@ const UserTotal = () => {
                                                         <td>{user.measurementCount ?? measurements.length ?? 0}</td>
                                                         <td>
                                                             {user.measurementInfo || (
-                                                                <button className="px-2 py-1 border rounded" onClick={() => handleToggleDetail(user)}>
+                                                                <button style={{backgroundColor: '#1D3162', color: 'white', border: 'none', borderRadius: '4px',width: '130px', height: '30px', cursor: 'pointer', fontSize: '12px', marginRight: '8px'}}className="px-2 py-1 border rounded" onClick={() => handleToggleDetail(user)}>
                                                                     {isOpen ? "접기" : "검사 기록 보기"}
                                                                 </button>
                                                             )}
@@ -330,9 +324,9 @@ const UserTotal = () => {
                             </table>
 
                             {totalPages > 1 && (
-                                <div className="pagination">
+                                <div className="pagination" width="100%" style={{ marginTop: '10px', textAlign: 'center' }}>
                                     {Array.from({ length: totalPages }, (_, i) => (
-                                        <button
+                                        <button style={{backgroundColor: '#1D3162', color: 'white', border: 'none', borderRadius: '4px',width: '30px', height: '30px', cursor: 'pointer', fontSize: '12px', marginRight: '8px'}}
                                             key={i + 1}
                                             onClick={() => setCurrentPage(i + 1)}
                                             className={currentPage === i + 1 ? "active" : ""}
