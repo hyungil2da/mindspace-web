@@ -5,13 +5,14 @@ import axios from "axios";
 import "./DailySummary.css";
 
 // 오늘 YYYY-MM-DD
-const getTodayKstYmd = () =>
-  new Intl.DateTimeFormat("en-CA", {
-    timeZone: "Asia/Seoul",
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-  }).format(new Date());
+const getTodayKstYmd = () => "2025-10-23";
+
+//   new Intl.DateTimeFormat("en-CA", {
+//     timeZone: "Asia/Seoul",
+//     year: "numeric",
+//     month: "2-digit",
+//     day: "2-digit",
+//   }).format(new Date());
 
 const emotionKeys = ["depression", "anxiety", "stress", "anger", "stability"];
 
@@ -68,6 +69,7 @@ const DailySummary = () => {
       const usersRes = await axios.get("http://localhost:5001/api/users");
       const users = Array.isArray(usersRes?.data?.users) ? usersRes.data.users : [];
       const today = getTodayKstYmd();
+      
 
       // 2) 유저별 최근 감정 병렬 조회
       const reqs = users.map((u) =>
@@ -77,11 +79,13 @@ const DailySummary = () => {
           .catch(() => null)
       );
       const payloads = await Promise.all(reqs);
+      
 
       // 3) 오늘 항목만 대상으로 major 감정 카운트
       const counts = { depression: 0, anxiety: 0, stress: 0, anger: 0, stability: 0 };
       payloads.forEach((data) => {
         const list = Array.isArray(data?.emotionResults) ? data.emotionResults : [];
+        
         list.forEach((item) => {
           if (item?.date !== today) return; // 오늘만
           const major = majorKeyFromEmotions(item?.emotions || {});
@@ -89,14 +93,17 @@ const DailySummary = () => {
         });
       });
 
+
       // 4) 원그래프용 배열(name/uv/fill)로 변환
       const chartRows = emotionKeys.map((k) => ({
         name: emotionNameMap[k],
         uv: counts[k],
         fill: emotionColors[k],
       }));
+      
       setPieData(chartRows);
     } catch (err) {
+      console.error("❌ 에러:", err);
       setError(err);
       setPieData([]);
     } finally {

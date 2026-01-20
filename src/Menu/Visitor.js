@@ -51,9 +51,14 @@ function normalizeDailyRows(rows) {
 
 // 누락 날짜 0 보정 + 날짜 오름차순 정렬
 function fillMissingWithZero(rows) {
-  const want = last7DaysKst(); 
-  const map = new Map(rows.map((r) => [r.date, r.visitors]));
-  return want.map((d) => ({ date: d, visitors: map.get(d) ?? 0 }));
+  // API에서 받은 데이터가 있으면 그대로 사용, 없으면 현재 기준 7일 생성
+  if (rows.length === 0) {
+    const want = last7DaysKst();
+    return want.map((d) => ({ date: d, visitors: 0 }));
+  }
+  
+  // API 데이터를 날짜순 정렬하여 반환
+  return rows.sort((a, b) => a.date.localeCompare(b.date));
 }
 
 
@@ -78,7 +83,6 @@ const Visitor = () => {
           "http://localhost:5001/api/measurements/daily-count";
 
         const res = await axios.get(API_URL);
-        console.log("7일간 측정 데이터:", res.data);
 
         // 서버 응답 구조가 res.data.data에 데이터 배열이 있다고 가정하여 추출
         const rawData = Array.isArray(res?.data?.data) ? res.data.data : [];
