@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import "./DashBoard.css";
 
-const apiBase = "http://localhost:5001";
+const apiBase = "https://mindspace-1hpk.onrender.com";
 
 function buildGrid(measurements = []) {
   const rows = [...measurements]
@@ -75,7 +75,7 @@ const UserSpotlight = () => {
   const [keyword, setKeyword] = useState("");
 
   useEffect(() => {
-    axios.get(`${apiBase}/api/users`)
+    axios.get(API_ENDPOINTS.USERS)
       .then(res => {
         const userList = res.data.users || [];
         setUsers(userList);
@@ -95,7 +95,7 @@ const UserSpotlight = () => {
   useEffect(() => {
     if (!userId) return;
     setLoading(true);
-    axios.get(`${apiBase}/api/users/recent-emotions/${userId}`)
+    axios.get(API_ENDPOINTS.RECENT_EMOTIONS(userId))
       .then(res => setMeasurements(normalizeRecentEmotions(res.data)))
       .catch(err => {
         // 에러 처리: 감정 기록을 불러올 수 없음

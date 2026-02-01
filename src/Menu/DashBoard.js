@@ -7,6 +7,7 @@ import DailySummary from "../Menu/DailySummary";
 import { loadFaqs, loadNotices, loadNews, saveNews } from "./DashBoard_Utility";
 import { newsUpdates } from "./newsinfo.js";
 import UserSpotlight from "./UserSpotlight";
+import { API_ENDPOINTS } from '../config/api';
 
 function flattenNewsUpdates(updates) {
   let id = 1;
@@ -58,7 +59,7 @@ const DashBoard = () => {
   }, []);
 
   useEffect(() => {
-    axios.get("http://localhost:5001/api/users")
+    axios.get(API_ENDPOINTS.USERS)
       .then((res) => {
         const allUsers = res.data.users || [];
         const oneWeekAgo = new Date();

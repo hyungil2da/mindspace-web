@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./DashBoard.css";
 import axios from "axios";
+import { API_ENDPOINTS } from '../config/api';
 
 const User = () => {
   const [users, setUsers] = useState([]);
@@ -11,7 +12,7 @@ const User = () => {
 
 
   useEffect(() => {
-    axios.get("http://localhost:5001/api/users")
+    axios.get(API_ENDPOINTS.USERS)
       .then((res) => {
         const allUsers = res.data.users || [];
         setUsers(allUsers);

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./DashBoard.css";
 import { loadNotices, saveNotices } from "./DashBoard_Utility";
+import { API_ENDPOINTS } from '../config/api';
 
 const Notice = () => {
 
@@ -42,7 +43,7 @@ const Notice = () => {
     };
 
     useEffect(() => {
-        axios.get("http://localhost:5001/api/users")
+        axios.get("https://mindspace-1hpk.onrender.com/api/users")
             .then((res) => {
                 const allUsers = res.data.users || [];
                 setUsers(allUsers);

@@ -77,12 +77,7 @@ const Visitor = () => {
 
     (async () => {
       try {
-        //[API 안정성] 로컬호스트 오류 방지를 위해 확인된 배포 주소로 변경했습니다.
-        const API_URL =
-          process.env.REACT_APP_API_URL ||
-          "http://localhost:5001/api/measurements/daily-count";
-
-        const res = await axios.get(API_URL);
+        const res = await axios.get(API_ENDPOINTS.DAILY_COUNT);
 
         // 서버 응답 구조가 res.data.data에 데이터 배열이 있다고 가정하여 추출
         const rawData = Array.isArray(res?.data?.data) ? res.data.data : [];

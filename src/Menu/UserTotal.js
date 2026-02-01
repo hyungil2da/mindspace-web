@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./DashBoard.css";
 import axios from "axios";
+import { API_ENDPOINTS } from '../config/api';
 
 const UserTotal = () => {
     const [users, setUsers] = useState([]);
@@ -14,7 +15,7 @@ const UserTotal = () => {
     const [measurementMap, setMeasurementMap] = useState({});
 
     useEffect(() => {
-        axios.get("http://localhost:5001/api/users")
+        axios.get(API_ENDPOINTS.USERS)
             .then((res) => {
                 const allUsers = res.data.users || [];
                 setUsers(allUsers);
@@ -71,7 +72,7 @@ const UserTotal = () => {
 
         if (next && !measurementMap[user._id]) {
             try {
-                const url = `http://localhost:5001/api/users/recent-emotions/${user._id}`;
+                const url = API_ENDPOINTS.RECENT_EMOTIONS(user._id);
                 const res = await axios.get(url);
                 const normalized = toMeasurementsFromRecentEmotions(res.data);
                 setMeasurementMap((prev) => ({ ...prev, [user._id]: normalized }));

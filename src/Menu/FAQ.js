@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import "./DashBoard.css";
 import axios from "axios";
 import { loadFaqs,  saveFaqs } from "./DashBoard_Utility";
+import { API_ENDPOINTS } from '../config/api';
 
 const defaultFaqs = [
   // =================================================================
@@ -110,7 +111,7 @@ const FAQ = () => {
     };
 
     useEffect(() => {
-        axios.get("http://localhost:5001/api/users")
+        axios.get(API_ENDPOINTS.USERS)
             .then((res) => {
                 const allUsers = res.data.users || [];
                 setUsers(allUsers);
