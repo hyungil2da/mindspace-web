@@ -8,7 +8,6 @@ const UserTotal = () => {
     const [users, setUsers] = useState([]);
     const [newUsers, setNewUsers] = useState([]);
     const [searchTop, setSearchTop] = useState("");
-    const [searchBottom, setSearchBottom] = useState("");
 
     useEffect(() => {
         axios.get("http://localhost:5001/api/users")
@@ -34,9 +33,6 @@ const UserTotal = () => {
 
     const filteredTopUsers = newUsers.filter((user) =>
         user.name?.toLowerCase().includes(searchTop.toLowerCase())
-    );
-    const filteredBottomUsers = users.filter((user) =>
-        user.name?.toLowerCase().includes(searchBottom.toLowerCase())
     );
     return (
         <div className="dashboard-container">

@@ -13,14 +13,14 @@ import Statistics from "./Menu/Statistics";
 import Count from "./Menu/Count";
 import Setting from "./Menu/Setting";
 import "./App.css";
-import Main_Page from "./pages/Main_Page";
+import MainPage from "./pages/Main_Page";
 import News from "./Menu/News";
 
 const App = () => {
   return (
     <div>
       <Routes>
-        <Route path="/Main_page" element={<Main_Page />} />
+        <Route path="/Main_page" element={<MainPage />} />
         <Route path="/DashBoard" element={<DashBoard />} />
         <Route path="/Visitor" element={<Visitor />} />
         <Route path="/User" element={<User />} />
@@ -33,7 +33,7 @@ const App = () => {
         <Route path="/Count" element={<Count />} />
         <Route path="/Setting" element={<Setting />} />
         <Route path="/UserSetting" element={<UserSetting />} />
-        <Route path="/" element={<Main_Page />} />
+        <Route path="/" element={<MainPage />} />
         <Route path="/News" element={<News />} />
       </Routes>
     </div>

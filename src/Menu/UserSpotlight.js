@@ -89,6 +89,7 @@ const UserSpotlight = () => {
       .catch(() => {
         // 에러 처리: 유저 목록을 불러올 수 없음
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

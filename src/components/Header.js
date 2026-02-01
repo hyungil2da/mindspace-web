@@ -11,7 +11,7 @@ function Header() {
 
   return (
     <header className="header"> 
-      <a className="logo" href="#">
+      <a className="logo" href="/">
         <img src={logo} alt="MindSpace Logo" className="logo-image" />
       </a>
 

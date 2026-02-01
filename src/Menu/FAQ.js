@@ -37,9 +37,6 @@ const defaultFaqs = [
 const FAQ = () => {
     const [users, setUsers] = useState([]);
     const [editTitle, setEditTitle] = useState("");
-    const [newUsers, setNewUsers] = useState([]);
-    const [searchTop, setSearchTop] = useState("");
-    const [searchBottom, setSearchBottom] = useState("");
     const [openRow, setOpenRow] = useState(null);
     const [editContent, setEditContent] = useState("");
 
@@ -133,14 +130,6 @@ const FAQ = () => {
                 // 에러 처리: 사용자 정보를 불러올 수 없음
             });
     }, []);
-
-    const filteredTopUsers = users.filter((user) =>
-        user.name?.toLowerCase().includes(searchTop.toLowerCase())
-    );
-
-    const filteredBottomUsers = users.filter((user) =>
-        user.name?.toLowerCase().includes(searchBottom.toLowerCase())
-    );
 
     return (
         <div className="dashboard-container">

@@ -10,7 +10,7 @@ import NewsSection from '../components/NewsSection'
 import ScrollToTop from '../components/ScrollToTop'
 import SystemFlow from '../components/SystemFlow'
 
-export const Main_Page = () => {
+const MainPage = () => {
   return (
       <div className="main-page">
      <Header/>
@@ -26,4 +26,4 @@ export const Main_Page = () => {
   )
 }
 
-export default Main_Page
+export default MainPage

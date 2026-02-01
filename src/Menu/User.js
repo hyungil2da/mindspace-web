@@ -32,10 +32,6 @@ const User = () => {
       });
   }, []);
 
-  const filteredTopUsers = users.filter((user) =>
-    user.name?.toLowerCase().includes(searchTop.toLowerCase())
-  );
-
   const filteredBottomUsers = users.filter((user) =>
     user.name?.toLowerCase().includes(searchBottom.toLowerCase())
   );

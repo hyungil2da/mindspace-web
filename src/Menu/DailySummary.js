@@ -1,6 +1,5 @@
-import React from "react";
-import { useEffect, useState } from "react";
-import { ResponsiveContainer, PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
+import React, { useEffect, useState } from "react";
+import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
 import axios from "axios";
 import "./DailySummary.css";
 
@@ -55,12 +54,10 @@ function buildDummyPieData() {
 
 
 const DailySummary = () => {
-  const [data, setData] = useState([]);
-  const [pieData, setPieData] = useState([]); // 원그래프에 바로 쓰일 데이터(name/uv/fill)
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const useDummy = false; // 더미모드로 교체하고 싶으면 true로
-
+  const useDummy = false; // 더미모드로 교체하고 싶으면 true로
+  const [pieData, setPieData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const fetchSummaryData = async () => {
     setLoading(true);
     setError(null);
@@ -118,13 +115,7 @@ const DailySummary = () => {
     } else {
       fetchSummaryData();
     }
-  }, []);
-
-  return (
-    <div className="chart-container">
-      {loading ? (
-        <div className="chart-labels">로딩 중...</div>
-      ) : error ? (
+    // eslint-disable-next-line react-hooks/exhaustive-deps
         <div className="chart-labels">데이터를 불러오는 중 오류가 발생했습니다.</div>
       ) : (!useDummy && pieData.every(d => (d?.uv ?? 0) === 0)) ? (
         <div className="chart-labels">오늘의 첫 감정 검사를 시작해보세요!</div>
