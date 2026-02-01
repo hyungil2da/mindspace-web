@@ -20,7 +20,7 @@ const UserTotal = () => {
                 setUsers(allUsers);
             })
             .catch((err) => {
-                console.error("회원정보 불러오기 실패:", err);
+                // 에러 처리: 회원정보를 불러올 수 없음
             });
     }, []);
 
@@ -76,7 +76,7 @@ const UserTotal = () => {
                 const normalized = toMeasurementsFromRecentEmotions(res.data);
                 setMeasurementMap((prev) => ({ ...prev, [user._id]: normalized }));
             } catch (err) {
-                console.error("최근 감정 기록 불러오기 실패:", err);
+                // 에러 처리: 감정 기록을 불러올 수 없음
                 // 필요 시 임시 더미 사용:
                 ensureDummyMeasurements(user._id, user.measurementCount ?? 6);
             }

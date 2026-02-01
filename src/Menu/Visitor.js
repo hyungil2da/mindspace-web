@@ -97,7 +97,7 @@ const Visitor = () => {
           setData(filled);
         }
       } catch (err) {
-        console.error("7일간 측정 데이터 불러오기 실패:", err);
+        // 에러 처리: 측정 데이터를 불러올 수 없음
         if (mounted) setError(err);
       }
     })();

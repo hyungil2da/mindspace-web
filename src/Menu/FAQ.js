@@ -54,7 +54,6 @@ const FAQ = () => {
             saveFaqs(defaultFaqs);
             return defaultFaqs;
         } catch (error) {
-            console.error('FAQ 데이터 로드 실패:', error);
             return defaultFaqs;
         }
     });
@@ -116,7 +115,6 @@ const FAQ = () => {
     useEffect(() => {
         axios.get("http://localhost:5001/api/users")
             .then((res) => {
-                console.log("회원정보 불러오기 성공:", res.data);
                 const allUsers = res.data.users || [];
                 setUsers(allUsers);
 
@@ -131,8 +129,8 @@ const FAQ = () => {
 
                 setNewUsers(recentUsers);
             })
-            .catch((err) => {
-                console.error("회원정보 불러오기 실패:", err);
+            .catch(() => {
+                // 에러 처리: 사용자 정보를 불러올 수 없음
             });
     }, []);
 

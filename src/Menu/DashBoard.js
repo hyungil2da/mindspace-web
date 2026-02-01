@@ -87,7 +87,7 @@ const DashBoard = () => {
         setNewUsers(recentUsers);
       })
       .catch((err) => {
-        console.error("회원정보 불러오기 실패:", err);
+        // 에러 처리: 사용자 정보를 불러올 수 없음
       });
   }, []);
 

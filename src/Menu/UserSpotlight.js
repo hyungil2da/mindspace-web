@@ -86,7 +86,9 @@ const UserSpotlight = () => {
           if (baseUser) setUserId(baseUser._id);
         }
       })
-      .catch(err => console.error("유저 목록 불러오기 실패:", err));
+      .catch(() => {
+        // 에러 처리: 유저 목록을 불러올 수 없음
+      });
   }, []);
 
   useEffect(() => {
@@ -95,7 +97,7 @@ const UserSpotlight = () => {
     axios.get(`${apiBase}/api/users/recent-emotions/${userId}`)
       .then(res => setMeasurements(normalizeRecentEmotions(res.data)))
       .catch(err => {
-        console.error("최근 감정 기록 불러오기 실패:", err);
+        // 에러 처리: 감정 기록을 불러올 수 없음
         setMeasurements([]);
       })
       .finally(() => setLoading(false));
