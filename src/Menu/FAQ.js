@@ -158,7 +158,7 @@ const FAQ = () => {
                         <div className="card-title">FAQ</div>
                     </div>
                     <div className="flex justify-end mt-3">
-                        <button className="px-3 py-1 bg-green-600 text-white rounded" onClick={handleAdd} style={{backgroundColor: '#1D3162', color: 'white', border: 'none', borderRadius: '4px',width: '80px', height: '40px', cursor: 'pointer'}}>
+                        <button className="btn-primary btn-add" onClick={handleAdd}>
                             FAQ 추가
                             
                         </button>
@@ -176,22 +176,21 @@ const FAQ = () => {
                                     <tr>
                                         <td className="p-2">{faq.title}</td>
                                         <td className="p-2">
-                                            <button style={{backgroundColor: '#1D3162', color: 'white', border: 'none', borderRadius: '4px',width: '50px', height: '30px', cursor: 'pointer', fontSize: '12px', marginRight: '8px'}}
-                                                className="text-blue-600 underline"
+                                            <button className="btn-primary btn-small"
                                                 onClick={() =>
                                                     openRow === faq.id ? setOpenRow(null) : handleEdit(faq) 
                                                 }
                                             >
                                                 {openRow === faq.id ? "닫기" : "수정"}
                                             </button>
-                                            <button className="px-3 py-1 bg-gray-500 text-white rounded" onClick={() => handleReset(faq.id)} style={{backgroundColor: '#1D3162', color: 'white', border: 'none', borderRadius: '4px',width: '50px', height: '30px', cursor: 'pointer', fontSize: '12px', marginRight: '8px'}}>초기화</button>
-                                            <button className="px-3 py-1 bg-red-600 text-white rounded" onClick={() => deleteFaq(faq.id)} style={{backgroundColor: '#1D3162', color: 'white', border: 'none', borderRadius: '4px',width: '50px', height: '30px', cursor: 'pointer', fontSize: '12px', marginRight: '8px'}}>삭제</button>
+                                            <button className="btn-primary btn-small" onClick={() => handleReset(faq.id)}>초기화</button>
+                                            <button className="btn-primary btn-small" onClick={() => deleteFaq(faq.id)}>삭제</button>
                                         </td>
                                     </tr>
                                     {openRow === faq.id && (
                                         <tr>
                                             <td colSpan={2} className="p-2 bg-gray-50">
-                                                <textarea rows={2} cols={80} type="text" value={editTitle} onChange={(e) => setEditTitle(e.target.value)} className="w-full border p-2 rounded" placeholder="질문(제목)" style={{ margin: "8px", padding: "2px" }}/>
+                                                <textarea rows={2} cols={80} type="text" value={editTitle} onChange={(e) => setEditTitle(e.target.value)} className="w-full border p-2 rounded faq-textarea-title" placeholder="질문(제목)" />
                                                 <br/>
                                                 <textarea
                                                     value={editContent}

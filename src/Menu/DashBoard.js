@@ -167,8 +167,7 @@ const DashBoard = () => {
                 <div key={faq.id} className="faqItem">
                   <p className="faq-question">{faq.title}</p>
                   <span
-                    className="faq-answer"
-                    style={{ whiteSpace: "pre-wrap" }} // ✅ 줄바꿈/들여쓰기 유지
+                    className="faq-answer faq-answer-text"
                   >
                     {faq.content}
                   </span>

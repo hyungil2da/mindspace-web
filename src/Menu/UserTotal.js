@@ -225,7 +225,7 @@ const UserTotal = () => {
                     <section className="top">
                         <div className="card userlist-card">
                             <div className="search">
-                                <input style={{marginLeft:"650px"}}
+                                <input className="search-input search-input-right"
                                     type="text"
                                     placeholder="이름을 검색해 주세요"
                                     value={searchTop}
@@ -266,7 +266,7 @@ const UserTotal = () => {
                                                         <td>{user.measurementCount ?? measurements.length ?? 0}</td>
                                                         <td>
                                                             {user.measurementInfo || (
-                                                                <button style={{backgroundColor: '#1D3162', color: 'white', border: 'none', borderRadius: '4px',width: '130px', height: '30px', cursor: 'pointer', fontSize: '12px', marginRight: '8px'}}className="px-2 py-1 border rounded" onClick={() => handleToggleDetail(user)}>
+                                                                <button className="btn-primary btn-medium px-2 py-1 border rounded" onClick={() => handleToggleDetail(user)}>
                                                                     {isOpen ? "접기" : "검사 기록 보기"}
                                                                 </button>
                                                             )}
@@ -327,7 +327,7 @@ const UserTotal = () => {
                             {totalPages > 1 && (
                                 <div className="pagination" width="100%" style={{ marginTop: '10px', textAlign: 'center' }}>
                                     {Array.from({ length: totalPages }, (_, i) => (
-                                        <button style={{backgroundColor: '#1D3162', color: 'white', border: 'none', borderRadius: '4px',width: '30px', height: '30px', cursor: 'pointer', fontSize: '12px', marginRight: '8px'}}
+                                        <button className="btn-primary btn-pagination"
                                             key={i + 1}
                                             onClick={() => setCurrentPage(i + 1)}
                                             className={currentPage === i + 1 ? "active" : ""}
