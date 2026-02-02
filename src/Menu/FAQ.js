@@ -36,8 +36,6 @@ const defaultFaqs = [
 ];
  
 const FAQ = () => {
-    const [users, setUsers] = useState([]);
-    const [newUsers, setNewUsers] = useState([]);
     const [editTitle, setEditTitle] = useState("");
     const [openRow, setOpenRow] = useState(null);
     const [editContent, setEditContent] = useState("");

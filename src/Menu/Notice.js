@@ -3,11 +3,8 @@ import { NavLink } from "react-router-dom";
 import "./DashBoard.css";
 import axios from "axios";
 import { loadNotices, saveNotices } from "./DashBoard_Utility";
-import { API_ENDPOINTS } from '../config/api';
 
 const Notice = () => {
-    const [users, setUsers] = useState([]);
-    const [newUsers, setNewUsers] = useState([]);
 
     const defaultNotices = [
         { id: 1, date: "2025-02-01", title: "공지1", content: "첫 번째 공지 내용입니다." },

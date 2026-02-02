@@ -4,7 +4,7 @@ import Visitor from "./Visitor";
 import { NavLink } from "react-router-dom";
 import "./DashBoard.css";
 import DailySummary from "../Menu/DailySummary";
-import { loadFaqs, loadNotices, loadNews, saveNews } from "./DashBoard_Utility";
+import { loadFaqs, loadNews, saveNews } from "./DashBoard_Utility";
 import { newsUpdates } from "./newsinfo.js";
 import UserSpotlight from "./UserSpotlight";
 import { API_ENDPOINTS } from '../config/api';

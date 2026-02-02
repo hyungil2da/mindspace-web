@@ -6,7 +6,6 @@ import axios from "axios";
 import { API_ENDPOINTS } from '../config/api';
 
 const UserTotal = () => {
-    const [users, setUsers] = useState([]);
     const [newUsers, setNewUsers] = useState([]);
     const [searchTop, setSearchTop] = useState("");
 
@@ -14,7 +13,6 @@ const UserTotal = () => {
         axios.get(API_ENDPOINTS.USERS)
             .then((res) => {
                 const allUsers = res.data.users || [];
-                setUsers(allUsers);
 
                 const oneWeekAgo = new Date();
                 oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);

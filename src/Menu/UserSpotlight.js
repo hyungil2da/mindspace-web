@@ -3,8 +3,6 @@ import axios from "axios";
 import "./DashBoard.css";
 import { API_ENDPOINTS } from '../config/api';
 
-const apiBase = "https://mindspace-1hpk.onrender.com";
-
 function buildGrid(measurements = []) {
   const rows = [...measurements]
     .slice(-10)
