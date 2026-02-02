@@ -10,6 +10,7 @@ import {
   Line,
 } from "recharts";
 import axios from "axios";
+import { API_ENDPOINTS } from '../config/api';
 
 // YYYY-MM-DD (Asia/Seoul)
 function ymdKst(date = new Date()) {
