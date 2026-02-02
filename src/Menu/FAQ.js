@@ -1,5 +1,5 @@
 // 사용자 관리
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./DashBoard.css";
 import { loadFaqs,  saveFaqs } from "./DashBoard_Utility";

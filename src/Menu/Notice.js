@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./DashBoard.css";
 import { loadNotices, saveNotices } from "./DashBoard_Utility";
@@ -15,8 +15,6 @@ const Notice = () => {
         return saved.length ? saved : defaultNotices;
     });
     useEffect(() => { saveNotices(notices); }, [notices]);
-
-    useEffect(() => {saveNotices(notices);}, [notices]);
 
     const [openRow, setOpenRow] = useState(null);
     const [editTitle, setEditTitle] = useState("");
