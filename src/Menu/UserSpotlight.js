@@ -2,7 +2,6 @@ import React, { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import "./DashBoard.css";
 import { API_ENDPOINTS } from '../config/api';
-import { API_ENDPOINTS } from '../config/api';
 
 const apiBase = "https://mindspace-1hpk.onrender.com";
 
