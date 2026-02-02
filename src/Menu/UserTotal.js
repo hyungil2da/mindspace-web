@@ -230,7 +230,6 @@ const UserTotal = () => {
                                     placeholder="이름을 검색해 주세요"
                                     value={searchTop}
                                     onChange={handleSearchChange}
-                                    className="search-input"
                                 />
                             </div>
                             <table className="listTable">
@@ -327,10 +326,9 @@ const UserTotal = () => {
                             {totalPages > 1 && (
                                 <div className="pagination" width="100%" style={{ marginTop: '10px', textAlign: 'center' }}>
                                     {Array.from({ length: totalPages }, (_, i) => (
-                                        <button className="btn-primary btn-pagination"
+                                        <button className={`btn-primary btn-pagination ${currentPage === i + 1 ? "active" : ""}`}
                                             key={i + 1}
                                             onClick={() => setCurrentPage(i + 1)}
-                                            className={currentPage === i + 1 ? "active" : ""}
                                         >
                                             {i + 1}
                                         </button>
