@@ -1,10 +1,8 @@
 // 사용자 관리
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./DashBoard.css";
-import axios from "axios";
 import { loadFaqs,  saveFaqs } from "./DashBoard_Utility";
-import { API_ENDPOINTS } from '../config/api';
 
 const defaultFaqs = [
   // =================================================================
@@ -108,28 +106,6 @@ const FAQ = () => {
             alert("삭제되었습니다.");
         }
     };
-
-    useEffect(() => {
-        axios.get(API_ENDPOINTS.USERS)
-            .then((res) => {
-                const allUsers = res.data.users || [];
-                setUsers(allUsers);
-
-                const oneWeekAgo = new Date();
-                oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
-
-                const recentUsers = allUsers.filter(user => {
-                    if (!user.createdAt) return false;
-                    const createdDate = new Date(user.createdAt);
-                    return createdDate >= oneWeekAgo;
-                });
-
-                setNewUsers(recentUsers);
-            })
-            .catch(() => {
-                // 에러 처리: 사용자 정보를 불러올 수 없음
-            });
-    }, []);
 
     return (
         <div className="dashboard-container">

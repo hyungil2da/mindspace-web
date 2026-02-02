@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./DashBoard.css";
-import axios from "axios";
 import { loadNotices, saveNotices } from "./DashBoard_Utility";
 
 const Notice = () => {
@@ -41,28 +40,6 @@ const Notice = () => {
         setEditContent("");
         alert("수정이 완료되었습니다.");
     };
-
-    useEffect(() => {
-        axios.get("https://mindspace-1hpk.onrender.com/api/users")
-            .then((res) => {
-                const allUsers = res.data.users || [];
-                setUsers(allUsers);
-
-                const oneWeekAgo = new Date();
-                oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
-
-                const recentUsers = allUsers.filter(user => {
-                    if (!user.createdAt) return false;
-                    const createdDate = new Date(user.createdAt);
-                    return createdDate >= oneWeekAgo;
-                });
-
-                setNewUsers(recentUsers);
-            })
-            .catch((err) => {
-                // 에러 처리: 회원정보를 불러올 수 없음
-            });
-    }, []);
 
     return (
         <div className="dashboard-container">
